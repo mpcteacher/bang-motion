@@ -87,6 +87,18 @@ Giliran kamu: kenapa botol berisi air bisa membengkak di freezer? Tulis jawabanm
 
 Komentar untuk di-pin setelah banyak jawaban masuk: `Jawabannya: air MEMUAI ±9% saat membeku, jadi es mendorong dinding botol ke luar. Tips: jangan isi botol sampai penuh sebelum dibekukan, apalagi botol kaca! 🧊`
 
+## Hari 7 — Kuis rekap minggu 1
+
+```
+3 soal, 30 detik. Kamu nonton Kuan minggu ini? 🧠
+Kuis rekap minggu pertama: trik kali 11, kenapa langit biru, dan telur yang mengapung. Jawab dulu sebelum jawabannya muncul ya! ⏱️
+Tulis skormu di komentar: 0, 1, 2, atau 3! Yang dapat 3, Kuan kasih tos virtual ✋
+#Kuantika #BelajarBarengKuan #TantanganKuan #Fisika #Matematika
+```
+
+Catatan: kuis rekap mencakup dua mapel, jadi slot Mapel + Topik diisi `#Fisika #Matematika`.
+Balas komentar skor 3 dengan "✋ Tos! Kamu nonton Kuan sampai ke inti!"
+
 ---
 
 ## Catatan
