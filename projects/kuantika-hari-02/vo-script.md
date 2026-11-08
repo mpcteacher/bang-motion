@@ -1,9 +1,11 @@
 # Naskah VO — Kuantika Hari 2: "23 × 11 dalam 2 detik"
 
-Pilar: Trik Matematika · Jenjang: SD 4–SMP · Durasi video: ±43 detik (9:16)
+Pilar: Trik Matematika · Jenjang: SD 4–SMP · Durasi video: 44,4 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-memakai teks di bawah, kirim berkasnya, lalu video akan disinkronkan per kata.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Audio = berkas ElevenLabs asli (41,7 dtk) + jeda 0,3 dtk di tiga
+pergantian panggung (setelah "di sini", "253", "627"), dinormalkan ke −16 LUFS,
+plus ekor ±1,8 dtk untuk logo. Kata-katanya tidak diubah.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -23,16 +25,16 @@ Kalau jumlahnya sepuluh atau lebih? Coba lima puluh tujuh kali sebelas. Lima tam
 Paham sampai ke inti! Giliran kamu: tujuh puluh dua kali sebelas, sama dengan berapa? Tulis jawabanmu di komentar, Kuan cek satu-satu!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual di papan |
 |---|---|---|---|---|
-| 0–4,0 | 1. Kelas | Senang | Dua puluh tiga kali sebelas, dalam dua detik. Mau tahu caranya? | kapur menulis 23 × 11 = 253, stopwatch berhenti tepat 2,00 |
-| 4,2–5,6 | 1. Kelas | Senang | Halo, Kuan di sini! | kamera mendekat ke papan |
-| 5,9–18,6 | 2. Close-up papan | Kuan Guru | Trik kali sebelas ini untuk bilangan dua angka. Pisahkan dua dan tiga. Jumlahkan: dua tambah tiga, lima. Taruh lima di tengah. Jadinya, dua ratus lima puluh tiga! | 253 dihapus · 23 dilingkari "2 angka" · 2 _ 3 · 2 + 3 = 5 · 5 masuk ke tengah · 253 |
-| 18,6–33,1 | 3. Papan kanan (twist) | Berpikir → Kuan Guru | Kalau jumlahnya sepuluh atau lebih? Coba lima puluh tujuh kali sebelas. Lima tambah tujuh, dua belas. Dua di tengah, satunya simpan ke depan: lima tambah satu, enam. Jadinya, enam ratus dua puluh tujuh! | "jumlah ≥ 10 ?" · 5 _ 7 · 5 + 7 = 12 · 2 ke tengah · 1 oranye ke depan · 5 jadi 6 · 627 |
-| 33,1–41,9 | 1. Kelas (penutup) | Bangga | Paham sampai ke inti! Giliran kamu: tujuh puluh dua kali sebelas, sama dengan berapa? Tulis jawabanmu di komentar, Kuan cek satu-satu! | 72 × 11 = ? (jawaban TIDAK ditampilkan), gelembung komentar |
-| 41,9–43,6 | Logo | Bangga | — | kuantika |
+| 0–4,0 | 1. Kelas | Senang | Dua puluh tiga kali sebelas, dalam dua detik. Mau tahu caranya? | kapur menulis 23 × 11 = 253, stopwatch berhenti tepat 2,00 (2,95) |
+| 4,6–5,8 | 1. Kelas | Senang | Halo, Kuan di sini! | kamera mendekat ke papan |
+| 6,65–18,5 | 2. Close-up papan | Kuan Guru | Trik kali sebelas ini untuk bilangan dua angka. Pisahkan dua dan tiga. Jumlahkan: dua tambah tiga, lima. Taruh lima di tengah. Jadinya, dua ratus lima puluh tiga! | 253 dihapus · "2 angka" (8,5) · 2 _ 3 (10,1) · 2 + 3 = 5 (12,6–14,2) · 5 ke tengah (15,4) · 253 (17,4) |
+| 19,45–33,0 | 3. Papan kanan (twist) | Berpikir → Kuan Guru | Kalau jumlahnya sepuluh atau lebih? Coba lima puluh tujuh kali sebelas. Lima tambah tujuh, dua belas. Dua di tengah, satunya simpan ke depan: lima tambah satu, enam. Jadinya, enam ratus dua puluh tujuh! | "jumlah ≥ 10 ?" (19,5) · 57 × 11 (22,0) · 5 + 7 = 12 (24,1–25,3) · 2 ke tengah (26,4) · 1 ke depan (27,55) · 6 (30,45) · 627 (32,3) |
+| 34,07–42,6 | 1. Kelas (penutup) | Bangga | Paham sampai ke inti! Giliran kamu: tujuh puluh dua kali sebelas, sama dengan berapa? Tulis jawabanmu di komentar, Kuan cek satu-satu! | 72 × 11 (36,74) = ? (38,1) — jawaban TIDAK ditampilkan · gelembung komentar (39,6) |
+| 42,75–44,4 | Logo | Bangga | — | kuantika |
 
 ## Catatan untuk Anda (tidak dibacakan)
 

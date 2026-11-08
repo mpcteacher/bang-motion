@@ -7,7 +7,7 @@
 <title>Kuantika Hari 2 — Trik Kali 11</title>
 <!--
   Kuantika · Hari 2 · Trik Matematika · SD 4–SMP · "23 × 11 dalam 2 detik"
-  Kartun panggung 9:16 (1080×1920), ±43 dtk, 5 panggung (kelas, papan 23, papan 57, kelas, logo).
+  Kartun panggung 9:16 (1080×1920), 44,4 dtk (VO ElevenLabs vo.m4a, dikunci per frasa), 5 panggung (kelas, papan 23, papan 57, kelas, logo).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: isi src pada <audio id="vo"> (vo.m4a satu folder) lalu kunci waktu di blok KOREOGRAFI.
 -->
@@ -41,11 +41,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=43.6,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=44.4,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -274,82 +274,77 @@ function layoutWord(){let tot=0;const ws=P5.letters.map(l=>{const w=l.tx.getComp
   P5.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per kata)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 44,4 dtk). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
-/* P1 · 0–5,9 · "dua puluh tiga kali sebelas dalam dua detik. mau tahu caranya?" + "halo, Kuan di sini!" */
+/* P1 · 0–6,2 · "dua puluh tiga kali sebelas, dalam dua detik. mau tahu caranya?" + "halo, Kuan di sini!" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1000,1.12);
 tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.3);
-sayAt('#tHook',[.15,.4,.6,1.1,1.45]);
-write(P1.ch,P1.a1,.25,.11);write(P1.ch,P1.a2.slice(0,1),.85,.12);
-tl.fromTo(P1.sw.v,{s:0},{s:2,duration:2,ease:'none',immediateRender:false},.9);              // stopwatch berjalan 2 detik
-write(P1.ch,P1.a2.slice(1),2.35,.17);home(P1.ch,2.95);
-tl.fromTo(P1.sw.j,{sx:1.18,sy:1.18},{sx:1,sy:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},2.9);   // berhenti tepat 2,00
-hop(P1.kuan,3.2,70);unsay('#tHook',3.9);
-cam(P1,4.2,540,880,1.5,1.0,'power2.inOut');hop(P1.kuan,4.9,60);                                 // halo, Kuan di sini
-slide(5.6,P1,P2,'x');
-/* P2 · 5,9–18,6 · trik 23 × 11 */
-camSet(P2,5.5,540,900,1.12);showAll(P2.r1,5.5);
-tl.fromTo(P2.er,{tx:200,ty:1572},{tx:980,ty:560,duration:.35,ease:'power2.out',immediateRender:false},6.0);       // penghapus menghapus 253
-tl.to(P2.er,{keyframes:{tx:[980,740,960,720,960]},duration:.6,ease:'none'},6.35);
-[12,11,10].forEach((i,k)=>tl.to(P2.r1.at(i).el,{opacity:0,duration:.15},6.45+k*.15));tl.to(P2.smear,{opacity:.07,duration:.3},6.5);
-tl.to(P2.er,{tx:200,ty:1572,duration:.45,ease:'power2.inOut'},6.98);
-const slot2=drawLine('M 680 590 L 1000 590',CH.white,6,P2.g,7.1,.35,{opacity:0});
-/* "…untuk bilangan dua angka" */
-cam(P2,7.3,540,640,1.4,.9,'power2.inOut');
-drawLine(`M ${P2.circ.x-110} ${P2.circ.y} a 110 72 0 1 0 220 0 a 110 72 0 1 0 -220 0`,CH.yel,6,P2.g,7.7,.55);
-tl.fromTo(P2.lab,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'back.out(2)',immediateRender:false},8.2);
-/* "pisahkan dua dan tiga" */
-cam(P2,9.2,540,900,1.18,.9,'power2.inOut');
-P2.r2.forEach((g,k)=>{const src=P2.r1.at(k);tl.set(g.el,{opacity:1},9.4);tl.fromTo(g.el,{x:src.x-g.x,y:src.y-g.y,scale:.8,transformOrigin:'50% 70%'},{x:0,y:0,scale:1,duration:.75,ease:'back.out(1.4)',immediateRender:false},9.4+k*.08);});
-tl.fromTo(P2.gap,{opacity:0},{opacity:1,duration:.3,immediateRender:false},10.2);
-/* "jumlahkan: dua tambah tiga, lima" */
-write(P2.ch,P2.r3.slice(0,4),11.3,.2);write(P2.ch,P2.r3.slice(4),12.85,.2);home(P2.ch,13.1);
-tl.fromTo(P2.r3.at(8).el,{scale:1.5,transformOrigin:'50% 70%'},{scale:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},12.95);
-/* "taruh lima di tengah" */
-fly(P2.r3.at(8),14.0,540,880,150/110,.8);tl.to(P2.gap,{opacity:0,duration:.25},14.75);
-/* "jadinya, dua ratus lima puluh tiga!" */
-cam(P2,15.6,540,780,1.2,.8,'power2.inOut');
+sayAt('#tHook',[.05,.4,.7,1.3,2.05]);                                                              // 23×11@0 · dalam@1.24 · dua detik@2.06
+write(P1.ch,P1.a1,.1,.11);write(P1.ch,P1.a2.slice(0,1),.8,.12);
+tl.fromTo(P1.sw.v,{s:0},{s:2,duration:2,ease:'none',immediateRender:false},.95);              // stopwatch berjalan 2 detik
+write(P1.ch,P1.a2.slice(1),2.4,.17);home(P1.ch,2.95);
+tl.fromTo(P1.sw.j,{sx:1.18,sy:1.18},{sx:1,sy:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},2.95);   // berhenti tepat 2,00
+hop(P1.kuan,3.3,70);unsay('#tHook',4.0);                                                           // mau tahu caranya@3.29
+cam(P1,4.45,540,880,1.5,1.0,'power2.inOut');hop(P1.kuan,5.15,60);                                // halo@4.56 · Kuan@5.18
+slide(5.95,P1,P2,'x');
+/* P2 · 6,2–19,3 · trik 23 × 11 */
+camSet(P2,5.9,540,900,1.12);showAll(P2.r1,5.9);
+tl.fromTo(P2.er,{tx:200,ty:1572},{tx:980,ty:560,duration:.35,ease:'power2.out',immediateRender:false},6.3);        // penghapus menghapus 253
+tl.to(P2.er,{keyframes:{tx:[980,740,960,720,960]},duration:.6,ease:'none'},6.65);
+[12,11,10].forEach((i,k)=>tl.to(P2.r1.at(i).el,{opacity:0,duration:.15},6.75+k*.15));tl.to(P2.smear,{opacity:.07,duration:.3},6.8);
+tl.to(P2.er,{tx:200,ty:1572,duration:.45,ease:'power2.inOut'},7.28);
+drawLine('M 680 590 L 1000 590',CH.white,6,P2.g,7.4,.35);
+cam(P2,7.4,540,640,1.4,.9,'power2.inOut');                                                         // trik kali sebelas@6.65
+drawLine(`M ${P2.circ.x-110} ${P2.circ.y} a 110 72 0 1 0 220 0 a 110 72 0 1 0 -220 0`,CH.yel,6,P2.g,8.3,.5);   // dua angka@8.5
+tl.fromTo(P2.lab,{opacity:0,y:20},{opacity:1,y:0,duration:.35,ease:'back.out(2)',immediateRender:false},8.75);
+cam(P2,9.5,540,900,1.18,.9,'power2.inOut');                                                         // pisahkan@9.68
+P2.r2.forEach((g,k)=>{const src=P2.r1.at(k);tl.set(g.el,{opacity:1},10.1);tl.fromTo(g.el,{x:src.x-g.x,y:src.y-g.y,scale:.8,transformOrigin:'50% 70%'},{x:0,y:0,scale:1,duration:.75,ease:'back.out(1.4)',immediateRender:false},10.1+k*.08);});
+tl.fromTo(P2.gap,{opacity:0},{opacity:1,duration:.3,immediateRender:false},10.9);
+write(P2.ch,P2.r3.slice(0,4),12.6,.2);write(P2.ch,P2.r3.slice(4),14.1,.2);home(P2.ch,14.4);       // dua tambah tiga@12.67 · lima@14.15
+tl.fromTo(P2.r3.at(8).el,{scale:1.5,transformOrigin:'50% 70%'},{scale:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},14.2);
+fly(P2.r3.at(8),15.4,540,880,150/110,.8);tl.to(P2.gap,{opacity:0,duration:.25},16.15);            // taruh@14.94 · lima di tengah@15.5
+cam(P2,16.2,540,780,1.2,.8,'power2.inOut');                                                         // jadinya@16.37
 const fly253=[P2.r2[0],P2.r3.at(8),P2.r2[1]];
-[P2.r2[0],P2.r2[1]].forEach((g,k)=>{const a=P2.r1.at(k?12:10);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:.8,duration:.7,ease:'power2.inOut'},15.9+k*.06);});
-{const g=P2.r3.at(8),a=P2.r1.at(11);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:1.09,duration:.7,ease:'power2.inOut'},15.93);}
-fly253.forEach(g=>tl.set(g.el,{opacity:0},16.62));[10,11,12].forEach(i=>tl.set(P2.r1.at(i).el,{opacity:1},16.62));
-drawLine('M 680 600 L 1000 600',CH.yel,9,P2.g,16.7,.3);hop(P2.kuan,16.9,70);
-cam(P2,17.2,540,700,1.12,.8,'power2.inOut');
-/* P3 · 18,6–33,1 · twist 57 × 11 */
-cut(18.6,P2,P3);camSet(P3,18.6,540,900,1.12);
-tl.fromTo(P3.note,{opacity:0,scale:.6,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.45,ease:'back.out(2)',immediateRender:false},19.0);
-cam(P3,19.0,440,600,1.45,.8,'power2.inOut');                                                        // "kalau jumlahnya sepuluh atau lebih?"
-cam(P3,20.8,540,820,1.2,.8,'power2.inOut');
-face(P3.kuan,'guru',21.1);write(P3.ch,P3.r1.filter(g=>g.i<=8),21.1,.12);                           // "coba lima puluh tujuh kali sebelas"
-drawLine('M 680 640 L 1000 640',CH.white,6,P3.g,22.0,.35);
-P3.r2.forEach((g,k)=>{const src=P3.r1.at(k);tl.set(g.el,{opacity:1},22.7);tl.fromTo(g.el,{x:src.x-g.x,y:src.y-g.y,scale:.8,transformOrigin:'50% 70%'},{x:0,y:0,scale:1,duration:.7,ease:'back.out(1.4)',immediateRender:false},22.7+k*.08);});
-tl.fromTo(P3.gap,{opacity:0},{opacity:1,duration:.3,immediateRender:false},23.4);
-cam(P3,23.0,540,960,1.18,.8,'power2.inOut');
-write(P3.ch,P3.r3.slice(0,4),23.6,.19);write(P3.ch,P3.r3.slice(4),24.75,.18);home(P3.ch,25.2);      // "lima tambah tujuh, dua belas"
-fly(P3.r3.at(9),25.9,540,900,150/110,.75);tl.to(P3.gap,{opacity:0,duration:.25},26.6);             // "dua di tengah"
-cam(P3,26.9,420,860,1.45,.8,'power2.inOut');
-fly(P3.r3.at(8),27.0,330,740,.85,.8,120);                                                          // "satunya simpan ke depan"
-tl.to(P3.r3.at(8).el,{y:900-1200,scale:.2,opacity:0,duration:.4,ease:'power2.in'},28.6);        // "lima tambah satu, enam"
-tl.to(P3.r2[0].el,{opacity:0,scale:.6,duration:.2},28.95);
-tl.fromTo(P3.six.el,{opacity:0,scale:1.6,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.5,ease:'elastic.out(1,.45)',immediateRender:false},29.0);
-tl.to(P3.six.el,{fill:CH.white,duration:.6},29.6);
-cam(P3,30.2,540,800,1.2,.8,'power2.inOut');                                                        // "jadinya, enam ratus dua puluh tujuh!"
-[[P3.six,10,.8],[P3.r3.at(9),11,120/110],[P3.r2[1],12,.8]].forEach(([g,i,sc],k)=>{const a=P3.r1.at(i);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:sc,duration:.7,ease:'power2.inOut'},30.5+k*.04);});
-[P3.six,P3.r3.at(9),P3.r2[1]].forEach(g=>tl.set(g.el,{opacity:0},31.22));[10,11,12].forEach(i=>tl.set(P3.r1.at(i).el,{opacity:1},31.22));
-drawLine('M 680 650 L 1000 650',CH.yel,9,P3.g,31.3,.3);hop(P3.kuan,31.5,70);
-cam(P3,31.7,540,740,1.12,.8,'power2.inOut');
-/* P4 = kelas lagi · 33,1–41,9 · "paham sampai ke inti! giliran kamu: 72 × 11 = ?" */
-cut(33.1,P3,P1);hideAll(P1.a1,33.1);hideAll(P1.a2,33.1);tl.set(P1.sw.v,{s:0},33.1);camSet(P1,33.1,540,980,1.3);
-tl.set(P1.cam,{ox:0,oy:0},33.1);face(P1.kuan,'bangga',33.15);
-sayAt('#tEnd',[33.4,33.75,34.05,34.25]);hop(P1.kuan,34.4,80);unsay('#tEnd',35.05);
-cam(P1,35.1,540,1000,1.15,1.0,'power2.inOut');
-write(P1.ch,P1.c1,35.6,.12);write(P1.ch,P1.c2,37.3,.2);home(P1.ch,37.8);
-tl.fromTo(P1.c2.at(2).el,{scale:1},{scale:1.25,transformOrigin:'50% 70%',duration:.35,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},37.9);
-tl.fromTo(P1.bub,{v:0},{v:1,duration:.4,immediateRender:false},39.1);hop(P1.kuan,40.4,60);         // "tulis jawabanmu di komentar"
-/* P5 · 41,9–43,6 · logo */
-cut(41.9,P1,P5);camSet(P5,41.9,540,980,1.12);
-P5.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},42.05+i*.05));
-hop(P5.kuan,42.2,60);
+[P2.r2[0],P2.r2[1]].forEach((g,k)=>{const a=P2.r1.at(k?12:10);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:.8,duration:.7,ease:'power2.inOut'},16.7+k*.06);});
+{const g=P2.r3.at(8),a=P2.r1.at(11);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:1.09,duration:.7,ease:'power2.inOut'},16.73);}
+fly253.forEach(g=>tl.set(g.el,{opacity:0},17.42));[10,11,12].forEach(i=>tl.set(P2.r1.at(i).el,{opacity:1},17.42));
+drawLine('M 680 600 L 1000 600',CH.yel,9,P2.g,17.5,.3);hop(P2.kuan,17.7,70);
+cam(P2,18.0,540,700,1.12,.8,'power2.inOut');
+/* P3 · 19,3–33,95 · twist 57 × 11 */
+cut(19.3,P2,P3);camSet(P3,19.3,540,900,1.12);
+tl.fromTo(P3.note,{opacity:0,scale:.6,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.45,ease:'back.out(2)',immediateRender:false},19.5);  // kalau jumlahnya ≥10@19.45
+cam(P3,19.5,440,600,1.45,.8,'power2.inOut');
+cam(P3,21.4,540,820,1.2,.8,'power2.inOut');
+face(P3.kuan,'guru',21.78);write(P3.ch,P3.r1.filter(g=>g.i<=8),22.0,.12);                          // coba@21.78 · 57×11@22.0
+drawLine('M 680 640 L 1000 640',CH.white,6,P3.g,22.8,.35);
+P3.r2.forEach((g,k)=>{const src=P3.r1.at(k);tl.set(g.el,{opacity:1},23.4);tl.fromTo(g.el,{x:src.x-g.x,y:src.y-g.y,scale:.8,transformOrigin:'50% 70%'},{x:0,y:0,scale:1,duration:.7,ease:'back.out(1.4)',immediateRender:false},23.4+k*.08);});
+tl.fromTo(P3.gap,{opacity:0},{opacity:1,duration:.3,immediateRender:false},24.0);
+cam(P3,23.6,540,960,1.18,.8,'power2.inOut');
+write(P3.ch,P3.r3.slice(0,4),24.1,.19);write(P3.ch,P3.r3.slice(4),25.3,.18);home(P3.ch,25.75);    // lima tambah tujuh@24.09 · dua belas@25.3
+fly(P3.r3.at(9),26.4,540,900,150/110,.75);tl.to(P3.gap,{opacity:0,duration:.25},27.1);            // dua di tengah@26.4
+cam(P3,27.3,420,860,1.45,.8,'power2.inOut');
+fly(P3.r3.at(8),27.55,330,740,.85,.8,120);                                                         // satunya simpan ke depan@27.3
+tl.to(P3.r3.at(8).el,{y:900-1200,scale:.2,opacity:0,duration:.4,ease:'power2.in'},29.2);          // lima tambah satu@29.13
+tl.to(P3.r2[0].el,{opacity:0,scale:.6,duration:.2},30.35);
+tl.fromTo(P3.six.el,{opacity:0,scale:1.6,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.5,ease:'elastic.out(1,.45)',immediateRender:false},30.45);   // enam@30.5
+tl.to(P3.six.el,{fill:CH.white,duration:.6},31.0);
+cam(P3,31.1,540,800,1.2,.8,'power2.inOut');                                                        // jadinya@31.18
+[[P3.six,10,.8],[P3.r3.at(9),11,120/110],[P3.r2[1],12,.8]].forEach(([g,i,sc],k)=>{const a=P3.r1.at(i);tl.to(g.el,{x:a.x-g.x,y:a.y-g.y,scale:sc,duration:.7,ease:'power2.inOut'},31.6+k*.04);});
+[P3.six,P3.r3.at(9),P3.r2[1]].forEach(g=>tl.set(g.el,{opacity:0},32.32));[10,11,12].forEach(i=>tl.set(P3.r1.at(i).el,{opacity:1},32.32));
+drawLine('M 680 650 L 1000 650',CH.yel,9,P3.g,32.4,.3);hop(P3.kuan,32.6,70);
+cam(P3,32.8,540,740,1.12,.8,'power2.inOut');
+/* P4 = kelas lagi · 33,95–42,75 · "paham sampai ke inti! giliran kamu: 72 × 11 = ?" */
+cut(33.95,P3,P1);hideAll(P1.a1,33.95);hideAll(P1.a2,33.95);tl.set(P1.sw.v,{s:0},33.95);camSet(P1,33.95,540,980,1.3);
+tl.set(P1.cam,{ox:0,oy:0},33.95);face(P1.kuan,'bangga',34.0);
+sayAt('#tEnd',[34.05,34.42,34.62,34.8]);hop(P1.kuan,35.0,80);unsay('#tEnd',35.5);                 // paham@34.07 … inti@34.64
+cam(P1,35.6,540,1000,1.15,1.0,'power2.inOut');                                                     // giliran kamu@35.6
+write(P1.ch,P1.c1,36.74,.12);write(P1.ch,P1.c2,38.1,.25);home(P1.ch,38.7);                         // 72×11@36.74 · sama dengan berapa@38.06
+tl.fromTo(P1.c2.at(2).el,{scale:1},{scale:1.25,transformOrigin:'50% 70%',duration:.35,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},38.7);
+tl.fromTo(P1.bub,{v:0},{v:1,duration:.4,immediateRender:false},39.6);hop(P1.kuan,41.35,60);       // tulis@39.65 · Kuan cek@41.39
+/* P5 · 42,75–44,4 · logo */
+cut(42.75,P1,P5);camSet(P5,42.75,540,980,1.12);
+P5.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},42.9+i*.05));
+hop(P5.kuan,43.05,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
