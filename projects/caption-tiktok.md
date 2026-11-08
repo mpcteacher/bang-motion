@@ -76,6 +76,17 @@ Jujur, tadi kamu jawab apa? Tulis kapas, besi, atau sama di komentar! 👇
 Catatan pilar Tantangan Kuan: caption **tidak membocorkan jawaban**, supaya penonton
 menjawab dulu sebelum menonton sampai habis.
 
+## Hari 6 — Kenapa es batu mengapung?
+
+```
+Kenapa es batu mengapung, padahal itu air juga? 🧊
+Rahasianya: air memuai saat membeku. Molekulnya tersusun segi enam berongga, jadi massa jenis es (±0,92 g/cm³) lebih kecil dari air. Itu juga sebabnya danau membeku dari atas dan ikan tetap hidup 🐟
+Giliran kamu: kenapa botol berisi air bisa membengkak di freezer? Tulis jawabanmu di komentar! 👇
+#Kuantika #BelajarBarengKuan #TahukahKamu #Fisika #FaktaSains
+```
+
+Komentar untuk di-pin setelah banyak jawaban masuk: `Jawabannya: air MEMUAI ±9% saat membeku, jadi es mendorong dinding botol ke luar. Tips: jangan isi botol sampai penuh sebelum dibekukan, apalagi botol kaca! 🧊`
+
 ---
 
 ## Catatan
