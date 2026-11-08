@@ -1,10 +1,11 @@
 # Naskah VO — Kuantika Hari 5: "1 kg kapas atau 1 kg besi?"
 
-Pilar: Tantangan Kuan · Jenjang: SD 4–SMP · Durasi video: ±46 detik (9:16)
+Pilar: Tantangan Kuan · Jenjang: SD 4–SMP · Durasi video: 45,2 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(saran: suara "Andra" seperti Hari 2–4), kirim berkasnya, lalu video akan
-disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Jeda bawaan antarpanggung ±0,4 dtk sudah cukup (tanpa sisipan);
+audio hanya dinormalkan ke −16 LUFS + ekor ±1,8 dtk untuk logo. Timer di layar
+dikunci ke angka yang diucapkan: tiga 6,42 · dua 7,36 · satu 8,23.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -27,18 +28,18 @@ Bonus: satu kilo besi itu cuma kubus sekitar lima sentimeter. Muat di genggaman!
 Paham sampai ke inti! Jujur, tadi kamu jawab apa? Tulis kapas, besi, atau sama di komentar!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–4,5 | 1. Studio kuis | Berpikir | Satu kilo kapas, atau satu kilo besi?… Jawab dalam tiga detik! | layar soal: kapas vs besi "1 kg" · tombol A/B/C · timer · teks hook |
-| 4,6–7,6 | 1. Studio kuis | Berpikir | Tiga… dua… satu! | timer 3-2-1 menghabis · Kuan mendarat di tombol B (besi) |
-| 7,8–12,6 | 1. Studio kuis | Ups/Salah | Halo, Kuan di sini. Kuan tadi pilih besi… ternyata salah! Jawabannya: sama! | B berkedip ✗ merah · C menyala ✓ hijau |
-| 12,6–21,2 | 2. Timbangan | Kuan Guru | Massanya sama-sama satu kilogram. Yang berbeda adalah volumenya… | timbangan bergoyang lalu seimbang ✓ · garis putus-putus ruang yang dipakai · label *Volume* |
-| 21,2–28,6 | 3. Massa jenis lagi | Kuan Guru → Eureka | Kapas butuh tempat jauh lebih besar… Ingat telur kemarin?… | kotak partikel kapas (jarang) vs besi (rapat) · foto "Hari 4" |
-| 28,6–33,8 | 4. Genggaman | Eureka | Bonus: satu kilo besi itu cuma kubus sekitar lima sentimeter… | tangan terbuka · kubus besi jatuh ke telapak · penggaris "5 cm" |
-| 33,8–43,8 | 1. Studio kuis (penutup) | Senang | Paham sampai ke inti! Jujur, tadi kamu jawab apa?… | timer "?" · tombol A/B/C berdenyut saat disebut · gelembung "kapas/besi/sama" |
-| 43,8–45,6 | Logo | Senang | — | kuantika |
+| 0–5,9 | 1. Studio kuis | Berpikir | Satu kilo kapas, atau satu kilo besi?… Jawab dalam tiga detik! | kapas (0,1) · besi (1,8) · teks hook (3,37) · tombol A/B/C (4,55) · timer (5,25) |
+| 6,4–9,1 | 1. Studio kuis | Berpikir | Tiga… dua… satu! | 3 (6,42) · 2 (7,36) · 1 (8,23) · Kuan mendarat di B (8,3) |
+| 9,2–15,8 | 1. Studio kuis | Ups/Salah | Halo, Kuan di sini. Kuan tadi pilih besi… ternyata salah! Jawabannya: sama! | B berdenyut (11,76) · ✗ (13,1) · C ✓ (14,8) |
+| 16,2–23,3 | 2. Timbangan | Kuan Guru | Massanya sama-sama satu kilogram. Yang berbeda adalah volumenya… | timbangan seimbang ✓ (18,3) · label *Volume* (19,6) · ruang kapas (20,6) / besi (21,9) |
+| 23,7–30,2 | 3. Massa jenis lagi | Kuan Guru → Eureka | Kapas butuh tempat jauh lebih besar… Ingat telur kemarin?… | kotak partikel (23,6) · sorot kapas (26,3) · foto "Hari 4" (27,9) · Eureka (29,1) |
+| 30,6–36,2 | 4. Genggaman | Eureka | Bonus: satu kilo besi itu cuma kubus sekitar lima sentimeter… | tangan (30,5) · kubus jatuh (31,55) · penggaris 5 cm (33,55) |
+| 36,5–43,2 | 1. Studio kuis (penutup) | Senang | Paham sampai ke inti! Jujur, tadi kamu jawab apa?… | timer "?" · A (40,5) / B (41,3) / C (42,1) berdenyut · gelembung komentar (42,5) |
+| 43,4–45,2 | Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 

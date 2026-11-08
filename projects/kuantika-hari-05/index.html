@@ -7,7 +7,7 @@
 <title>Kuantika Hari 5 — Kapas vs Besi</title>
 <!--
   Kuantika · Hari 5 · Tantangan Kuan · SD 4–SMP · "1 kg kapas atau 1 kg besi, mana lebih berat?"
-  Kartun panggung 9:16 (1080×1920), 45,6 dtk, 6 panggung (studio kuis, timbangan, massa jenis, genggaman, studio, logo).
+  Kartun panggung 9:16 (1080×1920), 45,2 dtk, 6 panggung (studio kuis, timbangan, massa jenis, genggaman, studio, logo).
   Format tetap pilar Tantangan Kuan: studio kuis, timer 3-2-1, tombol A/B/C, ✓ hijau / ✗ merah.
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
@@ -44,11 +44,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=45.6,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=45.2,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -285,54 +285,57 @@ function layoutWord(){let tot=0;const ws=P6.letters.map(l=>{const w=l.tx.getComp
   P6.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 45,2 dtk). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
-/* P1 · 0–12,6 · soal, hitung mundur, Kuan memilih besi → salah → "sama" */
+/* P1 · 0–15,95 · soal, hitung mundur, Kuan memilih besi → salah → "sama" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,960,1.12);
-pop(P1.ckJ,.2);pop(P1.tagK,.35);tl.fromTo(P1.vs,{opacity:0,scale:.4,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},.9);
-pop(P1.irJ,1.2);pop(P1.tagI,1.35);sayAt('#tHook',[1.9,2.15,2.4]);
-pop(P1.bA.j,2.6);pop(P1.bB.j,2.8);pop(P1.bC.j,3.0);pop(P1.timerJ,3.6);
+pop(P1.ckJ,.1);pop(P1.tagK,.25);                                                                    // satu kilo kapas@0
+tl.fromTo(P1.vs,{opacity:0,scale:.4,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},1.2);   // atau@1.2
+pop(P1.irJ,1.8);pop(P1.tagI,1.95);                                                                  // satu kilo besi@1.78
+sayAt('#tHook',[3.37,3.6,3.85]);                                                                    // mana yang lebih berat@3.37
+pop(P1.bA.j,4.55);pop(P1.bB.j,4.7);pop(P1.bC.j,4.85);pop(P1.timerJ,5.25);                           // jawab dalam tiga detik@4.55
 tl.set(P1.kuan.mv,{y:700},0);tl.fromTo(P1.kuan.mv,{y:700},{y:0,duration:.6,ease:'back.out(1.6)',immediateRender:false},.5);
-unsay('#tHook',4.4);
-tl.fromTo(P1.arcV,{v:0},{v:1,duration:3,ease:'none',immediateRender:false},4.6);
-[['3',4.6],['2',5.6],['1',6.6]].forEach(([n,at])=>{tl.set(P1.num,{textContent:n},at);tl.fromTo(P1.num,{scale:1.6,transformOrigin:'50% 50%'},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},at);});
-tl.set(P1.num,{textContent:'0'},7.6);cam(P1,4.6,540,1080,1.25,1.0,'power2.inOut');
-tl.to(P1.kuan.mv,{x:500,y:300,sx:.8,sy:.8,duration:.6,ease:'power2.inOut'},6.8);                   // Kuan mendarat di tombol B
-tl.fromTo(P1.kuan.sq,{sx:1.2,sy:.75},{sx:1,sy:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},7.4);
-hop(P1.kuan,8.0,40);                                                                                // halo, Kuan di sini
-tl.fromTo(P1.bB.red,{opacity:0},{keyframes:{opacity:[0,.9,.2,.9,.2,.9]},duration:.7,immediateRender:false},10.3);pop(P1.bB.no,10.3);   // ternyata salah!
-face(P1.kuan,'ups',10.3);tl.to(P1.cam,{keyframes:{ox:[0,-12,10,-6,3,0]},duration:.4},10.3);
-tl.fromTo(P1.bC.glow,{opacity:0},{keyframes:{opacity:[0,1,.5,1]},duration:.8,immediateRender:false},11.6);pop(P1.bC.ok,11.6);   // jawabannya: sama!
-tl.fromTo(P1.bC.j,{sx:1,sy:1},{sx:1.06,sy:1.06,duration:.25,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},11.7);
-/* P2 · 12,6–21,2 · timbangan seimbang + volume */
-cut(12.6,P1,P2);camSet(P2,12.6,540,1000,1.12);
-tl.fromTo(P2.bm,{r:-14},{keyframes:{r:[-14,9,-5,3,-1,0],easeEach:'sine.inOut'},duration:2.6,immediateRender:false},12.8);
-pop(P2.tagL,13.2);pop(P2.tagR,13.5);pop(P2.ok,15.5);                                              // massanya sama-sama 1 kg → seimbang
-sayAt('#tTerm',[16.9]);P2.vol.forEach((v,i)=>tl.fromTo(v,{opacity:0},{opacity:1,duration:.3,immediateRender:false},17.2+i*.3));   // volumenya
-cam(P2,17.8,300,1100,1.45,.9,'power2.inOut');cam(P2,19.2,820,1180,1.6,.9,'power2.inOut');unsay('#tTerm',20.8);   // seberapa besar tempat
-/* P3 · 21,2–28,6 · massa jenis lagi */
-cut(21.2,P2,P3);camSet(P3,21.2,540,1000,1.12);
-pop(P3.bK.j,21.4);pop(P3.bI.j,21.7);pop(P3.tK,21.9);pop(P3.tI,22.1);
-tl.fromTo(P3.glow,{opacity:0},{keyframes:{opacity:[0,1,.4,1]},duration:.9,immediateRender:false},23.8);   // massa jenisnya kecil
-pop(P3.photo,25.4);cam(P3,25.3,560,700,1.3,.8,'power2.inOut');                                    // ingat telur kemarin?
-face(P3.kuan,'eureka',27.0);hop(P3.kuan,27.2,60);                                                  // massa jenis lagi!
-/* P4 · 28,6–33,8 · kubus 5 cm di genggaman */
-cut(28.6,P3,P4);camSet(P4,28.6,540,1150,1.15);
-tl.fromTo(P4.hand,{y:700},{y:0,duration:.6,ease:'power3.out',immediateRender:false},28.7);
-tl.fromTo(P4.cube,{ty:500},{ty:1230,duration:.55,ease:'bounce.out',immediateRender:false},29.2);
-pop(P4.kg,29.8);pop(P4.ruler,30.5);                                                                 // lima sentimeter
-cam(P4,31.0,480,1120,1.35,.8,'power2.inOut');hop(P4.kuan,32.4,60);                                 // muat di genggaman
-/* P5 = studio lagi · 33,8–43,8 · "paham sampai ke inti! jujur, tadi kamu jawab apa?…" */
-cut(33.8,P4,P1);camSet(P1,33.8,540,1000,1.12);tl.set(P1.cam,{ox:0,oy:0},33.8);
-tl.set([P1.bB.red,P1.bC.glow],{opacity:0},33.8);tl.set(P1.bB.no,{sx:0,sy:0},33.8);tl.set(P1.bC.ok,{sx:0,sy:0},33.8);
-tl.set(P1.kuan.mv,{x:0,y:0,sx:.95,sy:.95},33.8);tl.set(P1.num,{textContent:'?'},33.8);tl.set(P1.arcV,{v:0},33.8);face(P1.kuan,'senang',33.85);
-sayAt('#tEnd',[34.1,34.45,34.7,34.9]);hop(P1.kuan,35.2,70);unsay('#tEnd',35.7);
-[[P1.bA,38.4],[P1.bB,38.9],[P1.bC,39.6]].forEach(([b,at])=>tl.fromTo(b.j,{sx:1,sy:1},{sx:1.1,sy:1.1,duration:.2,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},at));   // kapas, besi, atau sama
-tl.fromTo(P1.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},40.0);                          // di komentar
-/* P6 · 43,8–45,6 · logo */
-cut(43.8,P1,P6);camSet(P6,43.8,540,980,1.12);
-P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},43.95+i*.05));
-hop(P6.kuan,44.1,60);
+unsay('#tHook',5.9);
+tl.fromTo(P1.arcV,{v:0},{v:1,duration:2.7,ease:'none',immediateRender:false},6.42);
+[['3',6.42],['2',7.36],['1',8.23]].forEach(([n,at])=>{tl.set(P1.num,{textContent:n},at);tl.fromTo(P1.num,{scale:1.6,transformOrigin:'50% 50%'},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},at);});   // tiga@6.42 dua@7.36 satu@8.23
+tl.set(P1.num,{textContent:'0'},9.12);cam(P1,6.3,540,1080,1.25,1.0,'power2.inOut');
+tl.to(P1.kuan.mv,{x:500,y:300,sx:.8,sy:.8,duration:.6,ease:'power2.inOut'},8.3);                   // Kuan mendarat di tombol B
+tl.fromTo(P1.kuan.sq,{sx:1.2,sy:.75},{sx:1,sy:1,duration:.5,ease:'elastic.out(1,.4)',immediateRender:false},8.9);
+hop(P1.kuan,9.85,40);                                                                               // halo@9.16 · Kuan di sini@9.8
+tl.fromTo(P1.bB.j,{sx:1,sy:1},{sx:1.08,sy:1.08,duration:.2,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},11.76);   // pilih besi@11.76
+tl.fromTo(P1.bB.red,{opacity:0},{keyframes:{opacity:[0,.9,.2,.9,.2,.9]},duration:.7,immediateRender:false},13.1);pop(P1.bB.no,13.1);   // ternyata salah@13.12
+face(P1.kuan,'ups',13.1);tl.to(P1.cam,{keyframes:{ox:[0,-12,10,-6,3,0]},duration:.4},13.1);
+tl.fromTo(P1.bC.glow,{opacity:0},{keyframes:{opacity:[0,1,.5,1]},duration:.8,immediateRender:false},14.8);pop(P1.bC.ok,14.8);   // jawabannya: sama@14.8
+tl.fromTo(P1.bC.j,{sx:1,sy:1},{sx:1.06,sy:1.06,duration:.25,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},14.9);
+/* P2 · 15,95–23,45 · timbangan seimbang + volume */
+cut(15.95,P1,P2);camSet(P2,15.95,540,1000,1.12);
+tl.fromTo(P2.bm,{r:-14},{keyframes:{r:[-14,9,-5,3,-1,0],easeEach:'sine.inOut'},duration:2.4,immediateRender:false},16.1);   // massanya sama-sama@16.18
+pop(P2.tagL,16.6);pop(P2.tagR,16.9);pop(P2.ok,18.3);                                              // satu kilogram@17.6 → seimbang
+sayAt('#tTerm',[19.6]);P2.vol.forEach((v,i)=>tl.fromTo(v,{opacity:0},{opacity:1,duration:.3,immediateRender:false},19.9+i*.3));   // volumenya@19.6
+cam(P2,20.6,300,1100,1.45,.9,'power2.inOut');cam(P2,21.9,820,1180,1.6,.9,'power2.inOut');unsay('#tTerm',22.9);   // seberapa besar tempat@20.64
+/* P3 · 23,45–30,4 · massa jenis lagi */
+cut(23.45,P2,P3);camSet(P3,23.45,540,1000,1.12);
+pop(P3.bK.j,23.6);pop(P3.bI.j,23.85);pop(P3.tK,24.05);pop(P3.tI,24.25);                           // kapas butuh tempat@23.67
+tl.fromTo(P3.glow,{opacity:0},{keyframes:{opacity:[0,1,.4,1]},duration:.9,immediateRender:false},26.3);   // massa jenisnya kecil@26.3
+pop(P3.photo,27.9);cam(P3,27.8,560,700,1.3,.8,'power2.inOut');                                    // ingat telur kemarin@27.92
+face(P3.kuan,'eureka',29.1);hop(P3.kuan,29.4,60);                                                  // massa jenis lagi@29.11
+/* P4 · 30,4–36,3 · kubus 5 cm di genggaman */
+cut(30.4,P3,P4);camSet(P4,30.4,540,1150,1.15);                                                    // bonus@30.64
+tl.fromTo(P4.hand,{y:700},{y:0,duration:.6,ease:'power3.out',immediateRender:false},30.5);
+tl.fromTo(P4.cube,{ty:500},{ty:1230,duration:.55,ease:'bounce.out',immediateRender:false},31.55);   // satu kilo besi@31.48
+pop(P4.kg,32.1);pop(P4.ruler,33.55);                                                                // sekitar lima sentimeter@33.3
+cam(P4,34.8,480,1120,1.35,.8,'power2.inOut');hop(P4.kuan,35.4,60);                                 // muat di genggaman@35.0
+/* P5 = studio lagi · 36,3–43,4 · "paham sampai ke inti! jujur, tadi kamu jawab apa?…" */
+cut(36.3,P4,P1);camSet(P1,36.3,540,1000,1.12);tl.set(P1.cam,{ox:0,oy:0},36.3);
+tl.set([P1.bB.red,P1.bC.glow],{opacity:0},36.3);tl.set(P1.bB.no,{sx:0,sy:0},36.3);tl.set(P1.bC.ok,{sx:0,sy:0},36.3);
+tl.set(P1.kuan.mv,{x:0,y:0,sx:.95,sy:.95},36.3);tl.set(P1.num,{textContent:'?'},36.3);tl.set(P1.arcV,{v:0},36.3);face(P1.kuan,'senang',36.35);
+sayAt('#tEnd',[36.5,36.85,37.05,37.2]);hop(P1.kuan,37.5,70);unsay('#tEnd',37.85);                 // paham@36.53
+[[P1.bA,40.5],[P1.bB,41.3],[P1.bC,42.1]].forEach(([b,at])=>tl.fromTo(b.j,{sx:1,sy:1},{sx:1.1,sy:1.1,duration:.2,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},at));   // kapas@40.5 besi@41.34 sama@42.12
+tl.fromTo(P1.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},42.5);                          // di komentar@42.5
+/* P6 · 43,4–45,2 · logo */
+cut(43.4,P1,P6);camSet(P6,43.4,540,980,1.12);
+P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},43.55+i*.05));
+hop(P6.kuan,43.7,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
