@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="id">
+<!-- Made with the Bang Motion skill (kartun panggung) - MIT - https://github.com/bangtutorial/bang-motion -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuantika Hari 4 — Telur Mengapung</title>
+<!--
+  Kuantika · Hari 4 · Sains di Rumah · SD 4–SMP · "Telur ini mengapung… tanpa sulap!"
+  Kartun panggung 9:16 (1080×1920), 49,8 dtk, 8 panggung (dapur, bahan, air tawar, partikel, garam, tes segar, penutup, logo).
+  Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
+  Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;background:#E0F2FE}
+#world{position:absolute;inset:0;will-change:filter}
+#ui{position:absolute;inset:0;pointer-events:none}
+/* teks stiker: isi putih + garis navy tebal — terbaca di langit biru, senja, angkasa, Mars */
+.cap{position:absolute;left:60px;width:820px;text-align:center;font-family:Nunito,system-ui,sans-serif;font-weight:900;
+  color:#fff;-webkit-text-stroke:18px #0B2545;paint-order:stroke fill;line-height:1.06;letter-spacing:-.01em;
+  filter:drop-shadow(0 10px 0 rgba(11,37,69,.28))}
+.cap .ln{display:block;white-space:nowrap}
+.cap .w{display:inline-block;opacity:0;transform-origin:50% 100%}
+.cap .b{color:#0EA5E9}.cap .o{color:#FF7A59}.cap .y{color:#FFD23F}
+#tHook{top:200px;font-size:100px}
+#tTerm{top:1400px;font-size:96px}
+#tEnd{top:215px;font-size:108px}
+#dbg{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:none;gap:12px;align-items:center;padding:10px 16px;border-radius:14px;background:rgba(11,37,69,.92);color:#E0F2FE;font:13px system-ui;z-index:50}
+#dbg input{width:420px}#dbg span{font-variant-numeric:tabular-nums;min-width:7ch}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world"><svg id="scene" width="1080" height="1920" viewBox="0 0 1080 1920" style="position:absolute;inset:0" font-family="Nunito,system-ui,sans-serif"></svg></div>
+  <div id="ui">
+    <div class="cap" id="tHook"><span class="ln"><span class="w">Telur</span> <span class="w">ini</span></span><span class="ln"><span class="w y">mengapung…</span></span><span class="ln"><span class="w o">tanpa sulap!</span></span></div>
+    <div class="cap" id="tTerm"><span class="ln"><span class="w b">Massa</span> <span class="w b">jenis</span></span></div>
+    <div class="cap" id="tEnd"><span class="ln"><span class="w">Paham</span> <span class="w">sampai</span></span><span class="ln"><span class="w">ke</span> <span class="w y">inti!</span></span></div>
+  </div>
+</div>
+<div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
+<audio id="vo" src="" preload="auto"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const W=1080,H=1920,DUR=49.8,NS='http://www.w3.org/2000/svg';
+/* palet brand Kuantika (logo kit) + turunan */
+const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
+
+/* ---------- penyusun bentuk ---------- */
+const S=$('#scene');
+function N(tag,a={},p=S){const n=document.createElementNS(NS,tag);for(const k in a)n.setAttribute(k,a[k]);p.appendChild(n);return n;}
+const G=(a={},p=S)=>N('g',a,p),R=(x,y,w,h,f,rx=0,p=S,a={})=>N('rect',{x,y,width:w,height:h,rx,fill:f,...a},p),
+  CI=(cx,cy,r,f,p=S,a={})=>N('circle',{cx,cy,r,fill:f,...a},p),EL=(cx,cy,rx,ry,f,p=S,a={})=>N('ellipse',{cx,cy,rx,ry,fill:f,...a},p),
+  PA=(d,f,p=S,a={})=>N('path',{d,fill:f||'none',...a},p),
+  LN=(d,st,w,p=S,a={})=>N('path',{d,fill:'none',stroke:st,'stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round',...a},p),
+  TX=(x,y,t,size,f,p=S,a={})=>{const n=N('text',{x,y,'font-size':size,fill:f,'font-weight':900,'text-anchor':'middle',...a},p);n.textContent=t;return n;};
+const hx=h=>{const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];};
+const mix=(a,b,t)=>{const A=hx(a),Bb=hx(b);t=Math.max(0,Math.min(1,t));return 'rgb('+A.map((v,i)=>Math.round(v+(Bb[i]-v)*t)).join(',')+')';};
+const hash=i=>{const s=Math.sin(i*127.1+311.7)*43758.5453;return s-Math.floor(s);};   // deterministik, bukan Math.random
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const mixH=(a,b,t)=>{const A=hx(a),Bb=hx(b);return '#'+A.map((v,i)=>Math.round(v+(Bb[i]-v)*t).toString(16).padStart(2,'0')).join('');};
+const defs=N('defs',{},S);
+function lin(id,cols,offs,{x1=0,y1=0,x2=0,y2=1,user=false}={}){const g=N('linearGradient',{id,x1,y1,x2,y2,...(user?{gradientUnits:'userSpaceOnUse'}:{})},defs);
+  return cols.map((c,i)=>N('stop',{offset:offs[i],'stop-color':c},g));}
+function rad(id,cols,offs,ops){const g=N('radialGradient',{id},defs);return cols.map((c,i)=>N('stop',{offset:offs[i],'stop-color':c,'stop-opacity':ops?ops[i]:1},g));}
+const star4=(x,y,r,f,p)=>{const g=G({},p),j=J(g,x,y);PA(`M 0 ${-r} Q 0 0 ${r} 0 Q 0 0 0 ${r} Q 0 0 ${-r} 0 Q 0 0 0 ${-r} Z`,f,g);return j;};
+
+/* SENDI: transform ditulis manual (sumbu putar = titik asal lokal, bukan bbox) */
+const JS=[],APPLY=[],LOOPS=[];
+function J(el,tx=0,ty=0){const j={el,tx,ty,x:0,y:0,r:0,sx:1,sy:1,apply(){el.setAttribute('transform',`translate(${j.tx+j.x},${j.ty+j.y}) rotate(${j.r}) scale(${j.sx},${j.sy})`);}};j.apply();JS.push(j);return j;}
+
+/* ---------- panggung: satu frame per adegan, kamera sendiri ---------- */
+const scenes=[];
+function scene(name){const g=G({'data-name':name},S);g.style.display='none';const sc={name,g,cam:{x:540,y:960,z:1.12,ox:0,oy:0}};
+  sc.apply=()=>{const c=sc.cam;g.setAttribute('transform',`translate(${540-(c.x+c.ox)*c.z},${960-(c.y+c.oy)*c.z}) scale(${c.z})`);};
+  sc.on=()=>g.style.display!=='none';APPLY.push(sc.apply);scenes.push(sc);return sc;}
+const loop=(sc,f)=>LOOPS.push(t=>{if(sc.on())f(t);});
+
+/* ---------- KUAN: partikel biru bercincin, digambar ulang dari lembar maskot ---------- */
+function kuan(p,x,y,s,{face='senang',ph=0,helmet=false,sc}={}){
+  const place=G({transform:`translate(${x},${y})`},p);
+  const mvEl=G({},place),mv=J(mvEl);mv.sx=mv.sy=s;mv.apply();       // gerak besar (tween)
+  const bobEl=G({},mvEl),bob=J(bobEl);                                 // melayang (fungsi waktu)
+  const sqEl=G({},bobEl),sq=J(sqEl);                                   // squash/pop (tween)
+  const k={mv,bob,sq,orbit:{a:0},faces:{},eyes:[],stars:[],ph,s};
+  const RING='rotate(-16) translate(0,12)';
+  const back=G({transform:RING},sqEl);LN('M -128 0 A 128 34 0 0 1 128 0',B.orange,13,back);k.ballB=CI(128,0,17,B.yellow,back);
+  LN('M -2 -76 C -8 -94 -2 -110 13 -105',B.blue,10,sqEl);
+  CI(0,0,80,B.blue,sqEl);
+  const F=n=>{const g=G({opacity:n===face?1:0},sqEl);k.faces[n]=g;return g;};
+  const eye=(g,cx,px,py,ry=20)=>{const eg=G({},g),ej=J(eg,cx,-14);k.eyes.push(ej);EL(0,0,17,ry,B.white,eg);CI(px,py,8.5,B.navy,eg);CI(px+3,py-3.5,2.8,B.white,eg);};
+  const cheeks=g=>{CI(-50,10,10,B.cheek,g,{opacity:.75});CI(50,10,10,B.cheek,g,{opacity:.75});};
+  {const g=F('senang');eye(g,-24,3,-3);eye(g,24,3,-3);cheeks(g);LN('M -15 20 Q 0 32 15 20',B.navy,6,g);}
+  {const g=F('kaget');eye(g,-24,0,1,22);eye(g,24,0,1,22);LN('M -40 -46 Q -25 -57 -10 -46',B.navy,5,g);LN('M 10 -46 Q 25 -57 40 -46',B.navy,5,g);EL(0,27,9,12,B.navy,g);
+    [['M -104 -100 L -88 -80'],['M -122 -52 L -100 -46'],['M 104 -104 L 90 -84']].forEach(([d])=>LN(d,B.orange,6,g));}
+  {const g=F('berpikir');eye(g,-24,-5,-6);eye(g,24,-5,-6);LN('M 12 -46 L 40 -54',B.navy,6,g);LN('M -13 28 Q -6 21 1 26 T 14 24',B.navy,5,g);
+    const tb=G({},g);CI(-86,-74,6,B.white,tb,{stroke:B.navy,'stroke-width':4});CI(-106,-98,10,B.white,tb,{stroke:B.navy,'stroke-width':4});
+    CI(-146,-142,32,B.white,tb,{stroke:B.navy,'stroke-width':5});TX(-146,-129,'?',38,B.navy,tb);}
+  {const g=F('eureka');LN('M -38 -10 Q -24 -28 -10 -10',B.navy,6,g);LN('M 10 -10 Q 24 -28 38 -10',B.navy,6,g);cheeks(g);
+    PA('M -24 10 L 24 10 Q 22 42 0 42 Q -22 42 -24 10 Z',B.navy,g);EL(0,35,11,6,B.orange,g);
+    k.stars.push(star4(-112,-98,20,B.yellow,g),star4(106,-142,15,B.yellow,g));}
+  {const g=F('bangga');eye(g,-24,2,-2);LN('M 10 -12 Q 24 -26 38 -12',B.navy,6,g);cheeks(g);
+    PA('M -20 14 L 20 14 Q 18 35 0 35 Q -18 35 -20 14 Z',B.navy,g);k.stars.push(star4(104,-134,20,B.yellow,g));}
+  {const g=F('guru');eye(g,-24,1,-2);eye(g,24,1,-2);PA('M -18 14 L 18 14 Q 16 33 0 33 Q -16 33 -18 14 Z',B.navy,g);
+    R(-48,-104,96,32,B.navy,8,g);PA('M -104 -112 L 0 -148 L 104 -112 L 0 -78 Z',B.navy,g);PA('M -104 -112 L 0 -148 L 104 -112 L 0 -78 Z','none',g,{stroke:'#1E3A5F','stroke-width':4,'stroke-linejoin':'round'});
+    CI(0,-113,7,B.yellow,g);LN('M 0 -113 L 64 -100 L 70 -62',B.yellow,5,g);CI(70,-58,9,B.yellow,g);}
+  {const g=F('bingung');eye(g,-24,-2,2);eye(g,24,-3,3,17);LN('M -44 -50 L -12 -40',B.navy,6,g);LN('M 12 -44 L 42 -52',B.navy,6,g);
+    LN('M -16 28 Q -8 20 0 28 T 16 28',B.navy,5,g);PA('M 74 -92 Q 60 -66 74 -58 Q 88 -66 74 -92 Z','#BAE6FD',g,{stroke:B.navy,'stroke-width':4,'stroke-linejoin':'round'});}
+  {const g=F('ups');eye(g,-24,0,5);eye(g,24,0,5);LN('M -42 -40 L -12 -52',B.navy,6,g);LN('M 12 -52 L 42 -40',B.navy,6,g);
+    LN('M -16 32 Q 0 20 16 32',B.navy,6,g);PA('M -44 4 Q -52 20 -44 26 Q -36 20 -44 4 Z','#BAE6FD',g,{stroke:B.navy,'stroke-width':3});}
+  const front=G({transform:RING},sqEl);LN('M -128 0 A 128 34 0 0 0 128 0',B.orange,13,front);k.ballF=CI(128,0,17,B.yellow,front);
+  if(helmet){CI(0,-4,152,B.white,sqEl,{opacity:.16});CI(0,-4,152,'none',sqEl,{stroke:B.white,'stroke-width':7,opacity:.75});
+    LN('M -104 -84 Q -74 -126 -22 -138',B.white,12,sqEl,{opacity:.8});R(-66,134,132,26,'#CBD5E1',12,sqEl);}
+  /* jejak kilau tanda tangan "lompat orbit" */
+  k.trail=[0,1,2,3,4].map(i=>{const a=Math.PI*(.15+i*.38),j=star4(150*Math.cos(a)*-1,-40+60*Math.sin(a)-60,12+(i%2)*6,B.yellow,sqEl);j.sx=j.sy=0;j.apply();return j;});
+  LOOPS.push(t=>{if(sc&&!sc.on())return;const q=t+ph;bob.y=-9*Math.sin(q*2.4);bob.r=2.2*Math.sin(q*1.6+.7);
+    const a=k.orbit.a+q*2.2,bx=128*Math.cos(a),by=34*Math.sin(a);
+    k.ballB.setAttribute('cx',bx);k.ballB.setAttribute('cy',by);k.ballF.setAttribute('cx',bx);k.ballF.setAttribute('cy',by);
+    const fr=Math.sin(a)>0;k.ballF.setAttribute('opacity',fr?1:0);k.ballB.setAttribute('opacity',fr?0:1);
+    const bl=((q+1.6+ph*1.7)%3.7)<.12;k.eyes.forEach(e=>e.sy=bl?.1:1);
+    k.stars.forEach((st,i)=>{st.sx=st.sy=.82+.25*Math.sin(q*6+i*2);st.r=8*Math.sin(q*3+i);});});
+  return k;}
+
+/* ---------- mesin animasi ---------- */
+const tl=gsap.timeline({paused:true}),world=$('#world');
+const cam=(sc,at,x,y,z,dur=1.4,ease='sine.inOut')=>tl.to(sc.cam,{x,y,z,duration:dur,ease},at);
+const camSet=(sc,at,x,y,z)=>tl.set(sc.cam,{x,y,z},at);
+function cut(at,from,to){tl.set(from.g,{display:'none'},at);tl.set(to.g,{display:'block'},at);}
+function slide(at,from,to,axis='x',dist=axis==='x'?96:72){const o=axis==='x'?'ox':'oy';
+  tl.fromTo(from.cam,{[o]:0},{[o]:-dist,duration:.28,ease:'power2.in',immediateRender:false},at);tl.set(to.cam,{[o]:dist},at+.28);cut(at+.28,from,to);
+  tl.to(to.cam,{[o]:0,duration:.42,ease:'power3.out'},at+.28);
+  const b={v:0};tl.fromTo(b,{v:0},{v:10,duration:.28,ease:'power2.in',immediateRender:false,onUpdate(){world.style.filter=`blur(${b.v}px)`}},at);
+  tl.to(b,{v:0,duration:.42,ease:'power3.out',onUpdate(){world.style.filter=b.v>.05?`blur(${b.v}px)`:'none'}},at+.28);}
+function face(k,name,at){for(const n in k.faces)tl.to(k.faces[n],{opacity:n===name?1:0,duration:.06},at);
+  tl.fromTo(k.sq,{sx:1.14,sy:.88},{sx:1,sy:1,duration:.55,ease:'elastic.out(1,.45)',immediateRender:false},at);}
+function hop(k,at,h=90){tl.to(k.mv,{y:`-=${h}`,duration:.26,ease:'power2.out'},at);tl.to(k.mv,{y:`+=${h}`,duration:.5,ease:'bounce.out'},at+.26);
+  tl.to(k.orbit,{a:`+=${Math.PI*2}`,duration:.75,ease:'power2.inOut'},at);
+  tl.fromTo(k.sq,{sx:.9,sy:1.12},{sx:1,sy:1,duration:.6,ease:'elastic.out(1,.4)',immediateRender:false},at);
+  k.trail.forEach((j,i)=>{tl.fromTo(j,{sx:0,sy:0},{sx:1.15,sy:1.15,duration:.22,ease:'back.out(3)',immediateRender:false},at+.12+i*.06);
+    tl.to(j,{sx:0,sy:0,duration:.3,ease:'power2.in'},at+.5+i*.06);});}
+/* teks per kata: masuk dari bawah, regang vertikal + blur berarah, keluar ke atas */
+function say(sel,at,st=.11){tl.fromTo($$(sel+' .w'),{opacity:0,y:80,scaleY:1.5,scaleX:.8,filter:'blur(14px)'},
+  {opacity:1,y:0,scaleY:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'back.out(2)',stagger:st,immediateRender:false},at);}
+function unsay(sel,at){tl.to($$(sel+' .w'),{opacity:0,y:-60,scaleY:1.4,filter:'blur(12px)',duration:.28,ease:'power2.in',stagger:.035},at);}
+
+const GREEN='#22C55E';
+/* =====================================================================
+   PERKAKAS DAPUR — gelas, telur, label, partikel
+   ===================================================================== */
+const K={wall:'#FFF7E8',wall2:'#FDEFD6',tile:'#E0F2FE',tile2:'#C9E7FA',wood:'#C68A4E',wood2:'#A86E38',water:'#7DD3FC',egg:'#FDE3B8',egg2:'#EBC48A',eggLine:'#B7834A',salt:'#FFFFFF'};
+const sayAt=(sel,times)=>$$(sel+' .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,y:80,scaleY:1.5,scaleX:.8,filter:'blur(14px)'},
+  {opacity:1,y:0,scaleY:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'back.out(2)',immediateRender:false},times[i]));
+const pop=(j,at,s=1)=>tl.fromTo(j,{sx:0,sy:0},{sx:s,sy:s,duration:.5,ease:'back.out(2.6)',immediateRender:false},at);
+const hidden=(el)=>{const j=J(el);j.sx=j.sy=0;j.apply();return j;};
+/* telur: grup bersendi, (0,0) di tengah telur */
+function egg(p,x,y,s=1){const P=G({},p),j=J(P,x,y);j.sx=j.sy=s;const e=G({},P);
+  PA('M 0 -62 C 34 -62 48 -10 48 14 C 48 44 26 60 0 60 C -26 60 -48 44 -48 14 C -48 -10 -34 -62 0 -62 Z',K.egg,e,{stroke:K.eggLine,'stroke-width':5});
+  PA('M 30 -30 C 46 -6 48 30 26 50 C 40 30 40 0 30 -30 Z',K.egg2,e);EL(-18,-26,10,16,'#FFFFFF',e,{opacity:.85});return j;}
+/* gelas: belakang (dinding + dasar) — telur — air — depan (garis + kilau) */
+function glassBack(p,x,yb,w,h){const g=G({},p);EL(x,yb+6,w*.52,16,'#0B2545',g,{opacity:.1});R(x-w/2,yb-h,w,h,'#F0F9FF',20,g,{opacity:.5});return g;}
+function glassWater(p,x,yb,w,h,level,tint=K.water){const g=G({},p);const top=yb-h*level;
+  const body=R(x-w/2+8,top,w-16,yb-top-8,tint,14,g,{opacity:.34});const surf=EL(x,top,w/2-8,14,'#BAE6FD',g,{opacity:.85});return {g,body,surf,top};}
+function glassFront(p,x,yb,w,h){const g=G({},p);R(x-w/2,yb-h,w,h,'none',20,g,{stroke:'#94A3B8','stroke-width':6});EL(x,yb-h,w/2,14,'none',g,{stroke:'#94A3B8','stroke-width':6});
+  R(x-w/2+20,yb-h+30,14,h-80,'#FFFFFF',7,g,{opacity:.6});R(x-w/2+44,yb-h+40,6,h*.4,'#FFFFFF',3,g,{opacity:.45});return g;}
+function tag(p,x,y,text,col=B.navy,bg='#FFFFFF',size=44){const P=G({transform:`translate(${x},${y})`},p),el=G({},P),j=hidden(el);
+  const w=text.length*size*.56+44;R(-w/2,-size*.9,w,size*1.5,bg,size*.5,el,{stroke:col,'stroke-width':5});TX(0,size*.18,text,size,col,el,{'font-weight':800});return j;}
+function bubbles(sc,p,n,cx,yb,h,w){const bs=[];for(let i=0;i<n;i++)bs.push({c:CI(0,0,4+hash(i+70)*6,'#FFFFFF',p,{opacity:0,stroke:'#BAE6FD','stroke-width':2}),i});
+  const on={v:1};loop(sc,t=>{bs.forEach(b=>{const q=(t*.5+hash(b.i))%1;b.c.setAttribute('cx',cx+(hash(b.i+9)-.5)*w+6*Math.sin(t*4+b.i));b.c.setAttribute('cy',yb-q*h);b.c.setAttribute('opacity',on.v*.8*Math.sin(Math.PI*q));});});return on;}
+/* kotak partikel: n partikel bergoyang di dalam kotak */
+function particleBox(sc,p,x,y,size,n,col,seed){const g=G({},p),j=J(g,x,y);const ps=[];
+  for(let i=0;i<n;i++){const gx=(hash(seed+i)-.5)*(size-60),gy=(hash(seed+i+50)-.5)*(size-60);ps.push({c:CI(gx,gy,16,col,g,{stroke:B.navy,'stroke-width':3}),gx,gy,i,on:1});}
+  loop(sc,t=>{ps.forEach(q=>{q.c.setAttribute('cx',q.gx+7*Math.sin(t*3+q.i*1.7));q.c.setAttribute('cy',q.gy+7*Math.cos(t*2.6+q.i));q.c.setAttribute('opacity',q.on);});});return {g,j,ps};}
+
+/* =====================================================================
+   PANGGUNG 1 — dapur: telur sudah mengapung (hook)
+   ===================================================================== */
+const P1=scene('dapur');{const p=P1.g;
+  R(-400,-600,1880,1500,K.wall,0,p);
+  for(let r=0;r<8;r++)for(let c=0;c<14;c++)R(-160+c*100,880+r*70,96,66,(r+c)%2?K.tile:K.tile2,6,p);
+  /* jendela + tanaman */
+  R(640,250,330,330,K.wood,12,p);R(656,266,298,298,'#BAE6FD',6,p);LN('M 805 266 L 805 564 M 656 415 L 954 415',K.wood,10,p);
+  const cl=G({},p);P1.cloud=J(cl,740,330);CI(0,0,26,'#fff',cl);CI(28,-8,30,'#fff',cl);CI(56,2,22,'#fff',cl);
+  R(700,560,80,60,B.orange,8,p);const pl=G({},p);P1.plant=J(pl,740,566);[[-26,-60,-25],[0,-80,0],[26,-60,25]].forEach(([x,y,r])=>EL(x,y*.6,16,46,'#2BB673',pl,{transform:`rotate(${r})`}));
+  /* panci gantung */
+  LN('M 120 120 L 520 120',B.navy,8,p);P1.pots=[[200,26],[330,34],[450,22]].map(([x,r],i)=>{const g=G({},p),j=J(g,x,124);LN('M 0 0 L 0 50',B.navy,4,g);CI(0,50+r,r,i===1?B.orange:'#94A3B8',g);R(-4,40,8,14,B.navy,2,g);return j;});
+  /* meja + kabinet */
+  R(-400,1350,1880,40,K.wood,6,p);R(-400,1390,1880,700,K.wood2,0,p);for(let i=0;i<5;i++){R(-60+i*260,1440,230,380,'#B97C42',12,p);R(30+i*260,1600,50,12,B.navy,6,p);}
+  /* kompor + ketel beruap */
+  R(760,1300,260,50,'#475569',8,p);const kt=G({},p);PA('M 820 1300 C 800 1210 840 1170 890 1170 C 940 1170 980 1210 960 1300 Z',B.blue,kt);R(870,1150,40,24,B.navy,6,kt);LN('M 960 1240 L 1010 1205',B.blue,14,kt);
+  P1.steam=[0,1,2,3,4].map(i=>CI(1015,1195,16,'#FFFFFF',p,{opacity:0}));
+  /* keran menetes */
+  LN('M 150 1180 L 150 1100 L 230 1100 L 230 1140',`#94A3B8`,18,p);P1.drop=EL(230,1160,8,11,'#7DD3FC',p);
+  /* gelas dengan telur terapung */
+  glassBack(p,540,1345,340,440);P1.egg=egg(p,540,980,1.3);const w1=glassWater(p,540,1345,340,440,.84);glassFront(p,540,1345,340,440);
+  P1.kuan=kuan(p,240,800,1.35,{face:'senang',ph:.3,sc:P1});
+  loop(P1,t=>{P1.egg.y=6*Math.sin(t*1.8);P1.egg.r=4*Math.sin(t*1.3);P1.plant.r=2*Math.sin(t*1.1);P1.cloud.x=30*Math.sin(t*.4);P1.pots.forEach((j,i)=>j.r=4*Math.sin(t*1.5+i));
+    P1.steam.forEach((s,i)=>{const q=(t*.6+i/5)%1;s.setAttribute('cx',1015+q*40+8*Math.sin(t*3+i));s.setAttribute('cy',1195-q*260);s.setAttribute('r',14+q*26);s.setAttribute('opacity',.7*Math.sin(Math.PI*q));});
+    const dq=(t*.8)%1;P1.drop.setAttribute('cy',1160+dq*dq*200);P1.drop.setAttribute('opacity',dq<.9?1:0);});}
+
+/* =====================================================================
+   PANGGUNG 2 — nampan bahan (berlabel, untuk di-save)
+   ===================================================================== */
+const P2=scene('bahan');{const p=P2.g;
+  R(-400,-600,1880,3000,K.wall2,0,p);R(-400,1700,1880,600,K.wood2,0,p);
+  R(60,820,960,860,K.wood,40,p);R(90,850,900,800,'#E9C99A',30,p);
+  const it=(x,y,draw,label)=>{const P=G({transform:`translate(${x},${y})`},p),el=G({},P),j=hidden(el);draw(el);const t=tag(p,x,y+150,label);return {j,t};};
+  P2.items=[
+    it(250,1080,el=>{R(-70,-110,140,200,'#F0F9FF',16,el,{opacity:.6});R(-70,-110,140,200,'none',16,el,{stroke:'#94A3B8','stroke-width':6});R(-50,-90,12,150,'#fff',6,el,{opacity:.7});},'gelas bening'),
+    it(540,1080,el=>{PA('M -60 90 L -60 -40 C -60 -90 60 -90 60 -40 L 60 90 Z','#7DD3FC',el,{opacity:.8});R(-34,-120,68,40,'#0EA5E9',10,el);LN('M 60 -20 C 110 -20 110 50 60 50',`#0EA5E9`,12,el);},'air'),
+    it(830,1080,el=>{const e=G({transform:'scale(1.4)'},el);PA('M 0 -62 C 34 -62 48 -10 48 14 C 48 44 26 60 0 60 C -26 60 -48 44 -48 14 C -48 -10 -34 -62 0 -62 Z',K.egg,e,{stroke:K.egg2,'stroke-width':3});EL(-18,-26,10,16,'#fff',e);},'telur mentah'),
+    it(360,1440,el=>{R(-70,-80,140,170,'#FFFFFF',18,el,{stroke:'#94A3B8','stroke-width':6});R(-76,-110,152,40,B.orange,12,el);TX(0,30,'GARAM',36,B.navy,el,{'font-weight':900});},'garam'),
+    it(720,1440,el=>{const g=G({transform:'rotate(-30)'},el);EL(0,-60,34,46,'#CBD5E1',g,{stroke:'#94A3B8','stroke-width':4});R(-9,-18,18,130,'#CBD5E1',9,g,{stroke:'#94A3B8','stroke-width':4});},'sendok')];
+  P2.kuan=kuan(p,850,520,1.1,{face:'senang',ph:.9,sc:P2});}
+
+/* =====================================================================
+   PANGGUNG 3 — air tawar: telur tenggelam
+   ===================================================================== */
+const P3=scene('tawar');{const p=P3.g;
+  R(-400,-600,1880,3000,K.wall,0,p);for(let r=0;r<12;r++)for(let c=0;c<14;c++)R(-160+c*100,500+r*70,96,66,(r+c)%2?K.tile:K.tile2,6,p);
+  R(-400,1500,1880,40,K.wood,6,p);R(-400,1540,1880,700,K.wood2,0,p);
+  glassBack(p,560,1500,440,640);P3.egg=egg(p,560,520,1.35);const w=glassWater(p,560,1500,440,640,.8);P3.bub=bubbles(P3,p,10,560,1480,500,300);glassFront(p,560,1500,440,640);
+  P3.tagA=tag(p,560,800,'air tawar',B.blue,'#FFFFFF',44);
+  P3.kuan=kuan(p,200,760,1.25,{face:'senang',ph:1.6,sc:P3});
+  loop(P3,t=>{P3.egg.r=6*Math.sin(t*1.4);});}
+
+/* =====================================================================
+   PANGGUNG 4 — kotak partikel: massa jenis = kerapatan isi dalam ukuran sama
+   ===================================================================== */
+const P4=scene('partikel');{const p=P4.g;
+  lin('bg4',['#E0F2FE','#F5FBFF'],[0,1]);R(-400,-600,1880,3000,'url(#bg4)',0,p);
+  P4.blobs=[[120,420,180,'#BAE6FD'],[980,1500,220,'#FFE7A3']].map(([x,y,r,c],i)=>{const g=G({},p),j=J(g,x,y);CI(0,0,r,c,g,{opacity:.6});return {j,i};});
+  const box=(x,col,lab)=>{const P=G({transform:`translate(${x},940)`},p),el=G({},P),j=hidden(el);R(-200,-200,400,400,'#FFFFFF',26,el);R(-200,-200,400,400,'none',26,el,{stroke:col,'stroke-width':10});return {P,j,el};};
+  P4.bA=box(300,B.blue);P4.bB=box(780,B.orange);
+  P4.pa=particleBox(P4,P4.bA.el,0,0,400,10,'#7DD3FC',11);P4.pb=particleBox(P4,P4.bB.el,0,0,400,26,K.egg,41);
+  P4.tA=tag(p,300,1230,'air',B.blue);P4.tB=tag(p,780,1230,'telur',B.orange);
+  P4.sizeA=LN('M 100 710 L 500 710 M 100 694 L 100 726 M 500 694 L 500 726',B.navy,5,p,{opacity:0});P4.sizeB=LN('M 580 710 L 980 710 M 580 694 L 580 726 M 980 694 L 980 726',B.navy,5,p,{opacity:0});
+  P4.sameTag=tag(p,540,640,'ukuran sama',B.navy,'#FFF7E8',38);
+  P4.glow=R(570,730,420,420,'none',34,p,{stroke:B.yellow,'stroke-width':14,opacity:0});
+  P4.kuan=kuan(p,540,400,1.1,{face:'senang',ph:2.4,sc:P4});
+  loop(P4,t=>{P4.blobs.forEach(b=>{b.j.x=24*Math.sin(t*.5+b.i);b.j.y=20*Math.cos(t*.4+b.i);});});}
+
+/* =====================================================================
+   PANGGUNG 5 — tambah garam + aduk: lensa partikel makin rapat, telur naik
+   ===================================================================== */
+const P5=scene('garam');{const p=P5.g;P5.salt={v:0};P5.pour={v:0};P5.stir={v:0};
+  R(-400,-600,1880,3000,K.wall,0,p);for(let r=0;r<12;r++)for(let c=0;c<14;c++)R(-160+c*100,500+r*70,96,66,(r+c)%2?K.tile:K.tile2,6,p);
+  R(-400,1500,1880,40,K.wood,6,p);R(-400,1540,1880,700,K.wood2,0,p);
+  glassBack(p,620,1500,440,640);P5.egg=egg(p,620,1390,1.35);const w=glassWater(p,620,1500,440,640,.8);P5.water=w;P5.bub=bubbles(P5,p,8,620,1480,500,300);
+  /* sendok mengaduk */
+  const sp=G({},p);P5.spoon=J(sp,620,900);const sg=G({transform:'rotate(-14)'},sp);R(-9,-360,18,330,'#CBD5E1',9,sg,{stroke:'#94A3B8','stroke-width':4});EL(0,-20,30,40,'#CBD5E1',sg,{stroke:'#94A3B8','stroke-width':4});
+  /* pusaran */
+  P5.swirl=[0,1,2].map(i=>EL(620,1100+i*90,150-i*30,22,'none',p,{stroke:'#FFFFFF','stroke-width':5,'stroke-dasharray':'40 30',opacity:0}));
+  glassFront(p,620,1500,440,640);
+  /* toples garam + butiran */
+  const jr=G({},p);P5.jar=J(jr,820,560);R(-70,-90,140,170,'#FFFFFF',18,jr,{stroke:'#94A3B8','stroke-width':6});R(-76,-120,152,40,B.orange,12,jr);TX(0,20,'GARAM',36,B.navy,jr,{'font-weight':900});
+  P5.grains=[];for(let i=0;i<22;i++)P5.grains.push({r:R(0,0,9,9,'#FFFFFF',2,p,{stroke:'#94A3B8','stroke-width':1.5,opacity:0}),i});
+  /* lensa pembesar: partikel air + garam */
+  const lens=G({},p);N('clipPath',{id:'lensClip'},defs).appendChild(N('circle',{cx:240,cy:880,r:150}));
+  CI(240,880,150,'#E0F2FE',lens);const inner=G({'clip-path':'url(#lensClip)'},lens);
+  P5.lw=[];for(let i=0;i<12;i++)P5.lw.push({c:CI(0,0,14,'#7DD3FC',inner,{stroke:B.navy,'stroke-width':3}),i,x:240+(hash(i+3)-.5)*240,y:880+(hash(i+8)-.5)*240});
+  P5.ls=[];for(let i=0;i<22;i++)P5.ls.push({c:CI(0,0,10,'#FFFFFF',inner,{stroke:B.navy,'stroke-width':3,opacity:0}),i,x:240+(hash(i+33)-.5)*250,y:880+(hash(i+58)-.5)*250});
+  CI(240,880,150,'none',lens,{stroke:B.navy,'stroke-width':12});R(330,990,30,130,B.navy,14,lens,{transform:'rotate(-45 345 1055)'});
+  P5.kuan=kuan(p,880,330,1.0,{face:'senang',ph:3.2,sc:P5});
+  APPLY.push(()=>{const k=P5.salt.v;P5.water.body.setAttribute('fill',mix('#7DD3FC','#B5E3F8',k));});
+  loop(P5,t=>{const pv=P5.pour.v;P5.grains.forEach(g=>{const q=(t*1.6+hash(g.i))%1;g.r.setAttribute('x',740+(hash(g.i+4)-.5)*50+q*-40);g.r.setAttribute('y',640+q*480);g.r.setAttribute('opacity',pv*(q<.95?1:0));});
+    const sv=P5.stir.v;P5.spoon.x=sv*110*Math.cos(t*7);P5.spoon.y=sv*24*Math.sin(t*7);P5.swirl.forEach((e,i)=>{e.setAttribute('opacity',sv*.8);e.setAttribute('stroke-dashoffset',-t*300*(i%2?1:-1));});
+    P5.lw.forEach(q=>{q.c.setAttribute('cx',q.x+6*Math.sin(t*3+q.i));q.c.setAttribute('cy',q.y+6*Math.cos(t*2.5+q.i));});
+    const k=P5.salt.v;P5.ls.forEach(q=>{q.c.setAttribute('cx',q.x+5*Math.sin(t*3.4+q.i));q.c.setAttribute('cy',q.y+5*Math.cos(t*2.8+q.i));q.c.setAttribute('opacity',clamp(k*22-q.i));});
+    P5.egg.r=5*Math.sin(t*1.3);});}
+
+/* =====================================================================
+   PANGGUNG 6 — tes telur segar: tenggelam (segar) vs mengapung (sudah lama)
+   ===================================================================== */
+const P6=scene('segar');{const p=P6.g;P6.air={h:12};
+  R(-400,-600,1880,3000,K.wall2,0,p);R(-400,1560,1880,40,K.wood,6,p);R(-400,1600,1880,700,K.wood2,0,p);
+  glassBack(p,300,1560,300,460);P6.eA=egg(p,300,700,1.2);glassWater(p,300,1560,300,460,.82);glassFront(p,300,1560,300,460);
+  glassBack(p,760,1560,300,460);P6.eB=egg(p,760,700,1.2);glassWater(p,760,1560,300,460,.82);glassFront(p,760,1560,300,460);
+  P6.tA=tag(p,300,1660,'segar',GREEN);P6.tB=tag(p,760,1660,'sudah lama',B.orange);
+  /* potongan melintang telur: rongga udara membesar */
+  const cs=G({transform:'translate(420,520)'},p),ce=G({},cs);P6.cs=hidden(ce);
+  N('clipPath',{id:'eggClip'},defs).appendChild(N('path',{d:'M 0 -150 C 82 -150 116 -24 116 34 C 116 106 62 146 0 146 C -62 146 -116 106 -116 34 C -116 -24 -82 -150 0 -150 Z'}));
+  PA('M 0 -150 C 82 -150 116 -24 116 34 C 116 106 62 146 0 146 C -62 146 -116 106 -116 34 C -116 -24 -82 -150 0 -150 Z','#FFFFFF',ce,{stroke:K.egg2,'stroke-width':10});
+  CI(0,40,58,B.yellow,ce);const ac=G({'clip-path':'url(#eggClip)'},ce);P6.cell=EL(0,-150,70,12,'#C7DDF0',ac,{stroke:'#94A3B8','stroke-width':4,'stroke-dasharray':'10 8'});
+  P6.cellTag=tag(p,420,300,'rongga udara',B.navy,'#FFFFFF',36);
+  P6.kuan=kuan(p,860,420,1.0,{face:'senang',ph:3.9,sc:P6});
+  APPLY.push(()=>{const h=P6.air.h;P6.cell.setAttribute('ry',h);P6.cell.setAttribute('cy',-150+h*.8);P6.cell.setAttribute('rx',40+h*1.2);});
+  loop(P6,t=>{P6.eA.r=90+2*Math.sin(t*1.2);P6.eB.r=-20+6*Math.sin(t*1.5);P6.eB.y=5*Math.sin(t*1.8);});}
+
+/* =====================================================================
+   PANGGUNG 7 — penutup: BERHASIL + save
+   ===================================================================== */
+const P7=scene('penutup');{const p=P7.g;P7.bub={v:0};
+  lin('bg7',['#E0F2FE','#F5FBFF','#FFEDE3'],[0,.55,1]);R(-400,-500,1880,2900,'url(#bg7)',0,p);
+  P7.blobs=[[120,380,230,'#BAE6FD'],[980,620,180,'#FFE7A3'],[860,1660,260,'#FFD3C4'],[140,1500,160,'#BAE6FD']].map(([x,y,r,c],i)=>{const g=G({},p),j=J(g,x,y);CI(0,0,r,c,g,{opacity:.7});return {j,i};});
+  P7.bs=[];for(let i=0;i<6;i++){const g=G({opacity:0},p),j=J(g);R(-120,-40,240,80,'#FFFFFF',24,g,{stroke:B.navy,'stroke-width':5});PA('M -40 38 L -54 62 L -10 38 Z','#FFFFFF',g);
+    TX(0,14,'BERHASIL',40,GREEN,g,{'font-weight':900});P7.bs.push({g,j,i});}
+  const bk=G({transform:'translate(540,1500)'},p),be=G({},bk);P7.save=hidden(be);PA('M -70 -100 L 70 -100 L 70 100 L 0 50 L -70 100 Z',B.yellow,be,{stroke:B.navy,'stroke-width':9,'stroke-linejoin':'round'});
+  P7.kuan=kuan(p,540,900,2.2,{face:'senang',ph:4.4,sc:P7});
+  loop(P7,t=>{P7.blobs.forEach(b=>{b.j.x=30*Math.sin(t*.5+b.i*1.7);b.j.y=26*Math.cos(t*.4+b.i);});
+    const v=P7.bub.v;P7.bs.forEach(b=>{const q=(t*.3+b.i/6)%1;b.j.tx=200+((b.i*271)%640);b.j.ty=1820-q*900;b.j.x=20*Math.sin(t*2+b.i);b.g.setAttribute('opacity',v*clamp(Math.sin(Math.PI*q)*1.6));});});}
+
+/* =====================================================================
+   PANGGUNG 8 — kartu logo (sama dengan seri)
+   ===================================================================== */
+const P8=scene('logo');{const p=P8.g;
+  lin('bg8',['#E0F2FE','#F5FBFF','#FFEDE3'],[0,.55,1]);R(-400,-500,1880,2900,'url(#bg8)',0,p);
+  P8.blobs=[[120,380,230,'#BAE6FD'],[980,620,180,'#FFE7A3'],[860,1660,260,'#FFD3C4'],[140,1500,160,'#BAE6FD'],[560,1960,240,'#FFE7A3']].map(([x,y,r,c],i)=>{const g=G({},p),j=J(g,x,y);CI(0,0,r,c,g,{opacity:.7});return {j,i};});
+  P8.letters=[...'kuantika'].map((ch,i)=>{const g=G({},p),j=J(g,0,1210);j.sx=j.sy=0;j.apply();const tx=TX(0,0,ch,176,B.navy,g);return {g,j,tx};});
+  P8.kuan=kuan(p,540,830,2.0,{face:'senang',ph:4.2,sc:P8});
+  loop(P8,t=>{P8.blobs.forEach(b=>{b.j.x=30*Math.sin(t*.5+b.i*1.7);b.j.y=26*Math.cos(t*.4+b.i);});});}
+function layoutWord(){let tot=0;const ws=P8.letters.map(l=>{const w=l.tx.getComputedTextLength();tot+=w;return w;});let x=540-tot/2;
+  P8.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
+
+/* =====================================================================
+   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   ===================================================================== */
+/* P1 · 0–4,9 · "telur ini mengapung… tanpa sulap!" + "halo, Kuan di sini!" */
+tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1000,1.2);
+sayAt('#tHook',[.1,.4,.85,1.6]);
+tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.4);
+unsay('#tHook',3.0);cam(P1,3.1,420,960,1.5,.8,'power2.inOut');hop(P1.kuan,3.8,60);
+slide(4.6,P1,P2,'x');
+/* P2 · 4,9–8,9 · "siapkan gelas bening, air, telur mentah, garam, dan sendok" */
+camSet(P2,4.5,540,1080,1.12);
+[5.6,6.4,6.9,7.6,8.2].forEach((at,i)=>{pop(P2.items[i].j,at);pop(P2.items[i].t,at+.12);});
+/* P3 · 8,9–15,4 · tenggelam di air tawar */
+cut(8.9,P2,P3);camSet(P3,8.9,560,1000,1.12);pop(P3.tagA,9.0);
+tl.fromTo(P3.egg,{ty:520},{ty:1080,duration:.5,ease:'power2.in',immediateRender:false},9.3);
+tl.to(P3.egg,{ty:1390,duration:1.1,ease:'power2.out'},9.8);
+face(P3.kuan,'kaget',10.5);face(P3.kuan,'berpikir',11.3);
+cam(P3,12.0,560,1300,1.45,1.0,'power2.inOut');face(P3.kuan,'guru',12.0);
+/* P4 · 15,4–22,6 · massa jenis */
+cut(15.4,P3,P4);camSet(P4,15.4,540,960,1.12);
+pop(P4.bA.j,15.6);pop(P4.bB.j,15.85);pop(P4.tA,16.0);pop(P4.tB,16.2);sayAt('#tTerm',[15.7,16.0]);
+tl.to([P4.sizeA,P4.sizeB],{opacity:1,duration:.3},18.5);pop(P4.sameTag,18.6);
+tl.fromTo(P4.glow,{opacity:0},{keyframes:{opacity:[0,1,.4,1]},duration:.9,immediateRender:false},19.9);hop(P4.kuan,20.1,50);
+cam(P4,20.0,700,960,1.35,.9,'power2.inOut');unsay('#tTerm',22.1);
+/* P5 · 22,6–32,6 · tambah garam, aduk, telur naik */
+cut(22.6,P4,P5);camSet(P5,22.6,560,1000,1.12);
+tl.fromTo(P5.jar,{r:0},{r:-55,duration:.5,ease:'power2.inOut',immediateRender:false},23.0);
+tl.fromTo(P5.pour,{v:0},{v:1,duration:.2,immediateRender:false},23.4);tl.to(P5.pour,{v:0,duration:.2},25.0);tl.to(P5.jar,{r:0,duration:.5,ease:'power2.inOut'},25.0);
+tl.fromTo(P5.salt,{v:0},{v:.45,duration:1.6,ease:'none',immediateRender:false},23.4);
+tl.fromTo(P5.stir,{v:0},{v:1,duration:.3,immediateRender:false},25.2);tl.to(P5.stir,{v:0,duration:.3},26.4);tl.to(P5.spoon,{tx:1400,ty:500,duration:.8,ease:'power2.in'},26.6);
+cam(P5,26.2,320,900,1.5,.9,'power2.inOut');                                                       // lensa: makin rapat
+tl.to(P5.salt,{v:1,duration:2.4,ease:'sine.inOut'},26.3);
+cam(P5,29.0,620,1150,1.2,.8,'power2.inOut');
+tl.to(P5.egg,{ty:1000,duration:1.8,ease:'power1.inOut'},29.5);                                     // telur naik
+face(P5.kuan,'eureka',31.0);hop(P5.kuan,31.3,60);
+/* P6 · 32,6–39,8 · tes telur segar */
+cut(32.6,P5,P6);camSet(P6,32.6,540,1100,1.12);
+tl.fromTo(P6.eA,{ty:700},{ty:1468,duration:1.0,ease:'power2.in',immediateRender:false},33.0);
+tl.fromTo(P6.eB,{ty:700},{ty:1185,duration:1.2,ease:'back.out(1.4)',immediateRender:false},33.6);face(P6.kuan,'kaget',33.8);
+pop(P6.tA,35.5);pop(P6.tB,35.8);
+cam(P6,37.4,500,620,1.3,.8,'power2.inOut');pop(P6.cs,37.5);pop(P6.cellTag,38.1);
+tl.fromTo(P6.air,{h:12},{h:62,duration:1.4,ease:'power1.inOut',immediateRender:false},37.9);
+/* P7 · 39,8–48,0 · "paham sampai ke inti! coba di rumah… komentar BERHASIL! save video ini…" */
+cut(39.8,P6,P7);camSet(P7,39.8,540,900,1.35);
+sayAt('#tEnd',[40.1,40.45,40.7,40.9]);hop(P7.kuan,41.2,90);unsay('#tEnd',41.8);
+cam(P7,42.0,540,1060,1.1,1.0,'power2.inOut');
+tl.fromTo(P7.bub,{v:0},{v:1,duration:.4,immediateRender:false},44.3);
+pop(P7.save,45.6);tl.to(P7.save,{sy:1.15,sx:.9,duration:.25,yoyo:true,repeat:5,ease:'sine.inOut'},46.2);
+/* P8 · 48,0–49,8 · logo */
+cut(48.0,P7,P8);camSet(P8,48.0,540,980,1.12);
+P8.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},48.15+i*.05));
+hop(P8.kuan,48.3,60);
+tl.to({},{duration:.01},DUR-.01);
+
+/* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
+function applyAll(){const t=tl.time();LOOPS.forEach(f=>f(t));APPLY.forEach(f=>f());JS.forEach(j=>j.apply());}
+tl.eventCallback('onUpdate',applyAll);
+const q=new URLSearchParams(location.search),vo=$('#vo'),hasVO=!!vo.getAttribute('src');let audioOn=false;
+function start(){tl.play(0);if(hasVO){vo.currentTime=0;vo.play().then(()=>audioOn=true).catch(()=>{});}}
+tl.eventCallback('onComplete',()=>{if(!q.has('clean'))start();});
+gsap.ticker.add(()=>{if(!audioOn||tl.paused())return;if(Math.abs(vo.currentTime-tl.time())>.12)vo.currentTime=tl.time();});
+window.OPENER={W,H,DURATION:DUR,tl,ready:false,seek(t){tl.pause(t,false);applyAll();},play:start};
+window.OPENER.seekFrame=t=>{window.OPENER.seek(t);return Promise.resolve();};
+addEventListener('keydown',e=>{if(/^[rR]$/.test(e.key))start();if(e.code==='Space'){e.preventDefault();tl.paused()?tl.play():tl.pause();}});
+if(q.has('debug')){const dbg=$('#dbg');dbg.style.display='flex';const sc=$('#dScrub'),ck=$('#dClock');let drag=false;
+  gsap.ticker.add(()=>{if(!drag)sc.value=String(tl.time()/DUR*1000);ck.textContent=tl.time().toFixed(2)+'s';$('#dPlay').textContent=tl.paused()?'Play':'Pause';});
+  sc.addEventListener('pointerdown',()=>{drag=true;tl.pause();});addEventListener('pointerup',()=>drag=false);
+  sc.addEventListener('input',()=>{tl.pause();tl.time(sc.value/1000*DUR);applyAll();});$('#dPlay').onclick=()=>tl.paused()?tl.play():tl.pause();}
+document.fonts.ready.then(()=>{layoutWord();tl.render(0,false,true);applyAll();window.OPENER.ready=true;if(q.has('clean'))return;if(!hasVO){start();return;}
+  vo.play().then(()=>{audioOn=true;vo.currentTime=0;tl.play(0);}).catch(()=>{const go=()=>{removeEventListener('pointerdown',go);removeEventListener('keydown',go);start();};addEventListener('pointerdown',go);addEventListener('keydown',go);});});
+</script>
+</body>
+</html>

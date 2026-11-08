@@ -55,6 +55,15 @@ Kamu pernah percaya mitos ini? Ketik PERCAYA atau TIDAK. Like kalau info ini pen
 #Kuantika #BelajarBarengKuan #MitosVsFakta #Fisika #FaktaSains
 ```
 
+## Hari 4 — Telur mengapung tanpa sulap
+
+```
+Telur ini mengapung… tanpa sulap! 🥚
+Rahasianya massa jenis: garam membuat air makin rapat, sampai massa jenisnya lebih besar dari telur. Bonus: cara cepat cek telur segar 👀
+Coba di rumah bareng orang tua, lalu komentar BERHASIL! Save video ini biar nggak lupa bahannya 👇
+#Kuantika #BelajarBarengKuan #SainsDiRumah #Fisika #EksperimenSains
+```
+
 ---
 
 ## Catatan
