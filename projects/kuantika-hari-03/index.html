@@ -7,7 +7,7 @@
 <title>Kuantika Hari 3 — Mitos Petir</title>
 <!--
   Kuantika · Hari 3 · Mitos vs Fakta · SD 5–SMP · "Petir tidak menyambar tempat yang sama dua kali?"
-  Kartun panggung 9:16 (1080×1920), 46,6 dtk, 7 panggung (kota badai, jalur petir, penangkal petir, tips, hitung jarak, penutup, logo).
+  Kartun panggung 9:16 (1080×1920), 50,2 dtk, 7 panggung (kota badai, jalur petir, penangkal petir, tips, hitung jarak, penutup, logo).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
 -->
@@ -46,11 +46,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=46.6,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=50.2,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -322,63 +322,63 @@ function layoutWord(){let tot=0;const ws=P7.letters.map(l=>{const w=l.tx.getComp
   P7.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 50,2 dtk). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
-/* P1 · 0–7,2 · "petir tidak menyambar tempat yang sama dua kali. benar?" + "halo, Kuan di sini! ternyata… itu mitos!" */
+/* P1 · 0–8,1 · "petir tidak menyambar tempat yang sama dua kali. benar?" + "halo, Kuan di sini! ternyata… itu mitos!" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,900,1.12);
 strike(P1.bolt1,.35,P1.flash);shake(P1,.35,10);
-sayAt('#tHook',[.2,.45,.85,1.2]);
+sayAt('#tHook',[.05,.4,.65,1.9]);                                                                  // petir@0 tidak@.42 menyambar@.62 dua kali@1.94
 tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.6);
-unsay('#tHook',3.3);
-cam(P1,3.4,420,1040,1.55,.9,'power2.inOut');hop(P1.kuan,4.0,60);                                  // halo, Kuan di sini
-cam(P1,4.8,600,820,1.18,.7,'power2.inOut');                                                        // ternyata…
-strike(P1.bolt2,5.5,P1.flash);shake(P1,5.5,18);face(P1.kuan,'ups',5.6);slam('#sMitos',5.6);        // itu mitos!
-tl.to('#sMitos',{opacity:0,scale:.9,duration:.25,ease:'power2.in'},6.9);
-/* P2 · 7,2–16,2 · jalur termudah ke tanah, benda tertinggi & runcing, berkali-kali */
-cut(7.2,P1,P2);camSet(P2,7.2,540,960,1.12);
-leader(P2.lead,7.7,1.1);strike(P2.lead,8.85,P2.flash);tl.fromTo(P2.tip,{opacity:0},{keyframes:{opacity:[0,1,.6,1,0]},duration:.8,immediateRender:false},8.85);
-tl.to(P2.tally[0],{opacity:1,duration:.1},9.0);
-cam(P2,10.0,780,560,1.6,1.1,'power2.inOut');                                                       // paling tinggi dan runcing
-tl.fromTo(P2.tip,{opacity:0},{keyframes:{opacity:[0,1,.4,1,.4,1,0]},duration:1.6,immediateRender:false},10.6);
-cam(P2,12.2,620,960,1.12,1.0,'power2.inOut');                                                      // makanya gedung…
-[13.0,13.6,14.2,14.8].forEach((at,i)=>{strike(P2.hits[i],at,P2.flash);tl.to(P2.tally[i+1],{opacity:1,duration:.1},at+.1);});
-hop(P2.kuan,15.3,60);
-/* P3 · 16,2–22,3 · penangkal petir */
-cut(16.2,P2,P3);camSet(P3,16.2,560,560,1.55);
-strike(P3.bolt,16.75,P3.flash);shake(P3,16.75,12);tl.fromTo(P3.flow,{v:0},{v:1,duration:.2,immediateRender:false},16.9);
-sayAt('#tTerm',[17.4,17.75]);
-cam(P3,17.6,700,1300,1.3,2.2,'sine.inOut');                                                        // mengalirkan listrik ke tanah
-tl.to(P3.flow,{v:0,duration:.4},21.4);unsay('#tTerm',21.6);
-/* P4 · 22,3–28,3 · tips aman */
-cut(22.3,P3,P4);camSet(P4,22.3,540,1150,1.12);
-cam(P4,22.6,260,1190,1.45,.7,'power2.inOut');pop(P4.s1,23.2);                                      // masuk ke bangunan ✓
-tl.to(P4.kuan.mv,{x:-290,y:-300,duration:.9,ease:'power2.inOut'},23.0);
-cam(P4,24.3,566,1000,1.35,.7,'power2.inOut');strike(P4.tbolt,24.9,P4.flash);pop(P4.s2,25.0);     // jangan di bawah pohon tinggi ✗
-cam(P4,26.2,880,1240,1.4,.7,'power2.inOut');pop(P4.s3,26.8);                                       // jauhi lapangan terbuka ✗
-cam(P4,27.4,540,1150,1.12,.8,'power2.inOut');
-/* P5 · 28,3–35,3 · hitung jarak */
-cut(28.3,P4,P5);camSet(P5,28.3,540,1080,1.12);
-strike(P5.bolt,29.6,P5.flash);                                                                      // kilat
-tl.fromTo(P5.wv,{r:0,v:0},{r:700,v:1,duration:2.0,ease:'none',immediateRender:false},29.7);
-P5.nums.forEach((n,i)=>{const at=29.85+i*.3;tl.fromTo(n,{opacity:0,scale:.4,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.18,ease:'back.out(3)',immediateRender:false},at);
-  if(i<5)tl.to(n,{opacity:0,duration:.08},at+.28);tl.to(P5.dots[i],{opacity:1,duration:.1},at);});
-tl.to(P5.wv,{v:0,duration:.3},31.7);shake(P5,31.65,10);face(P5.kuan,'kaget',31.65);face(P5.kuan,'guru',32.2);   // guntur sampai
-tl.to(P5.nums[5],{opacity:0,duration:.2},32.3);
-tl.fromTo(P5.res,{opacity:0,scale:.5,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.45,ease:'back.out(2)',immediateRender:false},32.4);   // bagi tiga
-tl.fromTo(P5.dist,{opacity:0},{opacity:1,duration:.3,immediateRender:false},32.8);P5.ends.forEach(e=>tl.fromTo(e,{opacity:0},{opacity:1,duration:.3,immediateRender:false},32.8));
-hop(P5.kuan,33.5,60);
-/* P6 · 35,3–44,6 · "paham sampai ke inti! kamu pernah percaya mitos ini? ketik PERCAYA atau TIDAK. like…" */
-cut(35.3,P5,P6);camSet(P6,35.3,540,900,1.35);
-sayAt('#tEnd',[35.5,35.85,36.1,36.3]);hop(P6.kuan,36.5,90);unsay('#tEnd',37.2);
-cam(P6,37.2,540,1060,1.1,1.0,'power2.inOut');
-pop(P6.cA,38.2);pop(P6.cB,38.8);
-tl.fromTo(P6.cA,{r:0},{r:-4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},39.3);
-tl.fromTo(P6.cB,{r:0},{r:4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},39.5);
-pop(P6.heart,40.6);tl.to(P6.heart,{sx:1.2,sy:1.2,duration:.3,yoyo:true,repeat:5,ease:'sine.inOut'},41.2);face(P6.kuan,'senang',41.0);
-/* P7 · 44,6–46,6 · logo */
-cut(44.6,P6,P7);camSet(P7,44.6,540,980,1.12);
-P7.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},44.75+i*.05));
-hop(P7.kuan,44.9,60);
+unsay('#tHook',3.3);                                                                                // benar?@3.0
+cam(P1,3.75,420,1040,1.55,.8,'power2.inOut');hop(P1.kuan,4.45,60);                                // halo@3.81 · Kuan di sini@4.44
+cam(P1,5.4,600,820,1.18,.8,'power2.inOut');                                                        // ternyata@5.43
+strike(P1.bolt2,6.8,P1.flash);shake(P1,6.8,18);face(P1.kuan,'ups',6.85);slam('#sMitos',6.85);     // itu mitos@6.7–6.9
+tl.to('#sMitos',{opacity:0,scale:.9,duration:.25,ease:'power2.in'},7.85);
+/* P2 · 8,1–18,4 · jalur termudah ke tanah, benda tertinggi & runcing, berkali-kali */
+cut(8.1,P1,P2);camSet(P2,8.1,540,960,1.12);
+leader(P2.lead,8.5,1.1);strike(P2.lead,9.65,P2.flash);tl.fromTo(P2.tip,{opacity:0},{keyframes:{opacity:[0,1,.6,1,0]},duration:.8,immediateRender:false},9.65);   // petir mencari jalur…ke tanah@8.43
+tl.to(P2.tally[0],{opacity:1,duration:.1},9.8);
+cam(P2,10.85,780,560,1.6,1.1,'power2.inOut');                                                      // biasanya…paling tinggi dan runcing@10.85
+tl.fromTo(P2.tip,{opacity:0},{keyframes:{opacity:[0,1,.4,1,.4,1,0]},duration:1.6,immediateRender:false},12.6);
+cam(P2,13.95,620,960,1.12,1.0,'power2.inOut');                                                     // makanya@13.99
+[15.2,15.8,16.4,17.0].forEach((at,i)=>{strike(P2.hits[i],at,P2.flash);tl.to(P2.tally[i+1],{opacity:1,duration:.1},at+.1);});   // tersambar berkali-kali setiap tahun
+hop(P2.kuan,17.6,60);
+/* P3 · 18,4–24,7 · penangkal petir */
+cut(18.4,P2,P3);camSet(P3,18.4,560,560,1.55);
+strike(P3.bolt,18.75,P3.flash);shake(P3,18.75,12);tl.fromTo(P3.flow,{v:0},{v:1,duration:.2,immediateRender:false},18.9);   // tapi gedungnya aman@18.78
+sayAt('#tTerm',[20.65,21.0]);                                                                       // penangkal petir@20.7
+cam(P3,22.5,700,1300,1.3,1.9,'sine.inOut');                                                        // batang logam@21.85 · mengalirkan…ke tanah@22.7
+tl.to(P3.flow,{v:0,duration:.4},24.1);unsay('#tTerm',24.2);
+/* P4 · 24,7–31,6 · tips aman */
+cut(24.7,P3,P4);camSet(P4,24.7,540,1150,1.12);                                                    // jadi, saat badai@25.13
+cam(P4,26.1,260,1190,1.45,.7,'power2.inOut');pop(P4.s1,26.75);                                     // masuk ke bangunan@26.7 ✓
+tl.to(P4.kuan.mv,{x:-290,y:-300,duration:.9,ease:'power2.inOut'},26.4);
+cam(P4,27.9,566,1000,1.35,.7,'power2.inOut');strike(P4.tbolt,28.9,P4.flash);pop(P4.s2,29.0);     // jangan berteduh…pohon tinggi@27.98 ✗
+cam(P4,29.75,880,1240,1.4,.6,'power2.inOut');pop(P4.s3,30.25);                                     // jauhi lapangan terbuka@30.2 ✗
+cam(P4,30.95,540,1150,1.12,.6,'power2.inOut');
+/* P5 · 31,6–39,95 · hitung jarak */
+cut(31.6,P4,P5);camSet(P5,31.6,540,1080,1.12);                                                    // mau tahu seberapa jauh@32.22
+strike(P5.bolt,34.9,P5.flash);                                                                      // kilat@34.95
+tl.fromTo(P5.wv,{r:0,v:0},{r:700,v:1,duration:1.45,ease:'none',immediateRender:false},35.0);
+P5.nums.forEach((n,i)=>{const at=35.05+i*.24;tl.fromTo(n,{opacity:0,scale:.4,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.16,ease:'back.out(3)',immediateRender:false},at);
+  if(i<5)tl.to(n,{opacity:0,duration:.07},at+.22);tl.to(P5.dots[i],{opacity:1,duration:.1},at);});
+tl.to(P5.wv,{v:0,duration:.3},36.45);shake(P5,36.4,10);face(P5.kuan,'kaget',36.4);face(P5.kuan,'guru',36.9);   // guntur@35.57 · lalu@36.15
+tl.to(P5.nums[5],{opacity:0,duration:.2},36.85);
+tl.fromTo(P5.res,{opacity:0,scale:.5,transformOrigin:'50% 70%'},{opacity:1,scale:1,duration:.45,ease:'back.out(2)',immediateRender:false},36.95);   // bagi tiga@36.99
+tl.fromTo(P5.dist,{opacity:0},{opacity:1,duration:.3,immediateRender:false},37.65);P5.ends.forEach(e=>tl.fromTo(e,{opacity:0},{opacity:1,duration:.3,immediateRender:false},37.65));   // hasilnya, jarak@37.65
+hop(P5.kuan,38.9,60);                                                                               // kilometer@39.15
+/* P6 · 39,95–48,4 · "paham sampai ke inti! kamu pernah percaya mitos ini? ketik PERCAYA atau TIDAK. like…" */
+cut(39.95,P5,P6);camSet(P6,39.95,540,900,1.35);
+sayAt('#tEnd',[40.35,40.95,41.4,41.6]);hop(P6.kuan,41.9,90);unsay('#tEnd',42.4);                 // paham@40.37 sampai@41.0 ke inti@41.57
+cam(P6,42.45,540,1060,1.1,1.0,'power2.inOut');                                                     // kamu pernah percaya@42.51
+pop(P6.cA,44.4);pop(P6.cB,45.35);                                                                   // PERCAYA@44.47 · TIDAK@45.41
+tl.fromTo(P6.cA,{r:0},{r:-4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},45.8);
+tl.fromTo(P6.cB,{r:0},{r:4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},46.0);
+pop(P6.heart,46.15);tl.to(P6.heart,{sx:1.2,sy:1.2,duration:.3,yoyo:true,repeat:5,ease:'sine.inOut'},46.7);face(P6.kuan,'senang',46.6);   // like@46.2
+/* P7 · 48,4–50,2 · logo */
+cut(48.4,P6,P7);camSet(P7,48.4,540,980,1.12);
+P7.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},48.55+i*.05));
+hop(P7.kuan,48.7,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */

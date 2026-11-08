@@ -1,9 +1,12 @@
 # Naskah VO — Kuantika Hari 3: "Petir tidak menyambar tempat yang sama dua kali?"
 
-Pilar: Mitos vs Fakta · Jenjang: SD 5–SMP · Durasi video: ±47 detik (9:16)
+Pilar: Mitos vs Fakta · Jenjang: SD 5–SMP · Durasi video: 50,2 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-memakai teks di bawah, kirim berkasnya, lalu video akan disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Audio = berkas ElevenLabs asli (46,6 dtk) + jeda tambahan di lima
+pergantian panggung (+0,35 dtk setelah "mitos", "setiap tahun", "ke tanah"; +0,3 dtk
+setelah "lapangan terbuka"; +0,6 dtk setelah "kilometer", yang semula tanpa jeda),
+dinormalkan ke −16 LUFS, plus ekor ±2 dtk untuk logo. Kata-katanya tidak diubah.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -26,18 +29,18 @@ Mau tahu seberapa jauh petirnya? Hitung detik dari kilat sampai guntur, lalu bag
 Paham sampai ke inti! Kamu pernah percaya mitos ini? Ketik PERCAYA atau TIDAK. Like kalau info ini penting buat keluargamu!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–3,4 | 1. Kota badai | Bingung | Petir tidak menyambar tempat yang sama dua kali. Benar? | petir menyambar puncak menara · teks hook |
-| 3,4–7,2 | 1. Kota badai | Ups/Salah | Halo, Kuan di sini! Ternyata… itu mitos! | menara yang SAMA tersambar lagi · stempel **MITOS** + guncangan |
-| 7,2–16,2 | 2. Jalur ke tanah | Kuan Guru | Petir mencari jalur termudah… berkali-kali setiap tahun. | rumah < pohon < gedung · petir bercabang memilih puncak gedung · turus bertambah tiap sambaran |
-| 16,2–22,3 | 3. Penangkal petir | Kuan Guru | Tapi gedungnya aman, karena punya penangkal petir… | sambaran di batang logam · arus kuning lewat kabel ke tanah · orang di dalam tetap tenang · label *Penangkal petir* |
-| 22,3–28,3 | 4. Tips aman | Kuan Guru | Jadi, saat badai, masuk ke bangunan… | ✓ pintu rumah (Kuan masuk) · ✗ pohon tinggi (tersambar) · ✗ lapangan terbuka |
-| 28,3–35,3 | 5. Hitung jarak | Kuan Guru (kaget saat guntur tiba) | Mau tahu seberapa jauh petirnya?… | kilat jauh · hitungan 1…6 · gelombang guntur sampai ke Kuan · **6 ÷ 3 = 2 km** |
-| 35,3–44,6 | 6. Penutup | Kuan Guru → Senang | Paham sampai ke inti! … Ketik PERCAYA atau TIDAK. Like… | tombol PERCAYA / TIDAK · hati like |
-| 44,6–46,6 | 7. Logo | Senang | — | kuantika |
+| 0–3,3 | 1. Kota badai | Bingung | Petir tidak menyambar tempat yang sama dua kali. Benar? | petir menyambar puncak menara (0,35) · teks hook |
+| 3,8–8,1 | 1. Kota badai | Ups/Salah | Halo, Kuan di sini! Ternyata… itu mitos! | menara yang SAMA tersambar lagi + stempel **MITOS** (6,85) |
+| 8,4–18,0 | 2. Jalur ke tanah | Kuan Guru | Petir mencari jalur termudah… berkali-kali setiap tahun. | petir memilih puncak gedung (9,65) · close-up puncak (10,85) · 4 sambaran lagi + turus (15,2–17,0) |
+| 18,8–24,1 | 3. Penangkal petir | Kuan Guru | Tapi gedungnya aman, karena punya penangkal petir… | sambaran di batang logam (18,75) · label *Penangkal petir* (20,65) · arus turun ke tanah (22,5) |
+| 25,1–30,9 | 4. Tips aman | Kuan Guru | Jadi, saat badai, masuk ke bangunan… | ✓ pintu (26,75) · ✗ pohon tinggi + tersambar (29,0) · ✗ lapangan terbuka (30,25) |
+| 32,2–39,7 | 5. Hitung jarak | Kuan Guru (kaget saat guntur tiba) | Mau tahu seberapa jauh petirnya?… | kilat (34,9) · hitung 1…6 · guntur tiba (36,4) · **6 ÷ 3 = 2 km** (36,95) |
+| 40,4–48,3 | 6. Penutup | Kuan Guru → Senang | Paham sampai ke inti! … Ketik PERCAYA atau TIDAK. Like… | PERCAYA (44,4) / TIDAK (45,35) · hati like (46,15) |
+| 48,4–50,2 | 7. Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 
