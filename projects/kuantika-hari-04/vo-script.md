@@ -1,10 +1,10 @@
 # Naskah VO — Kuantika Hari 4: "Telur ini mengapung… tanpa sulap!"
 
-Pilar: Sains di Rumah · Jenjang: SD 4–SMP · Durasi video: ±50 detik (9:16)
+Pilar: Sains di Rumah · Jenjang: SD 4–SMP · Durasi video: 50,4 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(saran: suara "Andra" seperti Hari 2–3), kirim berkasnya, lalu video akan
-disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Jeda bawaan antarpanggung sudah ±0,4–0,5 dtk, jadi audio TIDAK
+disisipi jeda; hanya dinormalkan ke −16 LUFS + ekor ±1,8 dtk untuk logo.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -27,18 +27,19 @@ Bonus: kalau telur mengapung di air tawar, biasanya sudah tidak segar, karena ro
 Paham sampai ke inti! Coba di rumah bareng orang tua, lalu komentar BERHASIL! Save video ini biar nggak lupa bahannya.
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–3,0 | 1. Dapur | Senang | Telur ini mengapung… tanpa sulap! | telur terapung di gelas, ketel beruap, keran menetes · teks hook |
-| 3,0–8,9 | 1 → 2. Nampan bahan | Senang | Halo, Kuan di sini! Siapkan gelas bening, air, telur mentah, garam, dan sendok. | 5 bahan muncul satu per satu, masing-masing berlabel |
-| 8,9–15,4 | 3. Air tawar | Kaget → Berpikir → Kuan Guru | Di air tawar, telurnya tenggelam. Kenapa? Karena massa jenis… | telur dicelup, tenggelam ke dasar, gelembung naik |
-| 15,4–22,6 | 4. Kotak partikel | Senang | Massa jenis itu seberapa rapat… Isi telur lebih rapat daripada air. | kotak "air" (jarang) vs "telur" (rapat) · "ukuran sama" · label *Massa jenis* |
-| 22,6–32,6 | 5. Gelas + garam | Senang → Eureka | Sekarang, tambahkan garam… Telurnya mengapung! | garam dituang, diaduk (pusaran) · lensa: partikel makin rapat · telur naik ke permukaan |
-| 32,6–39,8 | 6. Tes telur segar | Kaget | Bonus: kalau telur mengapung di air tawar… rongga udaranya membesar. | telur "segar" tenggelam vs "sudah lama" mengapung · potongan telur: rongga udara membesar |
-| 39,8–48,0 | 7. Penutup | Senang | Paham sampai ke inti! Coba di rumah… Save video ini… | gelembung "BERHASIL" · ikon save |
-| 48,0–49,8 | 8. Logo | Senang | — | kuantika |
+| 0–2,8 | 1. Dapur | Senang | Telur ini mengapung… tanpa sulap! | telur terapung · teks hook |
+| 3,15–4,5 | 1. Dapur | Senang | Halo, Kuan di sini! | kamera ke Kuan |
+| 4,9–9,4 | 2. Nampan bahan | Senang | Siapkan gelas bening, air, telur mentah, garam, dan sendok. | gelas (5,35) · air (6,4) · telur (7,2) · garam (8,2) · sendok (9,0) |
+| 9,9–15,9 | 3. Air tawar | Kaget → Berpikir → Kuan Guru | Di air tawar, telurnya tenggelam. Kenapa? Karena massa jenis… | telur tenggelam (11,1) · "Kenapa?" (12,3) · close-up dasar gelas (13,25) |
+| 16,55–22,8 | 4. Kotak partikel | Senang | Massa jenis itu seberapa rapat… Isi telur lebih rapat daripada air. | label *Massa jenis* (16,55) · "ukuran sama" (19,0) · kotak telur bersinar (20,7) |
+| 23,3–33,7 | 5. Gelas + garam | Senang → Eureka | Sekarang, tambahkan garam… Telurnya mengapung! | garam dituang (24,3) · aduk (26,3) · lensa makin rapat (27,3–30,2) · telur naik (30,4) |
+| 34,2–40,45 | 6. Tes telur segar | Kaget | Bonus: kalau telur mengapung di air tawar… rongga udaranya membesar. | segar tenggelam / lama mengapung (35,0) · label (36,8) · rongga udara membesar (39,0) |
+| 40,9–48,4 | 7. Penutup | Senang | Paham sampai ke inti! Coba di rumah… Save video ini… | gelembung BERHASIL (44,4) · ikon save (46,2) |
+| 48,6–50,4 | 8. Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 
