@@ -7,7 +7,7 @@
 <title>Kuantika Hari 7 — Kuis Rekap</title>
 <!--
   Kuantika · Hari 7 · Tantangan Kuan (kuis rekap) · semua jenjang · "3 soal, 30 detik"
-  Kartun panggung 9:16 (1080×1920), 40,4 dtk, 4 panggung (studio kuis 3 soal, kartu jawaban, skor + tos, logo).
+  Kartun panggung 9:16 (1080×1920), 44,6 dtk, 4 panggung (studio kuis 3 soal, kartu jawaban, skor + tos, logo).
   Format tetap pilar Tantangan Kuan (dari Hari 5).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
@@ -42,11 +42,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=40.4,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=44.6,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -250,40 +250,40 @@ function layoutWord(){let tot=0;const ws=P4.letters.map(l=>{const w=l.tx.getComp
   P4.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 44,6 dtk; hening 3 dtk disisipkan
+   setelah tiap soal untuk menjawab). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
 function question(i,show,tStart,tEnd){const q=P1.qs[i];tl.set(q.g,{opacity:1},show);tl.set(P1.num,{textContent:'3'},show);tl.set(P1.arcV,{v:0},show);q.btns.forEach((b,k)=>pop(b,show+.2+k*.12));
   tl.fromTo(P1.arcV,{v:0},{v:1,duration:tEnd-tStart,ease:'none',immediateRender:false},tStart);
   [['3',0],['2',1],['1',2]].forEach(([n,o])=>{const at=tStart+o*(tEnd-tStart)/3;tl.set(P1.num,{textContent:n},at);tl.fromTo(P1.num,{scale:1.6,transformOrigin:'50% 50%'},{scale:1,duration:.4,ease:'back.out(3)',immediateRender:false},at);});
   tl.set(P1.num,{textContent:'0'},tEnd);}
 const hideQ=(i,at)=>tl.to(P1.qs[i].g,{opacity:0,duration:.2},at);
-/* P1 · 0–25,6 · hook, salam, soal 1–3 */
+/* P1 · 0–26,85 · hook, salam, soal 1–3 (timer di hening 3 dtk) */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,960,1.12);
-sayAt('#tHook',[.1,.6,1.3,1.55,1.8]);pop(P1.title,.3);
+sayAt('#tHook',[.05,1.02,2.29,2.6,2.9]);pop(P1.title,.3);                                        // tiga soal@0 · tiga puluh detik@1.02 · kamu nonton Kuan@2.29
 tl.set(P1.kuan.mv,{y:700},0);tl.fromTo(P1.kuan.mv,{y:700},{y:0,duration:.6,ease:'back.out(1.6)',immediateRender:false},.5);
-unsay('#tHook',3.7);hop(P1.kuan,4.6,50);pop(P1.timerJ,5.2);                                         // halo, Kuan di sini · siapkan jarimu
-tl.to(P1.title,{sx:0,sy:0,duration:.25},6.4);face(P1.kuan,'berpikir',6.6);
-question(0,6.6,9.8,12.8);hideQ(0,13.0);                                                              // soal satu
-question(1,13.2,15.4,18.4);hideQ(1,18.6);                                                            // soal dua
-question(2,18.8,22.4,25.4);                                                                          // soal tiga
-cam(P1,6.6,540,1080,1.2,.8,'power2.inOut');
-/* P2 · 25,6–30,8 · "waktu habis! jawabannya: satu, B. dua, A. tiga, B!" */
-cut(25.6,P1,P2);camSet(P2,25.6,540,960,1.12);
-P2.cards.forEach((c,i)=>pop(c.j,25.7+i*.12));
-flip(P2.cards[0],27.4);flip(P2.cards[1],28.4);flip(P2.cards[2],29.4);face(P2.kuan,'bangga',29.6);hop(P2.kuan,29.8,50);
-/* P3 · 30,8–38,6 · "paham sampai ke inti! tulis skormu…: nol, satu, dua, atau tiga! yang dapat tiga, Kuan kasih tos virtual." */
-cut(30.8,P2,P3);camSet(P3,30.8,540,1000,1.12);tl.set(P3.hand,{x:400,y:500},30.8);
-sayAt('#tEnd',[31.0,31.35,31.6,31.8]);unsay('#tEnd',32.6);
-P3.nums.forEach((n,i)=>{pop(n.j,33.6+i*.45);});
-P3.nums.forEach((n,i)=>tl.fromTo(n.glow,{opacity:0},{opacity:.8,duration:.2,yoyo:true,repeat:1,immediateRender:false},33.6+i*.45));
-tl.fromTo(P3.crown,{opacity:0},{opacity:1,duration:.3,immediateRender:false},35.6);
-tl.fromTo(P3.hand,{x:400,y:500},{x:0,y:0,duration:.6,ease:'power3.out',immediateRender:false},36.4); // yang dapat tiga…
-tl.to(P3.kuan.mv,{x:150,y:-20,duration:.35,ease:'power2.in'},37.0);tl.to(P3.kuan.mv,{x:0,y:0,duration:.5,ease:'back.out(2)'},37.35);   // tos!
-tl.fromTo(P3.spark,{opacity:0},{keyframes:{opacity:[0,1,1,0]},duration:.6,immediateRender:false},37.3);tl.to(P3.hand,{x:30,y:-20,duration:.12,yoyo:true,repeat:1},37.3);
-/* P4 · 38,6–40,4 · logo */
-cut(38.6,P3,P4);camSet(P4,38.6,540,980,1.12);
-P4.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},38.75+i*.05));
-hop(P4.kuan,38.9,60);
+unsay('#tHook',3.8);hop(P1.kuan,4.8,50);pop(P1.timerJ,5.9);                                       // halo@4.22 · Kuan di sini@4.8 · siapkan jarimu@5.85
+tl.to(P1.title,{sx:0,sy:0,duration:.25},6.9);face(P1.kuan,'berpikir',7.1);
+cam(P1,7.2,540,1080,1.2,.8,'power2.inOut');
+question(0,7.2,11.0,14.0);hideQ(0,14.2);                                                            // soal satu@7.25 · sama dengan?@10.25 · hening 10.9–14.4
+question(1,14.35,16.6,19.6);hideQ(1,19.75);                                                         // soal dua@14.38 · kenapa langit biru@15.42 · hening 16.4–19.9
+question(2,19.9,23.6,26.6);                                                                         // soal tiga@19.93 · apa yang membuat telur@21.03 · hening 23.5–27.0
+/* P2 · 26,85–34,1 · "waktu habis! jawabannya: satu, B. dua, A. tiga, B!" */
+cut(26.85,P1,P2);camSet(P2,26.85,540,960,1.12);                                                    // waktu habis@27.01
+P2.cards.forEach((c,i)=>pop(c.j,26.95+i*.12));
+flip(P2.cards[0],30.2);flip(P2.cards[1],31.8);flip(P2.cards[2],33.15);face(P2.kuan,'bangga',33.3);hop(P2.kuan,33.5,50);   // B@30.25 · A@31.85 · B@33.2
+/* P3 · 34,1–42,75 · "paham sampai ke inti! tulis skormu…: nol, satu, dua, atau tiga! yang dapat tiga, Kuan kasih tos virtual." */
+cut(34.1,P2,P3);camSet(P3,34.1,540,1000,1.12);tl.set(P3.hand,{x:400,y:500},34.1);
+sayAt('#tEnd',[34.3,34.65,34.85,35.0]);unsay('#tEnd',35.7);                                       // paham@34.3
+[37.24,37.82,38.58,39.44].forEach((at,i)=>{pop(P3.nums[i].j,at);tl.fromTo(P3.nums[i].glow,{opacity:0},{opacity:.8,duration:.2,yoyo:true,repeat:1,immediateRender:false},at);});   // nol, satu, dua, tiga
+tl.fromTo(P3.crown,{opacity:0},{opacity:1,duration:.3,immediateRender:false},39.6);
+tl.fromTo(P3.hand,{x:400,y:500},{x:0,y:0,duration:.6,ease:'power3.out',immediateRender:false},40.3);   // yang dapat tiga@40.29
+tl.to(P3.kuan.mv,{x:150,y:-20,duration:.35,ease:'power2.in'},41.35);tl.to(P3.kuan.mv,{x:0,y:0,duration:.5,ease:'back.out(2)'},41.7);   // Kuan kasih tos@41.28–41.7
+tl.fromTo(P3.spark,{opacity:0},{keyframes:{opacity:[0,1,1,0]},duration:.6,immediateRender:false},41.65);tl.to(P3.hand,{x:30,y:-20,duration:.12,yoyo:true,repeat:1},41.65);
+/* P4 · 42,75–44,6 · logo */
+cut(42.75,P3,P4);camSet(P4,42.75,540,980,1.12);
+P4.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},42.9+i*.05));
+hop(P4.kuan,43.05,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
