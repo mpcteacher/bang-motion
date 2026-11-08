@@ -7,7 +7,7 @@
 <title>Kuantika Hari 1 — Langit Biru, Senja Oranye</title>
 <!--
   Kuantika · Hari 1 · Tahukah Kamu? · SD 5–SMP
-  Kartun panggung 9:16 (1080×1920), 65 dtk, 6 panggung, VO vo.m4a (dikunci per kata).
+  Kartun panggung 9:16 (1080×1920), 47,6 dtk, 6 panggung, VO ElevenLabs vo.m4a (dikunci per kata).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a harus satu folder dengan index.html. Bila browser memblokir autoplay bersuara, video menunggu klik pertama.
 -->
@@ -49,7 +49,7 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=65,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=47.6,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -222,7 +222,7 @@ const P2=scene('prisma');{const p=P2.g;
   P2.apply=()=>{const v=P2.reach.v,[ax,ay]=P2.beamA,[bx,by]=P2.beamB,ex=ax+(bx-ax)*v,ey=ay+(by-ay)*v,d=v>.001?`M ${ax} ${ay} L ${ex} ${ey}`:'';
     P2.beam.setAttribute('d',d);P2.beamGlow.setAttribute('d',d);};APPLY.push(P2.apply);
   loop(P2,t=>{P2.rays.r=t*14;P2.stars.forEach(s=>s.c.setAttribute('opacity',.25+.6*(.5+.5*Math.sin(t*(1.2+hash(s.i)*2)+s.i))));
-    P2.rocks.forEach(r=>{r.j.r=t*(12+r.i*8);r.j.x=-Math.max(0,t-7.5)*(10+r.i*4);r.j.y=8*Math.sin(t+r.i);});
+    P2.rocks.forEach(r=>{r.j.r=t*(12+r.i*8);r.j.x=-Math.max(0,t-5.0)*(10+r.i*4);r.j.y=8*Math.sin(t+r.i);});
     P2.dots.forEach(d=>{const q=(d.o+t*.55)%1,pt=d.pth.getPointAtLength(q*d.L);d.c.setAttribute('cx',pt.x);d.c.setAttribute('cy',pt.y);});
     const v=P2.reach.v,[ax,ay]=P2.beamA,[bx,by]=P2.beamB;P2.bdots.forEach((c,i)=>{const q=(i/4+t*.7)%1;c.setAttribute('cx',ax+(bx-ax)*q);c.setAttribute('cy',ay+(by-ay)*q);c.setAttribute('opacity',v>.99?.95:0);});
     const sh=(t*.6)%1;P2.shine.setAttribute('opacity',.7*Math.sin(Math.PI*sh));P2.shine.setAttribute('transform',`translate(${sh*150},${sh*20})`);});}
@@ -335,7 +335,7 @@ const P5=scene('mars');{const p=P5.g;P5.dusk={k:0};
     const y=P5.sunY.y;P5.sun.setAttribute('cy',y);P5.halo.setAttribute('cy',y);P5.halo.setAttribute('r',150+330*k);P5.halo.setAttribute('opacity',.55+.45*k);
     P5.stars.forEach(s=>s.c.setAttribute('opacity',clamp(k*1.4-.3)*(.4+.4*Math.sin(s.i))));});
   loop(P5,t=>{P5.phobos.tx=-80+((t*38)%1300);P5.phobos.ty=380-40*Math.sin(t*.2);P5.phobos.r=t*20;
-    P5.rover.x=60-Math.max(0,t-42.2)*16;P5.wheels.forEach(w=>w.r=-t*40);P5.head.r=14*Math.sin(t*.9);P5.antTip.setAttribute('opacity',.5+.5*Math.sin(t*6));
+    P5.rover.x=60-Math.max(0,t-30.1)*16;P5.wheels.forEach(w=>w.r=-t*40);P5.head.r=14*Math.sin(t*.9);P5.antTip.setAttribute('opacity',.5+.5*Math.sin(t*6));
     P5.dust.forEach(d=>{const q=(t*.12+hash(d.i))%1;d.c.setAttribute('cx',-120+q*1400);d.c.setAttribute('cy',900+hash(d.i+5)*1000+40*Math.sin(t*1.3+d.i));d.c.setAttribute('opacity',.7*Math.sin(Math.PI*q));});});}
 
 /* =====================================================================
@@ -369,75 +369,74 @@ function layoutWord(){let tot=0;const ws=P6.letters.map(l=>{const w=l.tx.getComp
   P6.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI — dikunci ke VO (vo.m4a, 65 dtk). Angka di komentar = kata pemicu @ detik VO
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 47,6 dtk). Komentar = kata pemicu @ detik VO
    ===================================================================== */
-/* kata per kata tepat di detik ucapannya */
 function sayAt(sel,times){$$(sel+' .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,y:80,scaleY:1.5,scaleX:.8,filter:'blur(14px)'},
   {opacity:1,y:0,scaleY:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'back.out(2)',immediateRender:false},times[i]));}
-/* P1 · 0–7,8 · hook "kalau langit itu biru… kenapa senja jadi oranye?" + "halo, Kuan di sini" */
+/* P1 · 0–5,3 · "kalau langit itu biru, kenapa senja jadi oranye?" + "halo, Kuan di sini" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,960,1.12);
-tl.fromTo(P1.sky,{k:0},{k:1,duration:3.0,ease:'sine.inOut',immediateRender:false},.7);          // biru@1.8 → oranye@3.5
-sayAt('#tHook',[1.05,1.7,2.8,3.4]);
-tl.set(P1.kuan.mv,{y:1100},0);tl.fromTo(P1.kuan.mv,{y:1100},{y:0,duration:.7,ease:'back.out(1.6)',immediateRender:false},.5);
-unsay('#tHook',4.45);
-tl.fromTo(P1.sky,{k:1},{k:0,duration:.75,ease:'power2.inOut',immediateRender:false},4.55);         // putar balik ke siang
-face(P1.kuan,'senang',5.0);cam(P1,5.0,520,1000,1.62,1.0,'power2.inOut');hop(P1.kuan,6.3);       // halo@5.02 · kuan@6.36
-slide(7.5,P1,P2,'x');
-/* P2 · 7,8–14,6 · "cahaya matahari itu putih, tapi isinya campuran banyak warna" */
-camSet(P2,7.4,360,640,1.4);
-tl.fromTo(P2.reach,{v:0},{v:1,duration:.8,ease:'power2.in',immediateRender:false},8.4);         // cahaya matahari@8.46
-cam(P2,9.6,520,1000,1.55,1.2,'power2.inOut');                                                     // putih@10.22
-tl.fromTo(P2.fanRect,{attr:{width:0}},{attr:{width:760},duration:1.1,ease:'power2.out',immediateRender:false},11.15);  // isinya campuran@11.18
-cam(P2,12.2,640,1150,1.12,1.4,'power2.inOut');                                                    // banyak warna@12.0
-tl.fromTo(P2.kuan.mv,{x:0},{x:-30,duration:1.2,ease:'sine.inOut',immediateRender:false},12.3);
-hop(P2.kuan,13.5,70);
-/* P3 · 14,6–28,9 · "di udara, cahaya menabrak partikel udara… namanya hamburan cahaya, birunya memenuhi langit" */
-cut(14.6,P2,P3);camSet(P3,14.6,540,1000,1.75);
-passPhoton(P3.g,'#EF4444',14.65,40,330);
-hitPhoton(P3.g,15.7,452,930,0,.06);face(P3.kuan,'kaget',16.85);                                 // menabrak@16.86
-cam(P3,17.3,540,1000,1.12,1.5,'power2.inOut');                                                    // partikel udara@17.24
-[[17.6,'#F97316',-160,560],[18.7,'#FACC15',120,-120],[19.9,'#EF4444',-260,1100],[21.0,'#22C55E',260,40],[22.2,'#F97316',-120,1300],
- [23.4,'#FACC15',-300,760],[24.6,'#EF4444',60,200],[25.9,'#22C55E',-220,1000]].forEach(([at,c,x,y])=>passPhoton(P3.g,c,at,x,y));
+tl.fromTo(P1.sky,{k:0},{k:1,duration:2.6,ease:'sine.inOut',immediateRender:false},.3);           // biru@0.88 → oranye@2.88
+sayAt('#tHook',[.2,.82,2.28,2.82]);                                                                 // langit@0.26 biru@0.88 senja@2.34 oranye@2.88
+tl.set(P1.kuan.mv,{y:1100},0);tl.fromTo(P1.kuan.mv,{y:1100},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.35);
+unsay('#tHook',3.45);
+tl.fromTo(P1.sky,{k:1},{k:0,duration:.6,ease:'power2.inOut',immediateRender:false},3.5);          // putar balik ke siang
+face(P1.kuan,'senang',3.75);cam(P1,3.75,520,1000,1.62,.85,'power2.inOut');hop(P1.kuan,4.4);     // halo@3.78 · Kuan@4.46
+slide(5.0,P1,P2,'x');
+/* P2 · 5,3–9,7 · "cahaya matahari itu putih, tapi isinya campuran banyak warna" */
+camSet(P2,4.9,360,640,1.4);
+tl.fromTo(P2.reach,{v:0},{v:1,duration:.7,ease:'power2.in',immediateRender:false},5.45);        // cahaya@5.52
+cam(P2,6.0,520,1000,1.55,1.05,'power2.inOut');                                                    // putih@6.46
+tl.fromTo(P2.fanRect,{attr:{width:0}},{attr:{width:760},duration:.95,ease:'power2.out',immediateRender:false},7.6);   // isinya campuran@7.64
+cam(P2,8.2,640,1150,1.12,1.1,'power2.inOut');                                                     // banyak warna@8.46
+tl.fromTo(P2.kuan.mv,{x:0},{x:-30,duration:1.0,ease:'sine.inOut',immediateRender:false},8.3);
+hop(P2.kuan,8.95,60);
+/* P3 · 9,7–20,7 · "di udara, cahaya menabrak partikel udara… namanya hamburan cahaya, birunya memenuhi langit" */
+cut(9.7,P2,P3);camSet(P3,9.7,540,1000,1.75);
+passPhoton(P3.g,'#EF4444',9.72,40,330);
+hitPhoton(P3.g,10.13,452,930,0,.06);face(P3.kuan,'kaget',11.28);                                // menabrak@11.28
+cam(P3,11.7,540,1000,1.12,1.4,'power2.inOut');                                                    // partikel udara@11.68
+[[12.0,'#F97316',-160,560],[13.0,'#FACC15',120,-120],[14.0,'#EF4444',-260,1100],[15.0,'#22C55E',260,40],[16.0,'#F97316',-120,1300],
+ [17.0,'#FACC15',-300,760],[17.9,'#EF4444',60,200],[18.8,'#22C55E',-220,1000]].forEach(([at,c,x,y])=>passPhoton(P3.g,c,at,x,y));
 const tg=P3.parts.slice().sort((a,b)=>hash(a.i+13)-hash(b.i+13));
-const HITS=[18.2,18.9,19.6,20.2,20.8,21.4,22.0,22.7,23.4,24.2,25.0,25.8];                          // warna biru…dipantulkan@19.4–22.6
+const HITS=[12.3,12.9,13.5,14.0,14.5,15.0,15.5,16.0,16.6,17.2,17.8,18.4];                          // warna biru…dipantulkan@14.0–16.3
 HITS.forEach((at,i)=>{const q=tg[i%tg.length],h0=.06+i*.078;hitPhoton(P3.g,at,q.x,q.y,h0,h0+.078);});
-sayAt('#tTerm',[23.6,24.35]);face(P3.kuan,'eureka',23.6);hop(P3.kuan,24.45,80);                 // hamburan@23.62 cahaya@24.40
-cam(P3,25.2,560,1050,1.3,1.8,'sine.inOut');unsay('#tTerm',28.2);                                  // birunya memenuhi langit@25.3
-/* P4 · 28,9–38,8 · "saat senja matahari rendah, cahaya menempuh udara yang jauh lebih tebal, birunya habis terhambur di jalan" */
-cut(28.9,P3,P4);camSet(P4,28.9,420,880,1.3);
-tl.fromTo(P4.reach,{v:0},{v:1,duration:.55,ease:'power2.in',immediateRender:false},29.1);
-tl.fromTo(P4.peel,{v:0},{v:1,duration:.3,immediateRender:false},29.6);
-tl.fromTo(P4.ruler,{opacity:0},{opacity:.9,duration:.3,immediateRender:false},29.8);
-tl.fromTo(P4.sun,{a:-90,warm:0},{a:-3,warm:1,duration:1.8,ease:'power2.inOut',immediateRender:false},31.3);   // senja@31.30 rendah@32.60
-cam(P4,31.3,640,1070,1.12,1.8,'power2.inOut');
-cam(P4,33.5,880,1060,1.7,.7,'power2.inOut');                                                      // menempuh udara@33.9
-tl.fromTo(P4.ride,{u:0},{u:1,duration:3.0,ease:'power1.inOut',immediateRender:false},34.7);       // terhambur di jalan@37.3
-cam(P4,34.9,500,1080,1.7,2.9,'sine.inOut');
-face(P4.kuan,'eureka',37.8);hop(P4.kuan,38.0,40);
-/* P1 lagi · 38,8–42,5 · "sisanya merah dan oranye" */
-cut(38.8,P4,P1);tl.fromTo(P1.sky,{k:0},{k:1,duration:.01,immediateRender:false},38.8);camSet(P1,38.8,540,1080,1.42);
-cam(P1,38.95,560,1160,1.62,3.3,'sine.inOut');face(P1.kuan,'eureka',38.85);                       // merah@39.56
-tl.fromTo(P1.kuan.mv,{x:0},{x:-40,duration:3.0,ease:'sine.inOut',immediateRender:false},39.0);
-/* P5 · 42,5–53,1 · "tapi di Mars sebaliknya, senjanya biru, debunya halus membuat cahaya biru berkumpul di dekat matahari" */
-slide(42.2,P1,P5,'y');camSet(P5,42.1,540,1060,1.15);
-tl.fromTo(P5.sunY,{y:1060},{y:1300,duration:9.5,ease:'sine.in',immediateRender:false},42.5);
-tl.fromTo(P5.dusk,{k:0},{k:1,duration:5.0,ease:'sine.inOut',immediateRender:false},45.6);          // senja biru@45.8
-sayAt('#tMars',[43.55,44.25,45.75,46.2]);                                                          // di@43.68 Mars@44.30 senja@45.82 biru@46.24
-cam(P5,47.6,600,1110,1.38,2.6,'sine.inOut');                                                       // debunya halus@46.8–47.4
-face(P5.kuan,'eureka',50.3);unsay('#tMars',52.4);                                                  // matahari@50.34
-/* P6 · 53,1–65 · "paham sampai ke inti… siang atau senja? tulis di komentar. follow Kuan…" */
-cut(53.1,P5,P6);camSet(P6,53.1,540,900,1.35);
-sayAt('#tEnd',[53.5,54.2,54.45,54.62]);hop(P6.kuan,54.9,90);                                     // paham@53.56 … inti@54.66
-cam(P6,55.4,540,1060,1.1,1.2,'power2.inOut');                                                      // kamu lebih suka@55.44
-tl.fromTo(P6.cA,{sx:0,sy:0},{sx:1,sy:1,duration:.55,ease:'back.out(2.2)',immediateRender:false},56.95);   // siang@57.10
-tl.fromTo(P6.cB,{sx:0,sy:0},{sx:1,sy:1,duration:.55,ease:'back.out(2.2)',immediateRender:false},57.7);    // senja@57.86
-tl.fromTo(P6.cA,{r:0},{r:-4,duration:.4,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},58.4);
-tl.fromTo(P6.cB,{r:0},{r:4,duration:.4,ease:'sine.inOut',yoyo:true,repeat:3,immediateRender:false},58.6);
-tl.fromTo(P6.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},58.6);                         // tulis di komentar@58.72
-tl.to([P6.cA,P6.cB],{sx:0,sy:0,duration:.35,ease:'back.in(2)'},60.3);tl.to(P6.bubOn,{v:0,duration:.4},60.3);
-tl.to(P6.kuan.mv,{y:-70,sx:1.95,sy:1.95,duration:.7,ease:'power3.inOut'},60.3);                 // follow Kuan@60.58
-P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},60.65+i*.06));
-cam(P6,60.3,540,1000,1.16,1.2,'power2.inOut');hop(P6.kuan,62.6,60);                              // kenapa@62.66
+sayAt('#tTerm',[17.55,17.9]);face(P3.kuan,'eureka',17.6);hop(P3.kuan,18.2,80);                 // hamburan@17.66 cahaya@17.96
+cam(P3,18.8,560,1050,1.3,1.4,'sine.inOut');unsay('#tTerm',20.3);                                  // birunya memenuhi langit@18.84
+/* P4 · 20,7–28,4 · "saat senja matahari rendah, cahayanya menembus udara yang jauh lebih tebal, birunya habis terhambur di jalan" */
+cut(20.7,P3,P4);camSet(P4,20.7,420,880,1.3);
+tl.fromTo(P4.reach,{v:0},{v:1,duration:.45,ease:'power2.in',immediateRender:false},20.8);
+tl.fromTo(P4.peel,{v:0},{v:1,duration:.3,immediateRender:false},21.1);
+tl.fromTo(P4.ruler,{opacity:0},{opacity:.9,duration:.3,immediateRender:false},21.2);
+tl.fromTo(P4.sun,{a:-90,warm:0},{a:-3,warm:1,duration:1.5,ease:'power2.inOut',immediateRender:false},21.6);   // senja@21.64 rendah@22.70
+cam(P4,21.6,640,1070,1.12,1.5,'power2.inOut');
+cam(P4,23.4,880,1060,1.7,.6,'power2.inOut');                                                      // cahayanya menembus@23.52
+tl.fromTo(P4.ride,{u:0},{u:1,duration:3.0,ease:'power1.inOut',immediateRender:false},24.2);       // terhambur di jalan@27.2
+cam(P4,24.4,500,1080,1.7,2.9,'sine.inOut');
+face(P4.kuan,'eureka',27.3);hop(P4.kuan,27.5,40);
+/* P1 lagi · 28,4–30,4 · "tersisa merah dan oranye" */
+cut(28.4,P4,P1);tl.fromTo(P1.sky,{k:0},{k:1,duration:.01,immediateRender:false},28.4);camSet(P1,28.4,540,1080,1.42);
+cam(P1,28.5,560,1160,1.62,1.9,'sine.inOut');face(P1.kuan,'eureka',28.45);                        // tersisa@28.46 merah@28.76
+tl.fromTo(P1.kuan.mv,{x:0},{x:-40,duration:1.9,ease:'sine.inOut',immediateRender:false},28.5);
+/* P5 · 30,4–37,7 · "tapi di Mars kebalikannya, senjanya biru. debu halusnya membuat cahaya biru berkumpul di dekat matahari" */
+slide(30.15,P1,P5,'y');camSet(P5,30.1,540,1060,1.15);
+tl.fromTo(P5.sunY,{y:1060},{y:1300,duration:7.0,ease:'sine.in',immediateRender:false},30.5);
+tl.fromTo(P5.dusk,{k:0},{k:1,duration:3.6,ease:'sine.inOut',immediateRender:false},32.7);          // senjanya biru@32.78
+sayAt('#tMars',[31.05,31.25,32.72,33.1]);                                                          // di@31.14 Mars@31.30 senjanya@32.78 biru@33.16
+cam(P5,34.0,600,1110,1.38,2.2,'sine.inOut');                                                       // debu halusnya@34.08
+face(P5.kuan,'eureka',36.75);unsay('#tMars',37.3);                                                 // matahari@36.78
+/* P6 · 37,7–47,6 · "paham sampai ke inti… siang atau senja? tulis di komentar. follow Kuan…" */
+cut(37.7,P5,P6);camSet(P6,37.7,540,900,1.35);
+sayAt('#tEnd',[38.05,38.5,38.75,38.95]);hop(P6.kuan,39.25,90);                                   // paham@38.12 sampai@38.56 ke inti@38.80
+cam(P6,39.8,540,1060,1.1,1.0,'power2.inOut');                                                      // kamu lebih suka@39.82
+tl.fromTo(P6.cA,{sx:0,sy:0},{sx:1,sy:1,duration:.5,ease:'back.out(2.2)',immediateRender:false},40.65);    // siang@40.74
+tl.fromTo(P6.cB,{sx:0,sy:0},{sx:1,sy:1,duration:.5,ease:'back.out(2.2)',immediateRender:false},41.3);     // senja@41.40
+tl.fromTo(P6.cA,{r:0},{r:-4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},41.9);
+tl.fromTo(P6.cB,{r:0},{r:4,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},42.05);
+tl.fromTo(P6.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},42.0);                         // tulis di komentar@42.08
+tl.to([P6.cA,P6.cB],{sx:0,sy:0,duration:.35,ease:'back.in(2)'},43.0);tl.to(P6.bubOn,{v:0,duration:.4},43.0);
+tl.to(P6.kuan.mv,{y:-70,sx:1.95,sy:1.95,duration:.7,ease:'power3.inOut'},43.0);                 // follow Kuan@43.18
+P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},43.35+i*.06));
+cam(P6,43.0,540,1000,1.16,1.1,'power2.inOut');hop(P6.kuan,44.85,60);                             // kenapa@44.88
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
