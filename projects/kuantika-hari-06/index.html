@@ -7,7 +7,7 @@
 <title>Kuantika Hari 6 — Es Batu Mengapung</title>
 <!--
   Kuantika · Hari 6 · Tahukah Kamu? · SD 5–SMP · "Kenapa es batu mengapung, padahal itu air juga?"
-  Kartun panggung 9:16 (1080×1920), 43,0 dtk, 6 panggung (gelas es, molekul, mengapung, danau, freezer/CTA, logo).
+  Kartun panggung 9:16 (1080×1920), 40,4 dtk, 6 panggung (gelas es, molekul, mengapung, danau, freezer/CTA, logo).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
 -->
@@ -45,11 +45,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=43.0,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=40.4,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -296,48 +296,49 @@ function layoutWord(){let tot=0;const ws=P6.letters.map(l=>{const w=l.tx.getComp
   P6.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 40,4 dtk). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
-/* P1 · 0–5,0 · "kenapa es batu mengapung, padahal itu air juga?" + "halo, Kuan di sini!" */
+/* P1 · 0–5,4 · "kenapa es batu mengapung, padahal itu air juga?" + "halo, Kuan di sini!" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1000,1.15);
-sayAt('#tHook',[.1,.4,.6,.9]);
+sayAt('#tHook',[.05,.3,.5,.8]);                                                                    // kenapa es batu mengapung@0
 tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.4);
-cam(P1,1.6,560,1080,1.4,1.4,'sine.inOut');unsay('#tHook',3.2);
-cam(P1,3.4,320,860,1.5,.8,'power2.inOut');hop(P1.kuan,4.1,60);
-slide(4.75,P1,P2,'x');
-/* P2 · 5,0–16,4 · memuai: molekul cair → kisi segi enam */
-camSet(P2,4.7,540,960,1.12);pop(P2.tagL,5.4);
-sayAt('#tTerm',[6.2]);                                                                              // memuai
-cam(P2,8.0,420,860,1.4,1.0,'power2.inOut');                                                       // molekul air cair berdesakan
-tl.to(P2.tagL,{sx:0,sy:0,duration:.25},10.2);pop(P2.tagS,10.5);
-tl.fromTo(P2.k,{v:0},{v:1,duration:2.2,ease:'power2.inOut',immediateRender:false},10.4);          // saat membeku… segi enam
-cam(P2,10.4,560,960,1.12,1.2,'power2.inOut');face(P2.kuan,'kaget',12.6);
-tl.set(P2.orig,{opacity:1},14.0);tl.fromTo(P2.grow,{v:0},{v:1,duration:1.0,ease:'back.out(1.6)',immediateRender:false},14.0);pop(P2.pct,14.6);   // jadi es lebih renggang
-face(P2.kuan,'berpikir',14.2);unsay('#tTerm',15.9);
-/* P3 · 16,4–22,6 · massa jenis es < air → mengapung */
-cut(16.4,P2,P3);camSet(P3,16.4,540,900,1.12);
-pop(P3.cI,16.6);pop(P3.cW,16.8);pop(P3.tI,18.6);pop(P3.tW,19.0);                                   // massa jenis es lebih kecil dari air
-tl.to(P3.cI,{sx:0,sy:0,duration:.01},20.2);tl.set(P3.ice.el,{opacity:1},20.2);
-tl.fromTo(P3.ice,{tx:300,ty:560,r:0},{tx:540,ty:1080+100-16,r:8,duration:.7,ease:'power2.in',immediateRender:false},20.2);   // makanya es mengapung
-tl.to(P3.ice,{keyframes:{ty:[1164+40,1164-14,1164+6,1164],r:[8,-4,2,0]},duration:1.2,ease:'sine.out'},20.9);
-face(P3.kuan,'eureka',20.9);hop(P3.kuan,21.2,60);pop(P3.under,21.6);
-/* P4 · 22,6–30,6 · danau membeku dari atas */
-cut(22.6,P3,P4);camSet(P4,22.6,540,1120,1.12);
-tl.fromTo(P4.ice,{h:0},{h:120,duration:1.6,ease:'power2.out',immediateRender:false},23.4);        // danau membeku dari atas
-pop(P4.tagI,25.6);cam(P4,25.3,540,1060,1.35,.8,'power2.inOut');                                   // lapisan es jadi selimut
-cam(P4,27.0,540,1420,1.4,1.0,'power2.inOut');pop(P4.tagA,27.3);hop(P4.kuan,28.6,50);             // ikan tetap hidup
-/* P5 · 30,6–41,2 · "paham sampai ke inti! sekarang giliran kamu: kenapa… botolnya membengkak? tulis jawabanmu…" */
-cut(30.6,P4,P5);camSet(P5,30.6,540,1000,1.12);
-sayAt('#tEnd',[30.8,31.15,31.4,31.6]);hop(P5.kuan,31.9,70);unsay('#tEnd',32.4);
-face(P5.kuan,'berpikir',33.0);
-tl.fromTo(P5.f,{v:0},{v:1,duration:2.4,ease:'power1.inOut',immediateRender:false},34.6);          // …setelah membeku, botolnya membengkak
-cam(P5,34.4,540,1060,1.3,1.4,'sine.inOut');sayAt('#tQ',[35.4,35.7,36.2]);
-tl.fromTo(P5.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},38.2);cam(P5,38.0,540,1000,1.12,.9,'power2.inOut');   // tulis jawabanmu di komentar
-unsay('#tQ',40.9);
-/* P6 · 41,2–43,0 · logo */
-cut(41.2,P5,P6);camSet(P6,41.2,540,980,1.12);
-P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},41.35+i*.05));
-hop(P6.kuan,41.5,60);
+cam(P1,1.6,560,1080,1.4,1.4,'sine.inOut');unsay('#tHook',3.3);                                    // padahal itu air juga@1.76
+cam(P1,3.8,320,860,1.5,.7,'power2.inOut');hop(P1.kuan,4.45,60);                                   // halo@3.84 · Kuan@4.47
+slide(5.1,P1,P2,'x');
+/* P2 · 5,4–17,05 · memuai: molekul cair → kisi segi enam */
+camSet(P2,5.0,540,960,1.12);pop(P2.tagL,5.6);                                                     // rahasianya@5.57
+sayAt('#tTerm',[6.9]);                                                                              // air memuai@6.94
+cam(P2,8.8,420,860,1.4,1.0,'power2.inOut');                                                       // molekul air cair berdesakan@8.85
+tl.to(P2.tagL,{sx:0,sy:0,duration:.25},10.9);pop(P2.tagS,11.2);
+tl.fromTo(P2.k,{v:0},{v:1,duration:2.4,ease:'power2.inOut',immediateRender:false},11.05);         // saat membeku@11.05 … tersusun rapi@12.1
+cam(P2,11.05,560,960,1.12,1.2,'power2.inOut');face(P2.kuan,'kaget',13.6);                        // segi enam yang berongga@13.64
+tl.set(P2.orig,{opacity:1},15.15);tl.fromTo(P2.grow,{v:0},{v:1,duration:1.0,ease:'back.out(1.6)',immediateRender:false},15.15);pop(P2.pct,15.75);   // jadi es lebih renggang@15.15
+face(P2.kuan,'berpikir',15.3);unsay('#tTerm',16.6);
+/* P3 · 17,05–22,75 · massa jenis es < air → mengapung */
+cut(17.05,P2,P3);camSet(P3,17.05,540,900,1.12);
+pop(P3.cI,17.3);pop(P3.cW,17.5);pop(P3.tI,18.6);pop(P3.tW,20.3);                                   // karena lebih renggang@17.28 · massa jenis es@18.55 · dari air@20.35
+tl.to(P3.cI,{sx:0,sy:0,duration:.01},21.0);tl.set(P3.ice.el,{opacity:1},21.0);
+tl.fromTo(P3.ice,{tx:300,ty:560,r:0},{tx:540,ty:1164,r:8,duration:.7,ease:'power2.in',immediateRender:false},21.0);   // makanya es mengapung@21.02
+tl.to(P3.ice,{keyframes:{ty:[1164+40,1164-14,1164+6,1164],r:[8,-4,2,0]},duration:1.2,ease:'sine.out'},21.7);
+face(P3.kuan,'eureka',21.7);hop(P3.kuan,22.0,60);pop(P3.under,22.3);
+/* P4 · 22,75–29,75 · danau membeku dari atas */
+cut(22.75,P3,P4);camSet(P4,22.75,540,1120,1.12);                                                  // karena itu@22.98
+tl.fromTo(P4.ice,{h:0},{h:120,duration:1.4,ease:'power2.out',immediateRender:false},24.0);        // danau membeku dari atas@24.0
+pop(P4.tagI,25.8);cam(P4,25.6,540,1060,1.35,.8,'power2.inOut');                                   // lapisan es jadi selimut@25.74
+cam(P4,27.3,540,1420,1.4,1.0,'power2.inOut');pop(P4.tagA,27.6);hop(P4.kuan,28.9,50);             // ikan tetap hidup@27.35
+/* P5 · 29,75–38,6 · "paham sampai ke inti! sekarang giliran kamu: kenapa… botolnya membengkak? tulis jawabanmu…" */
+cut(29.75,P4,P5);camSet(P5,29.75,540,1000,1.12);
+sayAt('#tEnd',[29.94,30.2,30.38,30.55]);hop(P5.kuan,30.8,70);unsay('#tEnd',31.25);               // paham@29.94
+face(P5.kuan,'berpikir',31.4);                                                                     // sekarang giliran kamu@31.39
+sayAt('#tQ',[32.9,35.7,36.2]);                                                                      // kenapa@32.92 · botolnya@35.7 · membengkak@36.18
+tl.fromTo(P5.f,{v:0},{v:1,duration:2.2,ease:'power1.inOut',immediateRender:false},34.4);          // setelah membeku@34.52
+cam(P5,34.2,540,1060,1.3,1.4,'sine.inOut');
+tl.fromTo(P5.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},37.0);cam(P5,37.0,540,1000,1.12,.9,'power2.inOut');   // tulis jawabanmu@37.06
+unsay('#tQ',38.3);
+/* P6 · 38,6–40,4 · logo */
+cut(38.6,P5,P6);camSet(P6,38.6,540,980,1.12);
+P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},38.75+i*.05));
+hop(P6.kuan,38.9,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
