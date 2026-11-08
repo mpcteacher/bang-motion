@@ -64,6 +64,18 @@ Coba di rumah bareng orang tua, lalu komentar BERHASIL! Save video ini biar ngga
 #Kuantika #BelajarBarengKuan #SainsDiRumah #Fisika #EksperimenSains
 ```
 
+## Hari 5 — 1 kg kapas vs 1 kg besi
+
+```
+1 kg kapas atau 1 kg besi, mana lebih berat? ⚖️
+Jawab dalam 3 detik, jangan intip dulu! Kuan sendiri sempat salah 😅 Di video ada istilah baru: volume, plus fakta 1 kg besi ternyata cuma segenggam 🧊
+Jujur, tadi kamu jawab apa? Tulis kapas, besi, atau sama di komentar! 👇
+#Kuantika #BelajarBarengKuan #TantanganKuan #Fisika #FaktaSains
+```
+
+Catatan pilar Tantangan Kuan: caption **tidak membocorkan jawaban**, supaya penonton
+menjawab dulu sebelum menonton sampai habis.
+
 ---
 
 ## Catatan
