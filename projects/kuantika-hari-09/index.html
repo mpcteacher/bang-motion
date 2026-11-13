@@ -7,7 +7,7 @@
 <title>Kuantika Hari 9 — Habis Dibagi 3</title>
 <!--
   Kuantika · Hari 9 · Trik Matematika · SD 4–SMP · "Cek angka habis dibagi 3 tanpa membagi!"
-  Kartun panggung 9:16 (1080×1920), 49,6 dtk, 5 panggung (kelas, papan ÷3, papan ÷9, kelas, logo).
+  Kartun panggung 9:16 (1080×1920), 51,1 dtk, 5 panggung (kelas, papan ÷3, papan ÷9, kelas, logo).
   Format tetap pilar Trik Matematika: kelas + papan tulis (dari Hari 2).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
@@ -42,11 +42,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=49.6,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=51.1,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -278,51 +278,51 @@ function layoutWord(){let tot=0;const ws=P5.letters.map(l=>{const w=l.tx.getComp
   P5.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 51,1 dtk). Komentar = kata pemicu @ detik VO
    ===================================================================== */
 const sel=(gs,ids)=>ids.map(i=>gs.at(i));
-/* P1 · 0–4,9 · "cek angka habis dibagi tiga, tanpa membagi!" + "halo, Kuan di sini!" */
+/* P1 · 0–5,0 · "cek angka habis dibagi tiga, tanpa membagi!" + "halo, Kuan di sini!" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1000,1.12);
-sayAt('#tHook',[.1,.4,1.3,1.6]);
+sayAt('#tHook',[.45,.9,2.0,2.3]);                                                                  // habis@.5 dibagi tiga@.9 · tanpa membagi@2.0
 write(P1.ch,P1.a1,.2,.1);write(P1.ch,P1.a2,1.1,.14);home(P1.ch,1.6);
 tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.3);
-unsay('#tHook',3.2);cam(P1,3.3,540,880,1.5,.9,'power2.inOut');hop(P1.kuan,4.0,60);
-slide(4.6,P1,P2,'x');
-/* P2 · 4,9–19,0 · jumlahkan digit */
-camSet(P2,4.5,540,900,1.12);showAll(P2.r1,4.5);
-pop(P2.note,5.4);                                                                                   // jumlahkan semua digitnya
-cam(P2,7.2,540,640,1.35,.8,'power2.inOut');                                                       // contoh, 4.512
-[[0,0,9.6],[2,4,10.4],[3,8,11.2],[4,12,12.0]].forEach(([si,di,at])=>drop(P2.r1.at(si),P2.r2.at(di),at));   // 4 + 5 + 1 + 2
-[[2,10.1],[6,10.9],[10,11.7]].forEach(([i,at])=>write(P2.ch,[P2.r2.at(i)],at,.2));
-write(P2.ch,sel(P2.r2,[14,16,17]),12.6,.17);home(P2.ch,13.2);                                     // = 12
-cam(P2,9.4,540,800,1.2,.8,'power2.inOut');
-ringAt(P2.g,(P2.r2.at(16).x+P2.r2.at(17).x)/2,738,70,58,14.0);                                     // dua belas habis dibagi tiga
-write(P2.ch,P2.r3,14.2,.12);pop(P2.ok3,15.3);home(P2.ch,15.4);
-ringAt(P2.g,470,490,250,95,16.0,GREEN);pop(P2.ok1,16.6);face(P2.kuan,'eureka',16.6);hop(P2.kuan,17.0,70);   // jadi 4.512 juga habis dibagi tiga
-write(P2.ch,P2.r4,17.3,.07);pop(P2.ok4,18.5);home(P2.ch,18.6);                                     // bukti sekilas
-/* P3 · 19,0–37,0 · bonus 9 */
-cut(19.0,P2,P3);camSet(P3,19.0,540,900,1.12);
-write(P3.ch,P3.h,19.3,.15);pop(P3.note,20.2);                                                      // aturan yang sama untuk sembilan
-write(P3.ch,P3.r2,22.3,.1);                                                                         // dua belas bukan kelipatan sembilan
-pop(P3.no2,25.6);tl.fromTo(P3.note,{r:0},{r:-5,duration:.2,yoyo:true,repeat:3,immediateRender:false},25.6);   // tidak habis dibagi sembilan
-write(P3.ch,P3.r3,27.6,.14);home(P3.ch,28.4);cam(P3,27.4,540,880,1.2,.8,'power2.inOut');          // coba 7.236
-[[0,0,29.6],[2,4,30.4],[3,8,31.2],[4,12,32.0]].forEach(([si,di,at])=>drop(P3.r3.at(si),P3.r4.at(di),at));
-[[2,30.1],[6,30.9],[10,31.7]].forEach(([i,at])=>write(P3.ch,[P3.r4.at(i)],at,.2));
-write(P3.ch,sel(P3.r4,[14,16,17]),32.6,.17);home(P3.ch,33.2);                                     // = 18
-ringAt(P3.g,(P3.r4.at(16).x+P3.r4.at(17).x)/2,958,70,58,33.3);                                     // delapan belas kelipatan sembilan
-pop(P3.ok3,35.6);face(P3.kuan,'eureka',35.6);hop(P3.kuan,35.9,60);                                // jadi habis dibagi sembilan
-write(P3.ch,P3.r5,35.8,.07);pop(P3.ok5,36.85);
-/* P4 = kelas lagi · 37,0–47,8 · "paham sampai ke inti! sekarang kamu: apakah 2.025 habis dibagi tiga? jawab YA atau TIDAK…" */
-cut(37.0,P3,P1);hideAll(P1.a1,37.0);hideAll(P1.a2,37.0);camSet(P1,37.0,540,980,1.3);tl.set(P1.cam,{ox:0,oy:0},37.0);
-face(P1.kuan,'bangga',37.05);sayAt('#tEnd',[37.3,37.65,37.9,38.1]);hop(P1.kuan,38.4,80);unsay('#tEnd',38.9);
-cam(P1,39.0,540,1080,1.12,1.0,'power2.inOut');
-write(P1.ch,P1.c1,40.0,.12);write(P1.ch,P1.c2,41.8,.2);home(P1.ch,42.4);
-tl.fromTo(P1.c2.at(2).el,{scale:1},{scale:1.25,transformOrigin:'50% 70%',duration:.35,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},42.4);
-pop(P1.cY,43.6);pop(P1.cT,44.3);tl.fromTo(P1.bub,{v:0},{v:1,duration:.4,immediateRender:false},45.0);
-/* P5 · 47,8–49,6 · logo */
-cut(47.8,P1,P5);camSet(P5,47.8,540,980,1.12);
-P5.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},47.95+i*.05));
-hop(P5.kuan,48.1,60);
+unsay('#tHook',3.1);cam(P1,3.45,540,880,1.5,.8,'power2.inOut');hop(P1.kuan,4.15,60);             // halo@3.52 · Kuan di sini@4.16
+slide(4.75,P1,P2,'x');
+/* P2 · 5,0–20,65 · jumlahkan digit 4.512 */
+camSet(P2,4.7,540,900,1.12);showAll(P2.r1,4.7);                                                  // caranya@5.25
+pop(P2.note,6.2);                                                                                   // jumlahkan semua digitnya@6.14
+cam(P2,7.95,540,640,1.35,.8,'power2.inOut');                                                      // contoh, 4.512@7.98
+cam(P2,10.4,540,800,1.2,.7,'power2.inOut');
+[[0,0,10.9],[2,4,11.8],[3,8,12.7],[4,12,13.35]].forEach(([si,di,at])=>drop(P2.r1.at(si),P2.r2.at(di),at));   // empat@10.9 lima@11.8 satu@12.7 dua@13.35
+[[2,11.45],[6,12.25],[10,13.05]].forEach(([i,at])=>write(P2.ch,[P2.r2.at(i)],at,.2));             // tambah@11.45 / 12.25 / 13.05
+write(P2.ch,sel(P2.r2,[14,16,17]),13.95,.17);home(P2.ch,14.6);                                    // dua belas@13.95
+ringAt(P2.g,(P2.r2.at(16).x+P2.r2.at(17).x)/2,738,70,58,14.96);                                    // dua belas habis dibagi tiga@14.96
+write(P2.ch,P2.r3,15.1,.12);pop(P2.ok3,16.1);home(P2.ch,16.2);
+ringAt(P2.g,470,490,250,95,16.82,GREEN);pop(P2.ok1,17.4);face(P2.kuan,'eureka',17.4);hop(P2.kuan,17.8,70);   // jadi 4.512 juga habis dibagi tiga@16.82
+write(P2.ch,P2.r4,18.4,.07);pop(P2.ok4,19.6);home(P2.ch,19.7);                                     // bukti sekilas
+/* P3 · 20,65–41,2 · bonus 9 */
+cut(20.65,P2,P3);camSet(P3,20.65,540,900,1.12);
+write(P3.ch,P3.h,21.0,.15);pop(P3.note,21.8);                                                      // bonus@20.88 · aturan yang sama…sembilan@21.74
+write(P3.ch,P3.r2,24.35,.1);                                                                        // dua belas bukan kelipatan sembilan@24.35
+pop(P3.no2,28.6);tl.fromTo(P3.note,{r:0},{r:-5,duration:.2,yoyo:true,repeat:3,immediateRender:false},28.6);   // tidak habis dibagi sembilan@28.6
+write(P3.ch,P3.r3,30.9,.14);home(P3.ch,31.7);cam(P3,30.6,540,880,1.2,.8,'power2.inOut');          // coba@30.62 · 7.236@31.1
+[[0,0,33.15],[2,4,34.1],[3,8,34.9],[4,12,35.65]].forEach(([si,di,at])=>drop(P3.r3.at(si),P3.r4.at(di),at));   // tujuh@33.15 dua@34.1 tiga@34.9 enam@35.65
+[[2,33.7],[6,34.5],[10,35.3]].forEach(([i,at])=>write(P3.ch,[P3.r4.at(i)],at,.2));
+write(P3.ch,sel(P3.r4,[14,16,17]),36.1,.17);home(P3.ch,36.7);                                     // delapan belas@36.1
+ringAt(P3.g,(P3.r4.at(16).x+P3.r4.at(17).x)/2,958,70,58,37.17);                                    // delapan belas kelipatan sembilan@37.17
+pop(P3.ok3,39.0);face(P3.kuan,'eureka',39.0);hop(P3.kuan,39.3,60);                                // jadi habis dibagi sembilan@38.97
+write(P3.ch,P3.r5,39.4,.07);pop(P3.ok5,40.4);
+/* P4 = kelas lagi · 41,2–49,3 · "paham sampai ke inti! sekarang kamu: apakah 2.025 habis dibagi tiga? jawab YA atau TIDAK…" */
+cut(41.2,P3,P1);hideAll(P1.a1,41.2);hideAll(P1.a2,41.2);camSet(P1,41.2,540,980,1.3);tl.set(P1.cam,{ox:0,oy:0},41.2);
+face(P1.kuan,'bangga',41.25);sayAt('#tEnd',[41.45,41.85,42.1,42.3]);hop(P1.kuan,42.6,80);unsay('#tEnd',42.85);   // paham@41.47
+cam(P1,43.0,540,1080,1.12,1.0,'power2.inOut');                                                    // sekarang kamu@42.9
+write(P1.ch,P1.c1,44.0,.12);write(P1.ch,P1.c2,46.1,.2);home(P1.ch,46.7);                          // apakah 2.025@44.06 · dibagi tiga?@46.3
+tl.fromTo(P1.c2.at(2).el,{scale:1},{scale:1.25,transformOrigin:'50% 70%',duration:.35,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},46.6);
+pop(P1.cY,47.45);pop(P1.cT,48.05);tl.fromTo(P1.bub,{v:0},{v:1,duration:.4,immediateRender:false},48.3);   // YA@47.5 · TIDAK@48.1 · di komentar
+/* P5 · 49,3–51,1 · logo */
+cut(49.3,P1,P5);camSet(P5,49.3,540,980,1.12);
+P5.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},49.45+i*.05));
+hop(P5.kuan,49.6,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
