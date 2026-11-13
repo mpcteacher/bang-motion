@@ -111,6 +111,17 @@ Planet apa yang mau kamu bahas berikutnya? Tulis di komentar! Follow Kuan untuk 
 Catatan: video ini membuka seri "Rahasia Tata Surya". Catat planet yang paling banyak
 diminta di komentar sebagai bahan video berikutnya.
 
+## Hari 9 — Habis dibagi 3 tanpa membagi
+
+```
+Cek angka habis dibagi 3, tanpa membagi! ➗
+Caranya: jumlahkan semua digitnya. Kalau hasilnya habis dibagi 3, angkanya juga habis dibagi 3. Bonus: aturan yang sama berlaku untuk 9 😉
+Apakah 2.025 habis dibagi 3? Jawab YA atau TIDAK di komentar! 👇
+#Kuantika #BelajarBarengKuan #TrikMatematika #Matematika #BelajarMatematika
+```
+
+Komentar untuk di-pin sehari setelah unggah: `Jawabannya YA! 2+0+2+5 = 9, habis dibagi 3 (2.025 ÷ 3 = 675). Bonus: 9 juga kelipatan 9, jadi 2.025 juga habis dibagi 9 🎉`
+
 ---
 
 ## Catatan
