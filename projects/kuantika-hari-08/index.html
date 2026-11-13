@@ -212,7 +212,7 @@ const P3=scene('kuku');{const p=P3.g;P3.grow={v:0};P3.month={i:0};
   /* kalender berganti */
   const cal=G({transform:'translate(560,330)'},p);R(-150,-120,300,240,B.white,22,cal,{stroke:B.navy,'stroke-width':6});R(-150,-120,300,70,B.orange,22,cal);R(-150,-72,300,22,B.orange,0,cal);
   P3.monthTx=TX(0,60,'Jan',84,B.navy,cal,{'font-weight':900});TX(0,-70,'1 tahun',36,B.white,cal,{'font-weight':900});
-  P3.kuan=kuan(p,900,640,.95,{face:'berpikir',ph:2.0,sc:P3});
+  P3.kuan=kuan(p,200,400,.95,{face:'berpikir',ph:2.0,sc:P3});
   const M=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
   APPLY.push(()=>{const g=P3.grow.v,dy=3.8*PPC*g;P3.nail.setAttribute('y',BASE-20-dy);P3.nail.setAttribute('height',60+dy);P3.moonJ.ty=BASE-30-dy;
     P3.monthTx.textContent=M[Math.min(11,Math.floor(P3.month.i))];});}
