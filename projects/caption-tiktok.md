@@ -146,6 +146,19 @@ Rekam percobaanmu dan duet video ini! Save dulu biar bisa dicoba akhir pekan �
 Catatan: aktifkan izin **Duet** saat mengunggah video ini (Pengaturan privasi video →
 Izinkan Duet), karena CTA-nya mengajak penonton berduet.
 
+## Hari 12 — 5 mesin, 5 barang, 5 menit
+
+```
+5 mesin, 5 barang, 5 menit. Kalau 100 mesin? 🏭
+Jawab dalam 3 detik, jangan intip dulu! Kuan sendiri sempat salah 😅 Di video ada istilah kuncinya: bekerja bersamaan ⏱️
+Jawabanmu tadi berapa? Jujur di komentar ya! Tag teman yang menurutmu bisa jawab benar 👇
+#Kuantika #BelajarBarengKuan #TantanganKuan #Matematika #BelajarMatematika
+```
+
+Catatan: seperti Hari 5, caption **tidak membocorkan jawaban**. Balasan untuk komentar
+"100 menit": `Hampir semua orang jawab itu! Kuncinya: 1 mesin bikin 1 barang dalam 5 menit, dan semua mesin bekerja bersamaan 😉`
+Soal lanjutan untuk balasan komentar: "Kalau 100 mesin bikin 200 barang?" (jawaban: 10 menit).
+
 ---
 
 ## Catatan

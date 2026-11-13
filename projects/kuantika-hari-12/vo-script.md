@@ -1,10 +1,12 @@
 # Naskah VO — Kuantika Hari 12: "5 mesin, 5 barang, 5 menit. Kalau 100 mesin?"
 
-Pilar: Tantangan Kuan · Jenjang: SMP · Durasi video: ±44 detik (9:16)
+Pilar: Tantangan Kuan · Jenjang: SMP · Durasi video: 44,7 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(suara "Andra" seperti Hari 2–11), kirim berkasnya, lalu video akan disinkronkan
-per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Audio = berkas ElevenLabs asli (41,95 dtk) + jeda 0,35 dtk setelah
+"satu!" dan 0,5 dtk sebelum "Paham sampai ke inti" (agar 100 kotak sempat terlihat),
+dinormalkan ke −16 LUFS, plus ekor ±1,8 dtk untuk logo. Kata-katanya tidak diubah.
+Timer di layar dikunci ke angka yang diucapkan: tiga 9,08 · dua 10,07 · satu 10,96.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -26,18 +28,18 @@ Lima mesin bekerja bersamaan, jadi lima barang selesai dalam lima menit. Seratus
 Paham sampai ke inti! Jawabanmu tadi berapa? Jujur di komentar ya! Tag teman yang menurutmu bisa jawab benar.
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–8,5 | 1. Studio kuis | Berpikir | Lima mesin membuat lima barang… Jawab dalam tiga detik! | 5 mesin mini menghasilkan 5 kotak · teks hook · papan "100 mesin · 100 barang · ? menit" · tombol A. 5 menit / B. 100 menit / C. 20 menit · timer |
-| 8,6–11,5 | 1. Studio kuis | Berpikir | Tiga… dua… satu! | timer 3-2-1 · Kuan mendarat di B |
-| 11,5–18,4 | 1. Studio kuis | Ups/Salah | Halo, Kuan di sini. Kuan tadi pilih seratus menit… ternyata salah! Jawabannya: lima menit! | B berkedip merah + ✗ · A ✓ hijau |
-| 18,4–24,0 | 2. Satu mesin | Kuan Guru | Coba lihat satu mesin saja… dalam lima menit. | jam 0→5 menit · mesin bekerja · 1 kotak keluar · label *1 mesin → 1 barang* |
-| 24,0–29,0 | 3. Lima mesin | Eureka → Kuan Guru | Lima mesin bekerja bersamaan… dalam lima menit. | istilah *Bekerja bersamaan* · satu jam bersama · 5 kotak keluar serentak · label *5 mesin → 5 barang* |
-| 29,0–35,0 | 4. Seratus mesin | Kuan Guru → Eureka | Seratus mesin juga bekerja bersamaan… tetap selesai dalam lima menit! | kamera mundur ke 10 × 10 mesin · jam 0→5 menit · 100 kotak keluar serentak · label *100 mesin → 100 barang* |
-| 35,0–42,4 | 1. Studio (penutup) | Senang | Paham sampai ke inti! Jawabanmu tadi berapa?… Tag teman… | timer "?" · A/B/C berdenyut · gelembung komentar · ikon @ (tag teman) |
-| 42,4–44,2 | Logo | Senang | — | kuantika |
+| 0–8,5 | 1. Studio kuis | Berpikir | Lima mesin membuat lima barang… Jawab dalam tiga detik! | 5 mesin (0,05) · 5 kotak (1,4) · teks hook · papan "100 mesin · 100 barang · ? menit" (3,85) · tombol A/B/C (7,13) · timer (8,0) |
+| 9,08–11,5 | 1. Studio kuis | Berpikir | Tiga… dua… satu! | 3 (9,08) · 2 (10,07) · 1 (10,96) · Kuan mendarat di B (11,0) |
+| 12,3–19,4 | 1. Studio kuis | Ups/Salah | Halo, Kuan di sini. Kuan tadi pilih seratus menit… ternyata salah! Jawabannya: lima menit! | B berdenyut (14,9) · ✗ (16,6) · A ✓ (18,53) |
+| 19,4–24,45 | 2. Satu mesin | Kuan Guru | Coba lihat satu mesin saja… dalam lima menit. | jam muncul (19,75) · jam 0→5 menit (21,6–23,6) · 1 kotak (23,6) · label *1 mesin → 1 barang* |
+| 24,45–29,45 | 3. Lima mesin | Eureka → Kuan Guru | Lima mesin bekerja bersamaan… dalam lima menit. | istilah *Bekerja bersamaan* (25,65) · jam 0→5 menit (26,7–28,7) · 5 kotak serentak (28,7) |
+| 29,45–35,5 | 4. Seratus mesin | Kuan Guru → Eureka | Seratus mesin juga bekerja bersamaan… tetap selesai dalam lima menit! | kamera mundur ke 10 × 10 mesin (29,8) · jam 0→5 menit (32,0–34,6) · 100 kotak serentak (34,6) |
+| 35,5–42,9 | 1. Studio (penutup) | Senang | Paham sampai ke inti! Jawabanmu tadi berapa?… Tag teman… | teks penutup (35,98) · A/B/C berdenyut (37,6) · gelembung komentar (39,3) · ikon @ (40,5) |
+| 42,9–44,7 | Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 
