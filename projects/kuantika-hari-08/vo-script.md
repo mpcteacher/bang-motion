@@ -1,10 +1,10 @@
 # Naskah VO — Kuantika Hari 8: "Bulan sedang menjauh dari Bumi"
 
-Pilar: Tahukah Kamu? · Jenjang: SD 6–SMP · Durasi video: ±40 detik (9:16)
+Pilar: Tahukah Kamu? · Jenjang: SD 6–SMP · Durasi video: 36,8 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(saran: suara "Andra" seperti Hari 2–7), kirim berkasnya, lalu video akan
-disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Jeda bawaan antarpanggung ±0,4–0,5 dtk sudah cukup (tanpa sisipan);
+audio hanya dinormalkan ke −16 LUFS + ekor ±1,8 dtk untuk logo.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -27,18 +27,18 @@ Tenang, perubahannya sangat lambat dan tidak berbahaya bagi kita.
 Paham sampai ke inti! Follow Kuan untuk seri Rahasia Tata Surya. Planet apa yang mau kamu bahas berikutnya? Tulis di komentar!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–3,2 | 1. Angkasa | Kaget | Bulan sedang menjauh dari Bumi. Pelan-pelan. | Bumi besar, Bulan bergeser menjauh + jejak panah · teks hook |
-| 3,3–4,9 | 1. Angkasa | Kaget | Halo, Kuan di sini! | kamera ke Kuan |
-| 4,9–9,7 | 2. Lensa jarak | Berpikir | Setiap tahun, Bulan bergeser menjauh sekitar tiga koma delapan sentimeter. | tepi Bulan bergeser dari garis putus-putus · penggaris · label **3,8 cm/tahun** |
-| 9,7–13,6 | 3. Jari + penggaris | Berpikir | Kira-kira secepat kuku jarimu tumbuh dalam setahun! | kalender Jan → Des · kuku tumbuh di penggaris · Bulan mini bergeser sejauh yang sama |
-| 13,6–24,0 | 4. Laser | Berpikir | Bagaimana ilmuwan tahu?… mengukur jaraknya. | observatorium menembakkan laser hijau ke Bulan · lensa panel "pemantul Apollo" · pulsa kembali ke Bumi |
-| 24,0–28,8 | 5. Tenang | Senang | Tenang, perubahannya sangat lambat dan tidak berbahaya bagi kita. | Bumi–Bulan berputar tenang · siput merayap di penggaris |
-| 28,8–37,8 | 6. Tata Surya | Senang | Paham sampai ke inti! Follow Kuan… Tulis di komentar! | parade 8 planet · gelembung "Mars?", "Saturnus?", "Jupiter?"… |
-| 37,8–39,6 | 7. Logo | Senang | — | kuantika |
+| 0–3,15 | 1. Angkasa | Kaget | Bulan sedang menjauh dari Bumi. Pelan-pelan. | Bulan bergeser menjauh + jejak panah · teks hook |
+| 3,7–5,0 | 1. Angkasa | Kaget | Halo, Kuan di sini! | kamera ke Kuan |
+| 5,5–9,9 | 2. Lensa jarak | Berpikir | Setiap tahun, Bulan bergeser menjauh sekitar tiga koma delapan sentimeter. | tepi Bulan bergeser (6,6) · label **3,8 cm/tahun** (8,4) |
+| 10,3–13,2 | 3. Jari + penggaris | Berpikir | Kira-kira secepat kuku jarimu tumbuh dalam setahun! | kalender + kuku tumbuh + Bulan mini bergeser (10,9–12,9) |
+| 13,6–22,4 | 4. Laser | Berpikir | Bagaimana ilmuwan tahu?… mengukur jaraknya. | laser (16,3) · lensa pemantul (17,6) · "pemantul Apollo" (18,9) · pulsa kembali (20,1) |
+| 22,8–27,05 | 5. Tenang | Senang | Tenang, perubahannya sangat lambat dan tidak berbahaya bagi kita. | siput merayap (22,8) · Bumi–Bulan berputar |
+| 27,5–34,9 | 6. Tata Surya | Senang | Paham sampai ke inti! Follow Kuan… Tulis di komentar! | parade planet (29,0) · planet berdenyut (31,9) · gelembung komentar (33,9) |
+| 35,0–36,8 | 7. Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 
