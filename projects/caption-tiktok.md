@@ -134,6 +134,18 @@ Mitos apa lagi yang sering kamu dengar? Tulis di komentar, nanti Kuan bongkar sa
 Catatan: kumpulkan mitos yang ditulis penonton di komentar. Itu daftar topik pilar
 Mitos vs Fakta berikutnya yang sudah terbukti diminati.
 
+## Hari 11 — Tisu masuk air tapi tetap kering
+
+```
+Tisu ini masuk ke air… tapi tetap kering! 💧
+Rahasianya: gelas itu tidak kosong, isinya udara. Udara menempati ruang, jadi air tidak bisa masuk. Udara punya volume! Tips: celup dan angkat gelasnya lurus, jangan dimiringkan 😉
+Rekam percobaanmu dan duet video ini! Save dulu biar bisa dicoba akhir pekan 👇
+#Kuantika #BelajarBarengKuan #SainsDiRumah #Fisika #EksperimenSains
+```
+
+Catatan: aktifkan izin **Duet** saat mengunggah video ini (Pengaturan privasi video →
+Izinkan Duet), karena CTA-nya mengajak penonton berduet.
+
 ---
 
 ## Catatan
