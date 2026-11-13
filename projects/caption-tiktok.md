@@ -99,6 +99,18 @@ Tulis skormu di komentar: 0, 1, 2, atau 3! Yang dapat 3, Kuan kasih tos virtual 
 Catatan: kuis rekap mencakup dua mapel, jadi slot Mapel + Topik diisi `#Fisika #Matematika`.
 Balas komentar skor 3 dengan "✋ Tos! Kamu nonton Kuan sampai ke inti!"
 
+## Hari 8 — Bulan sedang menjauh
+
+```
+Bulan sedang menjauh dari Bumi. Pelan-pelan. 🌙
+Setiap tahun Bulan bergeser sekitar 3,8 cm, kira-kira secepat kuku tumbuh. Ilmuwan mengukurnya dengan laser yang dipantulkan cermin peninggalan misi Apollo 🔦
+Planet apa yang mau kamu bahas berikutnya? Tulis di komentar! Follow Kuan untuk seri Rahasia Tata Surya 👇
+#Kuantika #BelajarBarengKuan #TahukahKamu #Astronomi #FaktaSains
+```
+
+Catatan: video ini membuka seri "Rahasia Tata Surya". Catat planet yang paling banyak
+diminta di komentar sebagai bahan video berikutnya.
+
 ---
 
 ## Catatan
