@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="id">
+<!-- Made with the Bang Motion skill (kartun panggung) - MIT - https://github.com/bangtutorial/bang-motion -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuantika Hari 10 — Mitos 10% Otak</title>
+<!--
+  Kuantika · Hari 10 · Mitos vs Fakta · SD 5–SMP · "Katanya kita cuma pakai 10% otak. Masa sih?"
+  Kartun panggung 9:16 (1080×1920), 46,8 dtk, 6 panggung (otak 10% + MITOS, pemindaian, peta otak, energi, penutup, logo).
+  Format tetap pilar Mitos vs Fakta: stempel MITOS + Kuan Ups/Salah (dari Hari 3).
+  Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
+  Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;overflow:hidden;background:#E0F2FE}
+#world{position:absolute;inset:0;will-change:filter}
+#ui{position:absolute;inset:0;pointer-events:none}
+/* teks stiker: isi putih + garis navy tebal — terbaca di langit biru, senja, angkasa, Mars */
+.cap{position:absolute;left:60px;width:820px;text-align:center;font-family:Nunito,system-ui,sans-serif;font-weight:900;
+  color:#fff;-webkit-text-stroke:18px #0B2545;paint-order:stroke fill;line-height:1.06;letter-spacing:-.01em;
+  filter:drop-shadow(0 10px 0 rgba(11,37,69,.28))}
+.cap .ln{display:block;white-space:nowrap}
+.cap .w{display:inline-block;opacity:0;transform-origin:50% 100%}
+.cap .b{color:#0EA5E9}.cap .o{color:#FF7A59}.cap .y{color:#FFD23F}
+#tHook{top:220px;font-size:108px}
+#tTerm{top:185px;font-size:96px}
+#tEnd{top:215px;font-size:108px}
+.stamp{position:absolute;left:50%;top:760px;padding:6px 40px 14px;border:16px solid #E5484D;border-radius:30px;background:rgba(255,255,255,.93);
+  color:#E5484D;font:900 170px/1 Nunito,system-ui,sans-serif;letter-spacing:.04em;opacity:0;box-shadow:0 14px 0 rgba(11,37,69,.3)}
+#dbg{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:none;gap:12px;align-items:center;padding:10px 16px;border-radius:14px;background:rgba(11,37,69,.92);color:#E0F2FE;font:13px system-ui;z-index:50}
+#dbg input{width:420px}#dbg span{font-variant-numeric:tabular-nums;min-width:7ch}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world"><svg id="scene" width="1080" height="1920" viewBox="0 0 1080 1920" style="position:absolute;inset:0" font-family="Nunito,system-ui,sans-serif"></svg></div>
+  <div id="ui">
+    <div class="cap" id="tHook"><span class="ln"><span class="w">Cuma</span> <span class="w">pakai</span></span><span class="ln"><span class="w o">10%</span> <span class="w y">otak?</span></span></div>
+    <div class="cap" id="tTerm"><span class="ln"><span class="w b">Pemindaian</span> <span class="w b">otak</span></span></div>
+    <div class="cap" id="tEnd"><span class="ln"><span class="w">Paham</span> <span class="w">sampai</span></span><span class="ln"><span class="w">ke</span> <span class="w y">inti!</span></span></div>
+    <div class="stamp" id="sMitos">MITOS</div>
+  </div>
+</div>
+<div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
+<audio id="vo" src="" preload="auto"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const W=1080,H=1920,DUR=46.8,NS='http://www.w3.org/2000/svg';
+/* palet brand Kuantika (logo kit) + turunan */
+const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
+
+/* ---------- penyusun bentuk ---------- */
+const S=$('#scene');
+function N(tag,a={},p=S){const n=document.createElementNS(NS,tag);for(const k in a)n.setAttribute(k,a[k]);p.appendChild(n);return n;}
+const G=(a={},p=S)=>N('g',a,p),R=(x,y,w,h,f,rx=0,p=S,a={})=>N('rect',{x,y,width:w,height:h,rx,fill:f,...a},p),
+  CI=(cx,cy,r,f,p=S,a={})=>N('circle',{cx,cy,r,fill:f,...a},p),EL=(cx,cy,rx,ry,f,p=S,a={})=>N('ellipse',{cx,cy,rx,ry,fill:f,...a},p),
+  PA=(d,f,p=S,a={})=>N('path',{d,fill:f||'none',...a},p),
+  LN=(d,st,w,p=S,a={})=>N('path',{d,fill:'none',stroke:st,'stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round',...a},p),
+  TX=(x,y,t,size,f,p=S,a={})=>{const n=N('text',{x,y,'font-size':size,fill:f,'font-weight':900,'text-anchor':'middle',...a},p);n.textContent=t;return n;};
+const hx=h=>{const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];};
+const mix=(a,b,t)=>{const A=hx(a),Bb=hx(b);t=Math.max(0,Math.min(1,t));return 'rgb('+A.map((v,i)=>Math.round(v+(Bb[i]-v)*t)).join(',')+')';};
+const hash=i=>{const s=Math.sin(i*127.1+311.7)*43758.5453;return s-Math.floor(s);};   // deterministik, bukan Math.random
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const mixH=(a,b,t)=>{const A=hx(a),Bb=hx(b);return '#'+A.map((v,i)=>Math.round(v+(Bb[i]-v)*t).toString(16).padStart(2,'0')).join('');};
+const defs=N('defs',{},S);
+function lin(id,cols,offs,{x1=0,y1=0,x2=0,y2=1,user=false}={}){const g=N('linearGradient',{id,x1,y1,x2,y2,...(user?{gradientUnits:'userSpaceOnUse'}:{})},defs);
+  return cols.map((c,i)=>N('stop',{offset:offs[i],'stop-color':c},g));}
+function rad(id,cols,offs,ops){const g=N('radialGradient',{id},defs);return cols.map((c,i)=>N('stop',{offset:offs[i],'stop-color':c,'stop-opacity':ops?ops[i]:1},g));}
+const star4=(x,y,r,f,p)=>{const g=G({},p),j=J(g,x,y);PA(`M 0 ${-r} Q 0 0 ${r} 0 Q 0 0 0 ${r} Q 0 0 ${-r} 0 Q 0 0 0 ${-r} Z`,f,g);return j;};
+
+/* SENDI: transform ditulis manual (sumbu putar = titik asal lokal, bukan bbox) */
+const JS=[],APPLY=[],LOOPS=[];
+function J(el,tx=0,ty=0){const j={el,tx,ty,x:0,y:0,r:0,sx:1,sy:1,apply(){el.setAttribute('transform',`translate(${j.tx+j.x},${j.ty+j.y}) rotate(${j.r}) scale(${j.sx},${j.sy})`);}};j.apply();JS.push(j);return j;}
+
+/* ---------- panggung: satu frame per adegan, kamera sendiri ---------- */
+const scenes=[];
+function scene(name){const g=G({'data-name':name},S);g.style.display='none';const sc={name,g,cam:{x:540,y:960,z:1.12,ox:0,oy:0}};
+  sc.apply=()=>{const c=sc.cam;g.setAttribute('transform',`translate(${540-(c.x+c.ox)*c.z},${960-(c.y+c.oy)*c.z}) scale(${c.z})`);};
+  sc.on=()=>g.style.display!=='none';APPLY.push(sc.apply);scenes.push(sc);return sc;}
+const loop=(sc,f)=>LOOPS.push(t=>{if(sc.on())f(t);});
+
+/* ---------- KUAN: partikel biru bercincin, digambar ulang dari lembar maskot ---------- */
+function kuan(p,x,y,s,{face='senang',ph=0,helmet=false,sc}={}){
+  const place=G({transform:`translate(${x},${y})`},p);
+  const mvEl=G({},place),mv=J(mvEl);mv.sx=mv.sy=s;mv.apply();       // gerak besar (tween)
+  const bobEl=G({},mvEl),bob=J(bobEl);                                 // melayang (fungsi waktu)
+  const sqEl=G({},bobEl),sq=J(sqEl);                                   // squash/pop (tween)
+  const k={mv,bob,sq,orbit:{a:0},faces:{},eyes:[],stars:[],ph,s};
+  const RING='rotate(-16) translate(0,12)';
+  const back=G({transform:RING},sqEl);LN('M -128 0 A 128 34 0 0 1 128 0',B.orange,13,back);k.ballB=CI(128,0,17,B.yellow,back);
+  LN('M -2 -76 C -8 -94 -2 -110 13 -105',B.blue,10,sqEl);
+  CI(0,0,80,B.blue,sqEl);
+  const F=n=>{const g=G({opacity:n===face?1:0},sqEl);k.faces[n]=g;return g;};
+  const eye=(g,cx,px,py,ry=20)=>{const eg=G({},g),ej=J(eg,cx,-14);k.eyes.push(ej);EL(0,0,17,ry,B.white,eg);CI(px,py,8.5,B.navy,eg);CI(px+3,py-3.5,2.8,B.white,eg);};
+  const cheeks=g=>{CI(-50,10,10,B.cheek,g,{opacity:.75});CI(50,10,10,B.cheek,g,{opacity:.75});};
+  {const g=F('senang');eye(g,-24,3,-3);eye(g,24,3,-3);cheeks(g);LN('M -15 20 Q 0 32 15 20',B.navy,6,g);}
+  {const g=F('kaget');eye(g,-24,0,1,22);eye(g,24,0,1,22);LN('M -40 -46 Q -25 -57 -10 -46',B.navy,5,g);LN('M 10 -46 Q 25 -57 40 -46',B.navy,5,g);EL(0,27,9,12,B.navy,g);
+    [['M -104 -100 L -88 -80'],['M -122 -52 L -100 -46'],['M 104 -104 L 90 -84']].forEach(([d])=>LN(d,B.orange,6,g));}
+  {const g=F('berpikir');eye(g,-24,-5,-6);eye(g,24,-5,-6);LN('M 12 -46 L 40 -54',B.navy,6,g);LN('M -13 28 Q -6 21 1 26 T 14 24',B.navy,5,g);
+    const tb=G({},g);CI(-86,-74,6,B.white,tb,{stroke:B.navy,'stroke-width':4});CI(-106,-98,10,B.white,tb,{stroke:B.navy,'stroke-width':4});
+    CI(-146,-142,32,B.white,tb,{stroke:B.navy,'stroke-width':5});TX(-146,-129,'?',38,B.navy,tb);}
+  {const g=F('eureka');LN('M -38 -10 Q -24 -28 -10 -10',B.navy,6,g);LN('M 10 -10 Q 24 -28 38 -10',B.navy,6,g);cheeks(g);
+    PA('M -24 10 L 24 10 Q 22 42 0 42 Q -22 42 -24 10 Z',B.navy,g);EL(0,35,11,6,B.orange,g);
+    k.stars.push(star4(-112,-98,20,B.yellow,g),star4(106,-142,15,B.yellow,g));}
+  {const g=F('bangga');eye(g,-24,2,-2);LN('M 10 -12 Q 24 -26 38 -12',B.navy,6,g);cheeks(g);
+    PA('M -20 14 L 20 14 Q 18 35 0 35 Q -18 35 -20 14 Z',B.navy,g);k.stars.push(star4(104,-134,20,B.yellow,g));}
+  {const g=F('guru');eye(g,-24,1,-2);eye(g,24,1,-2);PA('M -18 14 L 18 14 Q 16 33 0 33 Q -16 33 -18 14 Z',B.navy,g);
+    R(-48,-104,96,32,B.navy,8,g);PA('M -104 -112 L 0 -148 L 104 -112 L 0 -78 Z',B.navy,g);PA('M -104 -112 L 0 -148 L 104 -112 L 0 -78 Z','none',g,{stroke:'#1E3A5F','stroke-width':4,'stroke-linejoin':'round'});
+    CI(0,-113,7,B.yellow,g);LN('M 0 -113 L 64 -100 L 70 -62',B.yellow,5,g);CI(70,-58,9,B.yellow,g);}
+  {const g=F('bingung');eye(g,-24,-2,2);eye(g,24,-3,3,17);LN('M -44 -50 L -12 -40',B.navy,6,g);LN('M 12 -44 L 42 -52',B.navy,6,g);
+    LN('M -16 28 Q -8 20 0 28 T 16 28',B.navy,5,g);PA('M 74 -92 Q 60 -66 74 -58 Q 88 -66 74 -92 Z','#BAE6FD',g,{stroke:B.navy,'stroke-width':4,'stroke-linejoin':'round'});}
+  {const g=F('ups');eye(g,-24,0,5);eye(g,24,0,5);LN('M -42 -40 L -12 -52',B.navy,6,g);LN('M 12 -52 L 42 -40',B.navy,6,g);
+    LN('M -16 32 Q 0 20 16 32',B.navy,6,g);PA('M -44 4 Q -52 20 -44 26 Q -36 20 -44 4 Z','#BAE6FD',g,{stroke:B.navy,'stroke-width':3});}
+  const front=G({transform:RING},sqEl);LN('M -128 0 A 128 34 0 0 0 128 0',B.orange,13,front);k.ballF=CI(128,0,17,B.yellow,front);
+  if(helmet){CI(0,-4,152,B.white,sqEl,{opacity:.16});CI(0,-4,152,'none',sqEl,{stroke:B.white,'stroke-width':7,opacity:.75});
+    LN('M -104 -84 Q -74 -126 -22 -138',B.white,12,sqEl,{opacity:.8});R(-66,134,132,26,'#CBD5E1',12,sqEl);}
+  /* jejak kilau tanda tangan "lompat orbit" */
+  k.trail=[0,1,2,3,4].map(i=>{const a=Math.PI*(.15+i*.38),j=star4(150*Math.cos(a)*-1,-40+60*Math.sin(a)-60,12+(i%2)*6,B.yellow,sqEl);j.sx=j.sy=0;j.apply();return j;});
+  LOOPS.push(t=>{if(sc&&!sc.on())return;const q=t+ph;bob.y=-9*Math.sin(q*2.4);bob.r=2.2*Math.sin(q*1.6+.7);
+    const a=k.orbit.a+q*2.2,bx=128*Math.cos(a),by=34*Math.sin(a);
+    k.ballB.setAttribute('cx',bx);k.ballB.setAttribute('cy',by);k.ballF.setAttribute('cx',bx);k.ballF.setAttribute('cy',by);
+    const fr=Math.sin(a)>0;k.ballF.setAttribute('opacity',fr?1:0);k.ballB.setAttribute('opacity',fr?0:1);
+    const bl=((q+1.6+ph*1.7)%3.7)<.12;k.eyes.forEach(e=>e.sy=bl?.1:1);
+    k.stars.forEach((st,i)=>{st.sx=st.sy=.82+.25*Math.sin(q*6+i*2);st.r=8*Math.sin(q*3+i);});});
+  return k;}
+
+/* ---------- mesin animasi ---------- */
+const tl=gsap.timeline({paused:true}),world=$('#world');
+const cam=(sc,at,x,y,z,dur=1.4,ease='sine.inOut')=>tl.to(sc.cam,{x,y,z,duration:dur,ease},at);
+const camSet=(sc,at,x,y,z)=>tl.set(sc.cam,{x,y,z},at);
+function cut(at,from,to){tl.set(from.g,{display:'none'},at);tl.set(to.g,{display:'block'},at);}
+function slide(at,from,to,axis='x',dist=axis==='x'?96:72){const o=axis==='x'?'ox':'oy';
+  tl.fromTo(from.cam,{[o]:0},{[o]:-dist,duration:.28,ease:'power2.in',immediateRender:false},at);tl.set(to.cam,{[o]:dist},at+.28);cut(at+.28,from,to);
+  tl.to(to.cam,{[o]:0,duration:.42,ease:'power3.out'},at+.28);
+  const b={v:0};tl.fromTo(b,{v:0},{v:10,duration:.28,ease:'power2.in',immediateRender:false,onUpdate(){world.style.filter=`blur(${b.v}px)`}},at);
+  tl.to(b,{v:0,duration:.42,ease:'power3.out',onUpdate(){world.style.filter=b.v>.05?`blur(${b.v}px)`:'none'}},at+.28);}
+function face(k,name,at){for(const n in k.faces)tl.to(k.faces[n],{opacity:n===name?1:0,duration:.06},at);
+  tl.fromTo(k.sq,{sx:1.14,sy:.88},{sx:1,sy:1,duration:.55,ease:'elastic.out(1,.45)',immediateRender:false},at);}
+function hop(k,at,h=90){tl.to(k.mv,{y:`-=${h}`,duration:.26,ease:'power2.out'},at);tl.to(k.mv,{y:`+=${h}`,duration:.5,ease:'bounce.out'},at+.26);
+  tl.to(k.orbit,{a:`+=${Math.PI*2}`,duration:.75,ease:'power2.inOut'},at);
+  tl.fromTo(k.sq,{sx:.9,sy:1.12},{sx:1,sy:1,duration:.6,ease:'elastic.out(1,.4)',immediateRender:false},at);
+  k.trail.forEach((j,i)=>{tl.fromTo(j,{sx:0,sy:0},{sx:1.15,sy:1.15,duration:.22,ease:'back.out(3)',immediateRender:false},at+.12+i*.06);
+    tl.to(j,{sx:0,sy:0,duration:.3,ease:'power2.in'},at+.5+i*.06);});}
+/* teks per kata: masuk dari bawah, regang vertikal + blur berarah, keluar ke atas */
+function say(sel,at,st=.11){tl.fromTo($$(sel+' .w'),{opacity:0,y:80,scaleY:1.5,scaleX:.8,filter:'blur(14px)'},
+  {opacity:1,y:0,scaleY:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'back.out(2)',stagger:st,immediateRender:false},at);}
+function unsay(sel,at){tl.to($$(sel+' .w'),{opacity:0,y:-60,scaleY:1.4,filter:'blur(12px)',duration:.28,ease:'power2.in',stagger:.035},at);}
+
+/* =====================================================================
+   PERKAKAS OTAK — otak tampak samping dengan area yang bisa menyala
+   ===================================================================== */
+const RED='#E5484D',GREEN='#22C55E',BR={pink:'#F9A8C9',pink2:'#EC7FAE',line:'#D25A92',cereb:'#F48FB1',stem:'#E7A4BE'};
+const sayAt=(sel,times)=>$$(sel+' .w').forEach((w,i)=>tl.fromTo(w,{opacity:0,y:80,scaleY:1.5,scaleX:.8,filter:'blur(14px)'},
+  {opacity:1,y:0,scaleY:1,scaleX:1,filter:'blur(0px)',duration:.5,ease:'back.out(2)',immediateRender:false},times[i]));
+const pop=(j,at,s=1)=>tl.fromTo(j,{sx:0,sy:0},{sx:s,sy:s,duration:.5,ease:'back.out(2.6)',immediateRender:false},at);
+const hidden=el=>{const j=J(el);j.sx=j.sy=0;j.apply();return j;};
+function tag(p,x,y,text,col=B.navy,bg='#FFFFFF',size=40,dot){const P=G({transform:`translate(${x},${y})`},p),el=G({},P),j=hidden(el);
+  const w=text.length*size*.55+44+(dot?40:0);R(-w/2,-size*.9,w,size*1.5,bg,size*.5,el,{stroke:col,'stroke-width':5});if(dot)CI(-w/2+30,-size*.15,13,dot,el);
+  TX(dot?20:0,size*.18,text,size,col,el,{'font-weight':800});return j;}
+function slam(sel,at){const el=$(sel);gsap.set(el,{xPercent:-50,rotation:-12,opacity:0});
+  tl.fromTo(el,{opacity:0,scale:2.6},{opacity:1,scale:1,duration:.22,ease:'power4.in',immediateRender:false},at);tl.to(el,{scale:1.06,duration:.12,yoyo:true,repeat:1,ease:'sine.inOut'},at+.22);}
+function shake(sc,at,a=16){tl.to(sc.cam,{keyframes:{ox:[0,-a,a*.8,-a*.5,a*.3,0],oy:[0,a*.5,-a*.6,a*.4,-a*.2,0]},duration:.42,ease:'none'},at);}
+let BRN=0;
+function brain(p,x,y,s){BRN++;const id='brc'+BRN;const P=G({transform:`translate(${x},${y}) scale(${s})`},p);
+  const OUT='M -300 40 C -310 -120 -180 -230 -20 -230 C 160 -230 300 -140 300 10 C 300 110 240 150 170 160 L 120 170 C 60 200 -40 200 -110 180 C -220 170 -295 130 -300 40 Z';
+  R(78,150,56,140,BR.stem,26,P,{transform:'rotate(-12 106 220)'});
+  const cb=G({},P);EL(185,165,115,62,BR.cereb,cb,{stroke:BR.line,'stroke-width':6});for(let i=0;i<4;i++)LN(`M ${100+i*10} ${140+i*14} Q 185 ${125+i*16} ${285-i*8} ${150+i*12}`,BR.line,4,cb,{opacity:.6});
+  N('clipPath',{id},defs).appendChild(N('path',{d:OUT}));
+  PA(OUT,BR.pink,P,{stroke:BR.line,'stroke-width':8});
+  const inn=G({'clip-path':`url(#${id})`},P);
+  const reg=(el)=>{el.setAttribute('opacity',0);return el;};
+  const R2={
+    occ:reg(EL(230,20,110,150,'#38BDF8',inn)),
+    mot:reg(EL(-30,-140,70,170,'#FFD23F',inn,{transform:'rotate(18 -30 -140)'})),
+    hip:reg(PA('M -60 95 C -30 55 30 55 70 85 C 98 106 80 140 50 128','none',inn,{stroke:GREEN,'stroke-width':30,'stroke-linecap':'round'})),
+    ten:reg(EL(-250,10,70,90,'#FF7A59',inn))};
+  P.spots=[[-200,-120],[-120,-40],[-40,30],[60,-170],[120,-60],[200,-130],[-230,80],[20,120],[150,60],[-80,-190],[250,-30],[-150,120]].map(([sx,sy],i)=>({c:reg(EL(sx,sy,70+hash(i)*30,55+hash(i+3)*25,['#38BDF8','#FFD23F',GREEN,'#FF7A59','#A78BFA'][i%5],inn)),i}));
+  ['M -250 -60 q 30 -40 70 -10 q 40 30 80 -10','M -150 -160 q 40 30 80 0 q 40 -30 90 10','M 0 -60 q 30 40 80 10 q 40 -20 70 20','M -260 70 q 50 -20 90 20 q 40 30 90 0','M 60 -200 q 20 40 70 30 q 40 -10 60 30','M -120 40 q 30 -30 70 0 q 30 30 70 0','M 140 -20 q 30 30 80 10'].forEach(d=>LN(d,BR.line,6,inn,{opacity:.55}));
+  PA(OUT,'none',P,{stroke:BR.line,'stroke-width':8});
+  /* hipokampus: garis putus-putus "di dalam" */
+  const hipOut=LN('M -60 95 C -30 55 30 55 70 85 C 98 106 80 140 50 128',B.navy,4,P,{'stroke-dasharray':'10 8',opacity:0});
+  return {P,R2,hipOut,spots:P.spots};}
+function glowOn(el,at,v=.85,d=.35){tl.fromTo(el,{opacity:0},{opacity:v,duration:d,ease:'power2.out',immediateRender:false},at);}
+
+/* =====================================================================
+   PANGGUNG 1 — otak "10%" → stempel MITOS
+   ===================================================================== */
+const P1=scene('mitos10');{const p=P1.g;
+  lin('bg1',['#2B2150','#1B2F66'],[0,1]);R(-400,-600,1880,3000,'url(#bg1)',0,p);P1.flash=R(-400,-600,1880,3000,'#FFFFFF',0,p,{opacity:0});
+  P1.dots=[];for(let i=0;i<30;i++)P1.dots.push({c:CI(-100+hash(i+5)*1280,-100+hash(i+9)*2100,3+hash(i)*4,'#A78BFA',p,{opacity:.3}),i});
+  P1.b=brain(p,540,1020,1.35);
+  P1.pct=TX(250,800,'10%',96,B.white,p,{stroke:B.navy,'stroke-width':12,'paint-order':'stroke',opacity:0});
+  P1.kuan=kuan(p,300,1480,1.25,{face:'bingung',ph:.4,sc:P1});
+  loop(P1,t=>{P1.dots.forEach(d=>d.c.setAttribute('opacity',.15+.3*(.5+.5*Math.sin(t*1.5+d.i))));});}
+
+/* =====================================================================
+   PANGGUNG 2 — pemindaian otak: area menyala bergantian sepanjang hari
+   ===================================================================== */
+const P2=scene('pindai');{const p=P2.g;P2.day={a:0};
+  lin('bg2',['#E0F2FE','#F5FBFF'],[0,1]);R(-400,-600,1880,3000,'url(#bg2)',0,p);
+  R(-400,1520,1880,700,'#CBD5E1',0,p);
+  /* mesin pemindai tabung */
+  const sc=G({transform:'translate(330,1260)'},p);R(-260,-250,520,500,'#F1F5F9',120,sc,{stroke:'#94A3B8','stroke-width':10});CI(0,0,150,'#1E293B',sc);CI(0,0,150,'none',sc,{stroke:'#38BDF8','stroke-width':12,opacity:.6});
+  P2.ring=CI(0,0,170,'none',sc,{stroke:'#38BDF8','stroke-width':6,'stroke-dasharray':'30 24'});R(-60,230,120,60,'#94A3B8',10,sc);
+  R(40,-40,560,70,'#E2E8F0',30,sc,{stroke:'#94A3B8','stroke-width':6});const ps=G({},sc);CI(110,-50,40,'#475569',ps);R(150,-70,300,46,'#475569',22,ps);
+  /* monitor */
+  const mo=G({transform:'translate(700,620)'},p);R(-280,-210,560,420,'#0B2545',26,mo,{stroke:'#475569','stroke-width':12});R(-30,210,60,90,'#475569',6,mo);R(-110,290,220,26,'#475569',10,mo);
+  P2.b=brain(mo,0,-10,.72);
+  /* jam pagi-siang-malam */
+  const ck=G({transform:'translate(220,560)'},p);CI(0,0,130,'#FFFFFF',ck,{stroke:B.navy,'stroke-width':8});
+  CI(0,-82,26,B.yellow,ck);PA('M 82 -14 a 26 26 0 1 0 0 28 a 20 20 0 1 1 0 -28 Z','#94A3B8',ck);CI(-82,0,22,B.orange,ck);
+  const hd=G({},ck);P2.hand=J(hd);R(-5,-100,10,104,B.navy,5,hd);CI(0,0,12,B.navy,ck);
+  P2.kuan=kuan(p,900,1500,1.0,{face:'guru',ph:1.2,sc:P2});
+  loop(P2,t=>{P2.ring.setAttribute('stroke-dashoffset',-t*80);});}
+
+/* =====================================================================
+   PANGGUNG 3 — peta otak: melihat / bergerak / mengingat (+ nama ilmiah)
+   ===================================================================== */
+const P3=scene('peta');{const p=P3.g;
+  lin('bg3',['#FFF7E8','#FDEFD6'],[0,1]);R(-400,-600,1880,3000,'url(#bg3)',0,p);
+  P3.b=brain(p,540,760,1.35);
+  P3.lines=[LN('M 860 790 L 900 1080',B.navy,4,p,{opacity:0}),LN('M 500 520 L 300 1180',B.navy,4,p,{opacity:0}),LN('M 560 870 L 540 1290',B.navy,4,p,{opacity:0})];
+  P3.t1=tag(p,600,1110,'melihat · lobus oksipital',B.navy,'#FFFFFF',40,'#38BDF8');
+  P3.t2=tag(p,540,1220,'bergerak · korteks motorik',B.navy,'#FFFFFF',40,'#FFD23F');
+  P3.t3=tag(p,540,1330,'mengingat · hipokampus',B.navy,'#FFFFFF',40,GREEN);
+  /* ikon fungsi */
+  const ey=G({transform:'translate(960,560)'},p);P3.eye=hidden(ey);EL(0,0,60,36,'#FFFFFF',ey,{stroke:B.navy,'stroke-width':6});CI(0,0,22,'#38BDF8',ey);CI(0,0,10,B.navy,ey);
+  const ru=G({transform:'translate(520,330)'},p);P3.run=hidden(ru);CI(0,-60,22,B.navy,ru);LN('M 0 -36 L -6 20 M -6 20 L -40 70 M -6 20 L 30 66 M -2 -20 L -44 0 M -2 -20 L 40 -36',B.navy,12,ru);
+  const bu=G({transform:'translate(420,1000)'},p);P3.bulb=hidden(bu);CI(0,-20,38,B.yellow,bu,{stroke:B.navy,'stroke-width':6});R(-16,16,32,26,'#94A3B8',6,bu,{stroke:B.navy,'stroke-width':4});
+  P3.kuan=kuan(p,170,420,1.0,{face:'guru',ph:2.2,sc:P3});}
+
+/* =====================================================================
+   PANGGUNG 4 — otak boros energi: berat ±2%, energi ±20%
+   ===================================================================== */
+const P4=scene('energi');{const p=P4.g;P4.bar={a:0,b:0};
+  lin('bg4',['#E0F2FE','#FFEDE3'],[0,1]);R(-400,-600,1880,3000,'url(#bg4)',0,p);
+  /* siluet tubuh + otak */
+  const bd=G({transform:'translate(270,1000)'},p);CI(0,-330,120,'#334155',bd);R(-110,-200,220,420,'#334155',90,bd);R(-160,-180,50,320,'#334155',25,bd);R(110,-180,50,320,'#334155',25,bd);
+  R(-90,210,70,330,'#334155',35,bd);R(20,210,70,330,'#334155',35,bd);P4.mini=brain(bd,0,-350,.3);
+  P4.bolts=[0,1,2,3,4].map(i=>PA('M 0 -22 L 10 -4 L 2 -4 L 12 18 L -8 -2 L 0 -2 Z',B.yellow,p,{opacity:0,stroke:B.navy,'stroke-width':2}));
+  /* grafik batang */
+  const AX=640,BY=1400,H=760;R(AX-60,BY,420,10,B.navy,4,p);
+  P4.b1=R(AX,BY,120,0,'#F9A8C9',14,p,{stroke:B.navy,'stroke-width':6});P4.b2=R(AX+180,BY,120,0,B.yellow,14,p,{stroke:B.navy,'stroke-width':6});
+  P4.l1=TX(AX+60,BY+70,'berat',40,B.navy,p,{'font-weight':800});P4.l2=TX(AX+240,BY+70,'energi',40,B.navy,p,{'font-weight':800});
+  P4.v1=TX(AX+60,BY-20,'±2%',52,B.navy,p,{opacity:0});P4.v2=TX(AX+240,BY-20,'±20%',52,B.navy,p,{opacity:0});
+  P4.ten=TX(780,520,'10%?',96,RED,p,{opacity:0});P4.strike=LN('M 660 490 L 900 490',RED,14,p,{opacity:0});
+  P4.kuan=kuan(p,860,300,1.0,{face:'guru',ph:3.1,sc:P4});
+  APPLY.push(()=>{const ha=H*.1*P4.bar.a,hb=H*P4.bar.b;P4.b1.setAttribute('y',BY-ha);P4.b1.setAttribute('height',ha);P4.b2.setAttribute('y',BY-hb);P4.b2.setAttribute('height',hb);
+    P4.v1.setAttribute('y',BY-ha-24);P4.v2.setAttribute('y',BY-hb-24);});
+  loop(P4,t=>{const on=P4.bar.b>.5?1:0;P4.bolts.forEach((b,i)=>{const q=(t*.8+i/5)%1;b.setAttribute('transform',`translate(${270+(hash(i)-.5)*120},${1150-q*500}) scale(1.6)`);b.setAttribute('opacity',on*Math.sin(Math.PI*q));});});}
+
+/* =====================================================================
+   PANGGUNG 5 — penutup: "mitos berikutnya?"
+   ===================================================================== */
+const P5=scene('penutup');{const p=P5.g;P5.bubOn={v:0};
+  lin('bg5',['#E0F2FE','#F5FBFF','#FFEDE3'],[0,.55,1]);R(-400,-500,1880,2900,'url(#bg5)',0,p);
+  P5.blobs=[[120,380,230,'#BAE6FD'],[980,620,180,'#FFE7A3'],[860,1660,260,'#FFD3C4'],[140,1500,160,'#BAE6FD']].map(([x,y,r,c],i)=>{const g=G({},p),j=J(g,x,y);CI(0,0,r,c,g,{opacity:.7});return {j,i};});
+  const bd=G({transform:'translate(540,1300)'},p),be=G({},bd);P5.board=hidden(be);R(-380,-120,760,240,'#FFFFFF',30,be,{stroke:B.navy,'stroke-width':8});
+  TX(-20,22,'Mitos berikutnya?',62,B.navy,be);const st=G({transform:'translate(290,-90) rotate(-14)'},be);R(-90,-34,180,68,'#FFFFFF',14,st,{stroke:RED,'stroke-width':6});TX(0,16,'MITOS',44,RED,st);
+  P5.bs=[];for(let i=0;i<6;i++){const g=G({opacity:0},p),j=J(g);R(-60,-40,120,80,B.white,26,g,{stroke:B.navy,'stroke-width':5});PA('M -22 38 L -34 60 L 6 38 Z',B.white,g);
+    TX(0,16,i%2?'…':'?',52,i%2?B.navy:RED,g,{'font-weight':900});P5.bs.push({g,j,i});}
+  P5.kuan=kuan(p,540,830,2.0,{face:'guru',ph:4.0,sc:P5});
+  loop(P5,t=>{P5.blobs.forEach(b=>{b.j.x=30*Math.sin(t*.5+b.i*1.7);b.j.y=26*Math.cos(t*.4+b.i);});
+    const v=P5.bubOn.v;P5.bs.forEach(b=>{const q=(t*.33+b.i/6)%1;b.j.tx=160+((b.i*251)%740);b.j.ty=1820-q*700;b.j.x=18*Math.sin(t*2+b.i);b.g.setAttribute('opacity',v*clamp(Math.sin(Math.PI*q)*1.6));});});}
+
+/* =====================================================================
+   PANGGUNG 6 — kartu logo (sama dengan seri)
+   ===================================================================== */
+const P6=scene('logo');{const p=P6.g;
+  lin('bg6',['#E0F2FE','#F5FBFF','#FFEDE3'],[0,.55,1]);R(-400,-500,1880,2900,'url(#bg6)',0,p);
+  P6.blobs=[[120,380,230,'#BAE6FD'],[980,620,180,'#FFE7A3'],[860,1660,260,'#FFD3C4'],[140,1500,160,'#BAE6FD'],[560,1960,240,'#FFE7A3']].map(([x,y,r,c],i)=>{const g=G({},p),j=J(g,x,y);CI(0,0,r,c,g,{opacity:.7});return {j,i};});
+  P6.letters=[...'kuantika'].map((ch,i)=>{const g=G({},p),j=J(g,0,1210);j.sx=j.sy=0;j.apply();const tx=TX(0,0,ch,176,B.navy,g);return {g,j,tx};});
+  P6.kuan=kuan(p,540,830,2.0,{face:'senang',ph:4.2,sc:P6});
+  loop(P6,t=>{P6.blobs.forEach(b=>{b.j.x=30*Math.sin(t*.5+b.i*1.7);b.j.y=26*Math.cos(t*.4+b.i);});});}
+function layoutWord(){let tot=0;const ws=P6.letters.map(l=>{const w=l.tx.getComputedTextLength();tot+=w;return w;});let x=540-tot/2;
+  P6.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
+
+/* =====================================================================
+   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   ===================================================================== */
+/* P1 · 0–7,2 · "katanya kita cuma pakai sepuluh persen otak. masa sih?" + "halo, Kuan di sini! ternyata… itu mitos!" */
+tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1000,1.12);
+sayAt('#tHook',[.1,.35,.7,1.0]);
+glowOn(P1.b.R2.ten,.6,.9,.4);tl.fromTo(P1.pct,{opacity:0},{opacity:1,duration:.3,immediateRender:false},.9);
+tl.fromTo(P1.b.R2.ten,{opacity:.9},{keyframes:{opacity:[.9,.5,.9,.5,.9]},duration:2,immediateRender:false},1.0);
+tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.4);
+unsay('#tHook',3.3);cam(P1,3.5,420,1300,1.45,.8,'power2.inOut');hop(P1.kuan,4.2,60);                     // halo, Kuan di sini
+cam(P1,4.9,540,1000,1.12,.7,'power2.inOut');                                                               // ternyata…
+slam('#sMitos',6.0);face(P1.kuan,'ups',6.0);shake(P1,6.0,18);tl.fromTo(P1.flash,{opacity:0},{keyframes:{opacity:[0,.5,0]},duration:.35,immediateRender:false},6.0);   // itu mitos!
+tl.to(P1.pct,{opacity:0,duration:.2},6.1);P1.b.spots.forEach((s,i)=>glowOn(s.c,6.3+i*.04,.7,.3));
+tl.to('#sMitos',{opacity:0,scale:.9,duration:.25,ease:'power2.in'},6.95);
+/* P2 · 7,2–15,4 · pemindaian otak */
+cut(7.2,P1,P2);camSet(P2,7.2,540,1000,1.12);sayAt('#tTerm',[7.6,7.95]);
+tl.fromTo(P2.hand,{r:0},{r:360,duration:6,ease:'none',immediateRender:false},8.0);
+P2.b.spots.forEach((s,i)=>{const at=8.2+i*.45;tl.fromTo(s.c,{opacity:0},{keyframes:{opacity:[0,.95,.45]},duration:.6,immediateRender:false},at);});   // bergantian, tersisa jejak
+cam(P2,9.0,700,640,1.4,1.0,'power2.inOut');unsay('#tTerm',14.8);cam(P2,13.6,540,1000,1.12,.9,'power2.inOut');
+/* P3 · 15,4–26,4 · peta otak */
+cut(15.4,P2,P3);camSet(P3,15.4,540,900,1.12);
+glowOn(P3.b.R2.occ,18.6);pop(P3.t1,18.8);   // bagian belakang untuk melihat
+glowOn(P3.b.R2.mot,20.9);pop(P3.t2,21.1);   // bagian atas untuk bergerak
+glowOn(P3.b.R2.hip,23.2);tl.to(P3.b.hipOut,{opacity:1,duration:.3},23.2);pop(P3.t3,23.4);   // bagian dalam membantu mengingat
+cam(P3,18.4,640,820,1.25,.7,'power2.inOut');cam(P3,20.7,460,700,1.25,.7,'power2.inOut');cam(P3,23.0,500,960,1.25,.7,'power2.inOut');cam(P3,25.2,540,960,1.12,.8,'power2.inOut');
+/* P4 · 26,4–35,6 · energi */
+cut(26.4,P3,P4);camSet(P4,26.4,540,1000,1.12);
+tl.fromTo(P4.bar,{a:0},{a:1,duration:.8,ease:'back.out(1.5)',immediateRender:false},27.6);tl.fromTo(P4.v1,{opacity:0},{opacity:1,duration:.3,immediateRender:false},28.3);   // ±2% berat badan
+tl.fromTo(P4.bar,{b:0},{b:1,duration:1.2,ease:'back.out(1.3)',immediateRender:false},30.0);tl.fromTo(P4.v2,{opacity:0},{opacity:1,duration:.3,immediateRender:false},31.0);   // ±20% energi
+tl.fromTo(P4.ten,{opacity:0,scale:.5,transformOrigin:'50% 50%'},{opacity:1,scale:1,duration:.4,ease:'back.out(2)',immediateRender:false},32.6);
+tl.fromTo(P4.strike,{opacity:0},{opacity:1,duration:.15,immediateRender:false},33.8);face(P4.kuan,'eureka',34.2);hop(P4.kuan,34.4,60);
+/* P5 · 35,6–45,0 · "paham sampai ke inti! mitos apa lagi…? tulis di komentar, nanti Kuan bongkar satu-satu!" */
+cut(35.6,P4,P5);camSet(P5,35.6,540,950,1.12);
+sayAt('#tEnd',[35.8,36.15,36.4,36.6]);hop(P5.kuan,36.9,80);unsay('#tEnd',37.4);
+pop(P5.board,37.7);tl.fromTo(P5.bubOn,{v:0},{v:1,duration:.4,immediateRender:false},40.0);
+face(P5.kuan,'senang',42.6);hop(P5.kuan,42.8,60);
+/* P6 · 45,0–46,8 · logo */
+cut(45.0,P5,P6);camSet(P6,45.0,540,980,1.12);
+P6.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},45.15+i*.05));
+hop(P6.kuan,45.3,60);
+tl.to({},{duration:.01},DUR-.01);
+
+/* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
+function applyAll(){const t=tl.time();LOOPS.forEach(f=>f(t));APPLY.forEach(f=>f());JS.forEach(j=>j.apply());}
+tl.eventCallback('onUpdate',applyAll);
+const q=new URLSearchParams(location.search),vo=$('#vo'),hasVO=!!vo.getAttribute('src');let audioOn=false;
+function start(){tl.play(0);if(hasVO){vo.currentTime=0;vo.play().then(()=>audioOn=true).catch(()=>{});}}
+tl.eventCallback('onComplete',()=>{if(!q.has('clean'))start();});
+gsap.ticker.add(()=>{if(!audioOn||tl.paused())return;if(Math.abs(vo.currentTime-tl.time())>.12)vo.currentTime=tl.time();});
+window.OPENER={W,H,DURATION:DUR,tl,ready:false,seek(t){tl.pause(t,false);applyAll();},play:start};
+window.OPENER.seekFrame=t=>{window.OPENER.seek(t);return Promise.resolve();};
+addEventListener('keydown',e=>{if(/^[rR]$/.test(e.key))start();if(e.code==='Space'){e.preventDefault();tl.paused()?tl.play():tl.pause();}});
+if(q.has('debug')){const dbg=$('#dbg');dbg.style.display='flex';const sc=$('#dScrub'),ck=$('#dClock');let drag=false;
+  gsap.ticker.add(()=>{if(!drag)sc.value=String(tl.time()/DUR*1000);ck.textContent=tl.time().toFixed(2)+'s';$('#dPlay').textContent=tl.paused()?'Play':'Pause';});
+  sc.addEventListener('pointerdown',()=>{drag=true;tl.pause();});addEventListener('pointerup',()=>drag=false);
+  sc.addEventListener('input',()=>{tl.pause();tl.time(sc.value/1000*DUR);applyAll();});$('#dPlay').onclick=()=>tl.paused()?tl.play():tl.pause();}
+document.fonts.ready.then(()=>{layoutWord();tl.render(0,false,true);applyAll();window.OPENER.ready=true;if(q.has('clean'))return;if(!hasVO){start();return;}
+  vo.play().then(()=>{audioOn=true;vo.currentTime=0;tl.play(0);}).catch(()=>{const go=()=>{removeEventListener('pointerdown',go);removeEventListener('keydown',go);start();};addEventListener('pointerdown',go);addEventListener('keydown',go);});});
+</script>
+</body>
+</html>

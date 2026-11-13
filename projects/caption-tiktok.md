@@ -122,6 +122,18 @@ Apakah 2.025 habis dibagi 3? Jawab YA atau TIDAK di komentar! 👇
 
 Komentar untuk di-pin sehari setelah unggah: `Jawabannya YA! 2+0+2+5 = 9, habis dibagi 3 (2.025 ÷ 3 = 675). Bonus: 9 juga kelipatan 9, jadi 2.025 juga habis dibagi 9 🎉`
 
+## Hari 10 — Mitos 10% otak
+
+```
+Katanya kita cuma pakai 10% otak. Masa sih? 🧠 MITOS!
+Pemindaian otak menunjukkan hampir semua bagiannya bekerja dalam sehari, hanya tidak bersamaan. Bonus: otak cuma ±2% berat badan, tapi memakai ±20% energi tubuh ⚡
+Mitos apa lagi yang sering kamu dengar? Tulis di komentar, nanti Kuan bongkar satu-satu! 👇
+#Kuantika #BelajarBarengKuan #MitosVsFakta #Biologi #FaktaSains
+```
+
+Catatan: kumpulkan mitos yang ditulis penonton di komentar. Itu daftar topik pilar
+Mitos vs Fakta berikutnya yang sudah terbukti diminati.
+
 ---
 
 ## Catatan
