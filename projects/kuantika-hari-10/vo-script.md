@@ -1,10 +1,12 @@
 # Naskah VO — Kuantika Hari 10: "Katanya kita cuma pakai 10% otak. Masa sih?"
 
-Pilar: Mitos vs Fakta · Jenjang: SD 5–SMP · Durasi video: ±47 detik (9:16)
+Pilar: Mitos vs Fakta · Jenjang: SD 5–SMP · Durasi video: 43,0 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(saran: suara "Andra" seperti Hari 2–9), kirim berkasnya, lalu video akan
-disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Audio = berkas ElevenLabs asli (40,7 dtk) + jeda 0,25 dtk sebelum
+"Bagian yang berbeda" dan sebelum "Paham sampai ke inti", dinormalkan ke −16 LUFS,
+plus ekor ±1,8 dtk untuk logo. Kata-katanya tidak diubah. (Catatan: kata "Bonus"
+tidak tertangkap transkripsi; bila memang tidak terbaca, video tetap utuh.)
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -25,17 +27,17 @@ Bonus: otak cuma sekitar dua persen berat badan, tapi memakai sekitar dua puluh 
 Paham sampai ke inti! Mitos apa lagi yang sering kamu dengar? Tulis di komentar, nanti Kuan bongkar satu-satu!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–3,3 | 1. Otak "10%" | Bingung | Katanya kita cuma pakai sepuluh persen otak. Masa sih? | otak dengan satu potong kecil menyala "10%" · teks hook |
-| 3,5–7,2 | 1. Otak "10%" | Ups/Salah | Halo, Kuan di sini! Ternyata… itu mitos! | stempel **MITOS** + guncangan · seluruh otak menyala |
-| 7,2–15,4 | 2. Pemindaian | Kuan Guru | Pemindaian otak menunjukkan… tidak semuanya aktif bersamaan. | tabung pemindai · monitor: area menyala bergantian · jam pagi-siang-malam · label *Pemindaian otak* |
-| 15,4–26,4 | 3. Peta otak | Kuan Guru | Bagian yang berbeda mengurus hal berbeda… membantu mengingat. | biru: **melihat · lobus oksipital** · kuning: **bergerak · korteks motorik** · hijau: **mengingat · hipokampus** |
-| 26,4–35,6 | 4. Energi | Kuan Guru → Eureka | Bonus: otak cuma sekitar dua persen berat badan… seboros itu! | siluet tubuh · batang berat ±2% vs energi ±20% · aliran energi ke otak · "10%?" dicoret |
-| 35,6–45,0 | 5. Penutup | Kuan Guru → Senang | Paham sampai ke inti! Mitos apa lagi…? | papan "Mitos berikutnya?" · gelembung komentar |
-| 45,0–46,8 | 6. Logo | Senang | — | kuantika |
+| 0–3,75 | 1. Otak "10%" | Bingung | Katanya kita cuma pakai sepuluh persen otak. Masa sih? | potongan "10%" menyala (1,5) · teks hook |
+| 4,3–8,15 | 1. Otak "10%" | Ups/Salah | Halo, Kuan di sini! Ternyata… itu mitos! | stempel **MITOS** + guncangan (7,5) · seluruh otak menyala (7,8) |
+| 8,55–16,0 | 2. Pemindaian | Kuan Guru | Pemindaian otak menunjukkan… tidak semuanya aktif bersamaan. | label *Pemindaian otak* (8,6) · area menyala bergantian (9,2–14,7) · jam berputar |
+| 16,6–24,4 | 3. Peta otak | Kuan Guru | Bagian yang berbeda mengurus hal berbeda… membantu mengingat. | melihat · lobus oksipital (20,1) · bergerak · korteks motorik (21,9) · mengingat · hipokampus (24,0) |
+| 24,9–34,2 | 4. Energi | Kuan Guru → Eureka | (Bonus:) otak cuma sekitar dua persen berat badan… seboros itu! | batang ±2% (25,8) · ±20% (28,6) · "10%?" (31,2) dicoret (33,1) |
+| 34,8–41,0 | 5. Penutup | Kuan Guru → Senang | Paham sampai ke inti! Mitos apa lagi…? | papan "Mitos berikutnya?" (36,3) · gelembung komentar (38,1) |
+| 41,2–43,0 | 6. Logo | Senang | — | kuantika |
 
 ## Catatan akurasi (untuk Anda / balasan komentar)
 
