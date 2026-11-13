@@ -1,10 +1,11 @@
 # Naskah VO — Kuantika Hari 11: "Tisu ini masuk ke air… tapi tetap kering!"
 
-Pilar: Sains di Rumah · Jenjang: SD 3–6 · Durasi video: ±42 detik (9:16)
+Pilar: Sains di Rumah · Jenjang: SD 3–6 · Durasi video: 43,3 detik (9:16), mengikuti VO
 
-Status: **video sudah jadi tanpa suara** (timing baca). Generate VO di ElevenLabs
-(saran: suara "Andra" seperti Hari 2–10), kirim berkasnya, lalu video akan
-disinkronkan per frasa.
+Status: **VO ElevenLabs (suara "Andra") sudah masuk** sebagai `vo.m4a` dan video
+dikunci per frasa. Audio = berkas ElevenLabs asli (40,7 dtk) + jeda 0,2 dtk di empat
+pergantian panggung (sebelum "Jejalkan", "Kenapa", "Tapi kalau", "Paham"), dinormalkan
+ke −16 LUFS, plus ekor ±1,8 dtk untuk logo. Kata-katanya tidak diubah.
 
 ## Teks untuk ElevenLabs (salin apa adanya)
 
@@ -25,17 +26,17 @@ Tapi kalau gelasnya dimiringkan, udara keluar jadi gelembung, air masuk, dan tis
 Paham sampai ke inti! Rekam percobaanmu dan duet video ini. Save dulu biar bisa dicoba akhir pekan!
 ```
 
-## Peta panggung (timing sementara, akan dikunci ke VO)
+## Peta panggung (detik = detik VO di vo.m4a)
 
 | Detik | Panggung | Ekspresi Kuan | Kalimat VO | Visual |
 |---|---|---|---|---|
-| 0–3,0 | 1. Dapur | Senang | Tisu ini masuk ke air… tapi tetap kering! | gelas terbalik di baskom, tisu kering berkilau · teks hook |
-| 3,3–8,6 | 2. Nampan bahan | Senang | Halo, Kuan di sini! Siapkan gelas bening, tisu, dan baskom berisi air. | 3 bahan berlabel muncul satu per satu |
-| 8,6–16,8 | 3. Langkah | Senang → Kaget | Jejalkan tisu… Angkat lurus juga… dan tisunya tetap kering! | tisu dijejalkan · gelas dibalik · dicelup lurus (panah ↓ "lurus") · diangkat lurus · ✓ + kilau |
-| 16,8–25,4 | 4. Udara | Berpikir → Eureka | Kenapa? Gelas itu tidak kosong… Udara punya volume! | partikel udara mengisi gelas · panah dorongan ke air · label *Udara punya volume* |
-| 25,4–31,6 | 5. Miring | Berpikir → Kaget | Tapi kalau gelasnya dimiringkan… tisunya basah! | gelas miring · gelembung keluar · air masuk · tisu basah · ✗ |
-| 31,6–40,2 | 6. Penutup | Senang | Paham sampai ke inti! Rekam percobaanmu dan duet… Save dulu… | dua HP berdampingan (duet) · ikon save |
-| 40,2–42,0 | 7. Logo | Senang | — | kuantika |
+| 0–3,4 | 1. Dapur | Senang | Tisu ini masuk ke air… tapi tetap kering! | gelas terbalik di baskom, tisu kering berkilau · teks hook |
+| 3,4–9,2 | 2. Nampan bahan | Senang | Halo, Kuan di sini! Siapkan gelas bening, tisu, dan baskom berisi air. | gelas bening (6,2) · tisu (7,1) · baskom (8,0) |
+| 9,2–18,3 | 3. Langkah | Senang → Kaget | Jejalkan tisu… Angkat lurus juga… dan tisunya tetap kering! | tisu dijejalkan (9,6) · gelas dibalik (11,6) · dicelup lurus (13,5) · diangkat lurus (15,15) · ✓ + kilau (17,6) |
+| 18,3–27,95 | 4. Udara | Berpikir → Eureka | Kenapa? Gelas itu tidak kosong… Udara punya volume! | partikel udara (21,8) · panah dorongan (23,0) · label *Udara punya volume* (26,5) |
+| 27,95–34,6 | 5. Miring | Senang → Kaget | Tapi kalau gelasnya dimiringkan… tisunya basah! | gelas miring (29,6) · gelembung (30,5) · air masuk (32,2) · tisu basah + ✗ (33,6–34,0) |
+| 34,6–41,5 | 6. Penutup | Senang | Paham sampai ke inti! Rekam percobaanmu dan duet… Save dulu… | teks penutup (35,0) · HP 1 (36,6) · HP duet (37,8) · ikon save (39,0) |
+| 41,5–43,3 | 7. Logo | Senang | — | kuantika |
 
 ## Catatan akurasi & tips percobaan (untuk Anda / balasan komentar)
 

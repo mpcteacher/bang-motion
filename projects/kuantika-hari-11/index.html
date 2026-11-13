@@ -7,7 +7,7 @@
 <title>Kuantika Hari 11 — Tisu Tetap Kering</title>
 <!--
   Kuantika · Hari 11 · Sains di Rumah · SD 3–6 · "Tisu ini masuk ke air… tapi tetap kering!"
-  Kartun panggung 9:16 (1080×1920), 42,0 dtk, 7 panggung (dapur, bahan, langkah, udara, miring, penutup, logo).
+  Kartun panggung 9:16 (1080×1920), 43,3 dtk, 7 panggung (dapur, bahan, langkah, udara, miring, penutup, logo).
   Format tetap pilar Sains di Rumah (dari Hari 4).
   Autoplay + loop tanpa player. ?debug=1 panel scrub · ?clean=1 tahan untuk export.
   Suara: vo.m4a satu folder dengan index.html (src pada <audio id="vo">).
@@ -44,11 +44,11 @@ html,body{margin:0;height:100%;background:#0B2545;overflow:hidden}
   </div>
 </div>
 <div id="dbg"><button id="dPlay">Pause</button><input id="dScrub" type="range" min="0" max="1000" value="0"><span id="dClock">0.00s</span></div>
-<audio id="vo" src="" preload="auto"></audio>
+<audio id="vo" src="vo.m4a" preload="auto"></audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const W=1080,H=1920,DUR=42.0,NS='http://www.w3.org/2000/svg';
+const W=1080,H=1920,DUR=43.3,NS='http://www.w3.org/2000/svg';
 /* palet brand Kuantika (logo kit) + turunan */
 const B={blue:'#0EA5E9',orange:'#FF7A59',yellow:'#FFD23F',navy:'#0B2545',pale:'#E0F2FE',white:'#FFFFFF',cheek:'#94A3B8'};
 function fit(){const s=Math.min(innerWidth/W,innerHeight/H);$('#stage').style.transform=`translate(-50%,-50%) scale(${s})`;}addEventListener('resize',fit);fit();
@@ -267,48 +267,48 @@ function layoutWord(){let tot=0;const ws=P7.letters.map(l=>{const w=l.tx.getComp
   P7.letters.forEach((l,i)=>{l.j.tx=x+ws[i]/2;x+=ws[i];l.j.apply();});}
 
 /* =====================================================================
-   KOREOGRAFI (timing baca; setelah VO ElevenLabs masuk, kunci per frasa)
+   KOREOGRAFI — dikunci ke VO ElevenLabs (vo.m4a, 43,3 dtk). Komentar = frasa pemicu @ detik VO
    ===================================================================== */
-/* P1 · 0–3,3 · "tisu ini masuk ke air… tapi tetap kering!" */
+/* P1 · 0–3,7 · "tisu ini masuk ke air… tapi tetap kering!" */
 tl.set(P1.g,{display:'block'},0);camSet(P1,0,540,1080,1.15);
-sayAt('#tHook',[.1,.45,1.5,1.8]);
+sayAt('#tHook',[.6,1.1,2.6,2.9]);                                                                  // masuk@.64 air@1.14 · tetap@2.6 kering@2.88
 tl.set(P1.kuan.mv,{y:900},0);tl.fromTo(P1.kuan.mv,{y:900},{y:0,duration:.65,ease:'back.out(1.6)',immediateRender:false},.4);
-cam(P1,.6,540,1200,1.3,1.6,'sine.inOut');sparkle(P1.st,1.9);unsay('#tHook',2.8);
-slide(3.0,P1,P2,'x');
-/* P2 · 3,3–8,6 · "halo, Kuan di sini! siapkan gelas bening, tisu, dan baskom berisi air." */
-camSet(P2,2.9,540,1100,1.12);hop(P2.kuan,4.0,60);
-[5.6,6.5,7.2].forEach((at,i)=>{pop(P2.items[i].j,at);pop(P2.items[i].t,at+.12);});
-/* P3 · 8,6–16,8 · jejal → balik → celup lurus → angkat lurus → kering */
-cut(8.6,P2,P3);camSet(P3,8.6,540,960,1.12);
-tl.fromTo(P3.r.tis.j,{x:-260,y:-420,r:-30},{x:0,y:0,r:0,duration:.8,ease:'power2.in',immediateRender:false},9.4);   // jejalkan tisu di dasar gelas
-tl.fromTo(P3.r.g,{sy:1},{sy:.94,duration:.12,yoyo:true,repeat:1,immediateRender:false},10.2);
-tl.fromTo(P3.r.g,{r:0},{r:180,duration:.7,ease:'power2.inOut',immediateRender:false},11.2);          // balikkan gelasnya
-tl.to(P3.arrow,{opacity:1,duration:.2},12.6);pop(P3.lurus,12.6);
-tl.to(P3.r.g,{ty:1290,duration:1.0,ease:'power1.inOut'},12.8);cam(P3,12.8,540,1150,1.2,1.0,'sine.inOut');   // celupkan lurus
-tl.to(P3.arrow,{rotation:180,svgOrigin:'860 920',duration:.3},14.1);
-tl.to(P3.r.g,{ty:820,duration:.8,ease:'power1.inOut'},14.4);cam(P3,14.4,540,960,1.12,.8,'sine.inOut');   // angkat lurus juga
-sparkle(P3.st,15.4);pop(P3.ok,15.6);face(P3.kuan,'kaget',15.6);                                   // tisunya tetap kering!
-/* P4 · 16,8–25,4 · udara punya volume */
-cut(16.8,P3,P4);camSet(P4,16.8,540,1220,1.3);face(P4.kuan,'berpikir',16.8);                       // kenapa?
-tl.fromTo(P4.r.air,{v:0},{v:1,duration:.6,immediateRender:false},18.4);                             // isinya udara
-P4.arrows.forEach((a,i)=>tl.fromTo(a,{opacity:0},{opacity:1,duration:.3,immediateRender:false},20.4+i*.12));   // udara menempati ruang
-tl.fromTo(P4.arrows,{y:0},{y:10,duration:.3,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},20.8);
-sayAt('#tTerm',[22.8,23.05,23.3]);face(P4.kuan,'eureka',23.0);hop(P4.kuan,23.3,60);unsay('#tTerm',25.0);   // udara punya volume!
-/* P5 · 25,4–31,6 · dimiringkan → gelembung → air masuk → tisu basah */
-cut(25.4,P4,P5);camSet(P5,25.4,540,1220,1.25);
-tl.to(P5.r.g,{r:208,duration:.8,ease:'power2.inOut'},26.4);                                          // kalau gelasnya dimiringkan
-tl.fromTo(P5.r.bub,{v:0},{v:1,duration:.2,immediateRender:false},27.5);tl.to(P5.r.bub,{v:0,duration:.3},30.4);   // udara keluar jadi gelembung
-tl.fromTo(P5.r.inW,{v:0},{v:290,duration:1.6,ease:'power1.in',immediateRender:false},28.9);         // air masuk
-tl.fromTo(P5.r.wet,{v:0},{v:1,duration:.5,immediateRender:false},30.0);pop(P5.no,30.5);face(P5.kuan,'kaget',30.5);   // tisunya basah!
-/* P6 · 31,6–40,2 · "paham sampai ke inti! rekam percobaanmu dan duet video ini. save dulu…" */
-cut(31.6,P5,P6);camSet(P6,31.6,540,960,1.12);
-sayAt('#tEnd',[31.8,32.15,32.4,32.6]);hop(P6.kuan,32.9,80);unsay('#tEnd',33.4);
-pop(P6.ph1,34.0);tl.fromTo(P6.plus,{opacity:0},{opacity:1,duration:.2,immediateRender:false},34.3);pop(P6.ph2,34.4);   // rekam … duet
-pop(P6.save,36.5);tl.to(P6.save,{sy:1.15,sx:.9,duration:.25,yoyo:true,repeat:5,ease:'sine.inOut'},37.0);   // save dulu
-/* P7 · 40,2–42,0 · logo */
-cut(40.2,P6,P7);camSet(P7,40.2,540,980,1.12);
-P7.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},40.35+i*.05));
-hop(P7.kuan,40.5,60);
+cam(P1,.6,540,1200,1.3,1.6,'sine.inOut');sparkle(P1.st,2.9);unsay('#tHook',3.3);
+slide(3.4,P1,P2,'x');
+/* P2 · 3,7–9,2 · "halo, Kuan di sini! siapkan gelas bening, tisu, dan baskom berisi air." */
+camSet(P2,3.3,540,1100,1.12);hop(P2.kuan,4.5,60);                                                 // halo@3.91 · Kuan@4.5
+[6.2,7.1,8.0].forEach((at,i)=>{pop(P2.items[i].j,at);pop(P2.items[i].t,at+.12);});               // gelas bening@6.2 · tisu@7.1 · baskom@8.0
+/* P3 · 9,2–18,3 · jejal → balik → celup lurus → angkat lurus → kering */
+cut(9.2,P2,P3);camSet(P3,9.2,540,960,1.12);
+tl.fromTo(P3.r.tis.j,{x:-260,y:-420,r:-30},{x:0,y:0,r:0,duration:.8,ease:'power2.in',immediateRender:false},9.6);   // jejalkan tisu@9.47
+tl.fromTo(P3.r.g,{sy:1},{sy:.94,duration:.12,yoyo:true,repeat:1,immediateRender:false},10.4);
+tl.fromTo(P3.r.g,{r:0},{r:180,duration:.7,ease:'power2.inOut',immediateRender:false},11.6);          // balikkan gelasnya@11.54
+tl.to(P3.arrow,{opacity:1,duration:.2},13.3);pop(P3.lurus,13.3);
+tl.to(P3.r.g,{ty:1290,duration:1.0,ease:'power1.inOut'},13.5);cam(P3,13.5,540,1150,1.2,1.0,'sine.inOut');   // celupkan lurus@13.5
+tl.to(P3.arrow,{rotation:180,svgOrigin:'860 920',duration:.3},14.85);
+tl.to(P3.r.g,{ty:820,duration:.8,ease:'power1.inOut'},15.15);cam(P3,15.15,540,960,1.12,.8,'sine.inOut');   // angkat lurus juga@15.15
+sparkle(P3.st,17.3);pop(P3.ok,17.6);face(P3.kuan,'kaget',17.6);                                   // tetap kering@17.6
+/* P4 · 18,3–27,95 · udara punya volume */
+cut(18.3,P3,P4);camSet(P4,18.3,540,1220,1.3);face(P4.kuan,'berpikir',18.7);                       // kenapa?@18.68
+tl.fromTo(P4.r.air,{v:0},{v:1,duration:.6,immediateRender:false},21.8);                             // isinya udara@21.52
+P4.arrows.forEach((a,i)=>tl.fromTo(a,{opacity:0},{opacity:1,duration:.3,immediateRender:false},23.0+i*.12));   // udara menempati ruang@23.02
+tl.fromTo(P4.arrows,{y:0},{y:10,duration:.3,yoyo:true,repeat:5,ease:'sine.inOut',immediateRender:false},23.4);
+sayAt('#tTerm',[26.47,26.8,27.1]);face(P4.kuan,'eureka',26.5);hop(P4.kuan,26.8,60);unsay('#tTerm',27.65);   // udara punya volume@26.47
+/* P5 · 27,95–34,6 · dimiringkan → gelembung → air masuk → tisu basah */
+cut(27.95,P4,P5);camSet(P5,27.95,540,1220,1.25);                                                   // tapi kalau gelasnya@28.4
+tl.to(P5.r.g,{r:208,duration:.8,ease:'power2.inOut'},29.6);                                          // dimiringkan@29.6
+tl.fromTo(P5.r.bub,{v:0},{v:1,duration:.2,immediateRender:false},30.5);tl.to(P5.r.bub,{v:0,duration:.3},32.9);   // udara keluar jadi gelembung@30.48
+tl.fromTo(P5.r.inW,{v:0},{v:290,duration:1.4,ease:'power1.in',immediateRender:false},32.2);         // air masuk@32.27
+tl.fromTo(P5.r.wet,{v:0},{v:1,duration:.5,immediateRender:false},33.6);pop(P5.no,34.0);face(P5.kuan,'kaget',34.0);   // tisunya basah@33.9
+/* P6 · 34,6–41,5 · "paham sampai ke inti! rekam percobaanmu dan duet video ini. save dulu…" */
+cut(34.6,P5,P6);camSet(P6,34.6,540,960,1.12);
+sayAt('#tEnd',[35.0,35.35,35.6,35.8]);hop(P6.kuan,36.1,80);unsay('#tEnd',36.4);                 // paham@35.01
+pop(P6.ph1,36.6);tl.fromTo(P6.plus,{opacity:0},{opacity:1,duration:.2,immediateRender:false},37.6);pop(P6.ph2,37.8);   // rekam percobaanmu@36.49 · duet@37.9
+pop(P6.save,39.0);tl.to(P6.save,{sy:1.15,sx:.9,duration:.25,yoyo:true,repeat:5,ease:'sine.inOut'},39.5);   // save dulu@38.99
+/* P7 · 41,5–43,3 · logo */
+cut(41.5,P6,P7);camSet(P7,41.5,540,980,1.12);
+P7.letters.forEach((l,i)=>tl.fromTo(l.j,{sx:0,sy:0,y:40},{sx:1,sy:1,y:0,duration:.45,ease:'back.out(2.4)',immediateRender:false},41.65+i*.05));
+hop(P7.kuan,41.8,60);
 tl.to({},{duration:.01},DUR-.01);
 
 /* ---------- kontrol: autoplay + loop tanpa player; ?debug=1 panel; ?clean=1 export ---------- */
